@@ -1,0 +1,194 @@
+<!doctype html>
+<html itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="generator" content="hand-crafted">
+	<meta name="description" content="An entry about the challenges of being a programmer">
+	<link rel="alternate" hreflang="en-gb" href="https://www.lewiscowles.co.uk/" />
+
+	<link rel="icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
+
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+
+	<title>Web log - Importing data, by Lewis Cowles</title>
+	<link rel="canonical" href="https://www.lewiscowles.co.uk/">
+	<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@type": "Person",
+		"name": "Lewis Cowles",
+		"url": "http://www.lewiscowles.co.uk",
+		"sameAs": [
+			"https://www.facebook.com/lewis.r.cowles",
+			"https://www.instagram.com/lewiscowles/",
+			"https://www.linkedin.com/in/lewiscowles/",
+			"https://www.youtube.com/channel/UCl0VmButd52e4GvN8YQh7og",
+			"https://github.com/LewisCowles1986",
+			"https://gist.github.com/LewisCowles1986"
+		]
+	}
+	</script>
+	<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"url": "https://www.lewiscowles.co.uk",
+		"logo": "https://www.lewiscowles.co.uk/img/lewiscowles-logo-vector.png"
+	}
+	</script>
+</head>
+<body class="page">
+	<header>
+
+		<div class="inner">
+			<div class="header-logo tC">
+				<img src="/img/lewiscowles-logo-vector.svg" alt="" class="logo" style="width: 12em; width: 12rem;" role="logo">
+				<span class="header-logo-text">Lewis Cowles</span>
+			</div>
+			<nav>
+				<ul id="menu-top-menu" class="menu">
+					<li>
+						<a href="/about/">About</a>
+					</li><li>
+						<a href="/blog/">Blog</a>
+					</li><li>
+						<a href="/">Contact</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+
+
+	</header>
+	<!-- straight after header -->
+	<main>
+		<article>
+			<h1><a href="/blog/importing-data/">Importing data</a></h1>
+			<p>Sometimes we pivot. We stop what we are doing as we are doing it and re-focus or completely drop that thing for another, maybe we pick a thing up.</p>
+			<p>When we pivot, we often need to re-integrate new information. I'm a programmer & architect so I'll focus this on digital, but you may find it more broadly resonates with life.</p>
+			<p>There is an awesome book by Seth Godin called "The Dip" which I thoroughly recommend everyone reads. It's more broadly about the pre-requisite to this. The decision to go head-down full-steam ahead or stop, pivot. It's about determination and strategies to ensure that you are mindful of not pushing forwards without constant evaluation of where this fits in to a broader strategy.</p>
+			<h2>Know what you want to change</h2>
+			<p>One of the most frustrating things to me as an agent of change and as an agent of delivery are unclear requirements. Perhaps you know internally what you want to change, or perhaps you just know you are in pain and where that pain is coming from. In any case it's essential that you document and clearly lay out what you'd like to be different in terms of outcomes.</p>
+			<ul>
+				<li>You are pre-revenue<br>You need to start capturing or transforming data to support your story to investors</li>
+				<li>You have an academic application design<br>This is proving costly & need to re-orient</li>
+				<li>You keep running into broad-phase data issues<br>Perhaps a singular name field needing to extract first & last-name, perhaps no title</li>
+			</ul>
+			<p>There are no free lunches and this is a painful process for some. As someone pivotal to delivery it can feel a bit like baptising a mountain lion getting stakeholders to sign-up to a plan forward. Particularly if it puts their vision on a roadmap.</p>
+			<h2>Make a plan for how to get there</h2>
+			<p>As I joined a call today for the nth time, I re-iterated some points that were causing pain in a migration. We have a plan, it's broad-phase, not in-the-weeds documented to the micrometer.</p>
+			<details>
+			<summary>My own preferences on documentation</summary>
+			<p>I lay somewhere between where we are and strong documentation. My preferences are unimportant until the lack of fulfilment of them causes pain, wastes time. It's not about me, it's about delivery. I'm aware that some people believe documentation is not agile and I'm quite open and honest that I think they are theives of your time and attention. I'm very pragmatic, documentation is not a set of shackles, you can and should iterate on it, it should not be ready for submission to an examining board unless there is a requirement as-such.</p>
+			</details>
+			<p>Our problem is simple. We have data which is coming from an existing internal system to a newer system to help launch a new product. It might not always live there; we're not building a walking skeleton, but it needs to come in, it needs to fit into a new schema because the questions we are asking are different and there were known design flaws in the old system.</p>
+			<details>
+				<summary>Not getting your own way</summary>
+				<p>I did not get to fix all the things I wanted to in this iteration. Sometimes you can argue until you're blue in the face and a business or group of stakeholders will pull for something you can see the problems in a mile away. I have a simple strategy for this. I complain loudly, attempt to point out the flaws within 15-30 minutes and then consign anything we cannot agree on to another iteration. Pontification is the enemy of delivery.</p>
+			</details>
+			<ul>
+				<li>We have ERD diagrams of the high-level concept</li>
+				<li>We have code which broadly works enough for an MVP</li>
+				<li>we have test cases passing.</li>
+				<li>some of us have strong desires, we cannot reach agreement on everything. <em>We can ship first, iterate later!</em></li>
+			</ul>
+			<p>It's time for an import...</p>
+			<h2>Defining a view of the world</h2>
+			<p>Prior to import you'll need to ensure you have views of what you need. We were quite spartan with this, almost to a point of rigidity. All plans came from an initial ERD I'd done some months prior. Of course we manage our schema's and some of the engineers have tooling to generate an ERD. Theirs is of an application view, not a storage view, it's not source-controllable. It has a lot of unimportant system-specific nuance.</p>
+			<p>I've worked with third-party data and non-perfect data for a lot of my life. I have strategies to improve data and experience of real-world projects which worked and didn't work. One of the pivotal steps which separates the successful from the failed is how nuanced your world view of data is. In all but the most slap-dash of projects I like to avoid using an application at all when migrating it's data.</p>
+			<h3>Some smells when you need to use an application</h3>
+			<ul>
+				<li>Presentation format is derived from non-obvious or complex rules that are not suited to ETL</li>
+				<li>You lack direct access to the place(s) where data is stored</li>
+				<li>There are known storage bugs which are overcome by the application</li>
+			</ul>
+			<h3>Benefits of using direct storage -> storage migration</h3>
+			<ul>
+				<li>There are less individual actors</li>
+				<li>There may be tooling you do not need to write or own</li>
+				<li>You'll reduce interstitial (often throwaway) system count</li>
+				<li>Verification is often simpler</li>
+				<li>There are often speed benefits</li>
+			</ul>
+			<h2>It's not always possible</h2>
+			<p>One of the things you may find is that you need to defer or rule-out import of certain data. Businesses especially in the age of data tend to become needlessly attached to this data., but as a professional and person who wants to help them, you have to remove the sweets from those you love at times.</p>
+			<p>My track record with this is hit-and miss you cannot win every situation, only use what you know to try to give the best advice.</p>
+			<ul>
+				<li>Try to tie advice to vision.</li>
+				<li>Try to work through real-world cases or analogies.</li>
+				<li>Don't shy away from the reductive if it helps.</li>
+				<li>Bring data if you can.<br>This will effectively reduce 10 of 10,000,000 records is an easier pill to swallow than the reverse</li>
+				<li>Try to avoid unilateral decisions</li>
+			</ul>
+			<p>Ultimately one thing businesses need to accept is that we are not magicians; we are engineers, so we should try our best to use a fixed-pool of resources to achieve a goal within a context. If that context changes, people need to know.</p>
+			<h2>Natural keys</h2>
+			<p>At best the word natural can be distracting, can provoke strong reactions for and against. I'm using it because it's a term from database systems, which I hope you'll know.</p>
+			<blockquote>
+				A natural key (also known as business key[1]) is a type of unique key in a database formed of attributes that exist and are used in the external world outside the database 
+				<cite><a href="https://en.wikipedia.org/wiki/Natural_key">Wikipedia</a></cite>
+			</blockquote>
+			<p>So our first imports did not go well. Some data which wasn't very complex of-course moved. We had 4 maybe 5 programmers at one time or another working from our initial plans to build an ETL, high code-coverage, the trappings of success. One of the problems was that our test-data was really dependent on foreign-keys.</p>
+			<p>Because of my history I'd attempted to make use of natural keys where possible, only using foreign keys as a signalling duplicate protection mechanism where natural keys were absent and to provide an extra layer of defence. This made my import scripts look different, but also made them work, and enabled them to produce meaningful errors when they did not. I decided to change others importer scripts to look and behave like mine. This helped, I was glad when the CTO noticed it, sad when syntactic sugar was added which I felt made my own work harder for me to read at-a-glance.</p>
+			<p>Perhaps a surprising thing I'll say on ETL tasks is this. Don't write them inside of your application if you can help it! Ours was built into a monolithic application because we had a short time-to-deliver and a lot of passionate people, keen to use Ruby as much as possible. If this were a contract job, I'd walk away. There should be no place for fuzzy feelings for a specific technology.</p>
+			<p>We also had a requirement to make the tools available to the wider business, which is another reason I tried to use natural keys. They just resonate a lot better with people in my experience. "Oh lewis {email} is not importing" gives a quick transferible thing I, or others can scan artefacts for in 3, 6, 12, 18 months once we've all had a while with more interesting problems.</p>
+			<p>Imports changed meanings entirely to fit requirements better. We decided that each of the 5 main areas for import would succeed or fail at a record level. This gives the property of a document. A resource and it's sub-resources must be created or not. Transactions are a powerful feature of databases which I've found can help to gain success in these matters</p>
+			<ul>
+				<li>Open a transaction</li>
+				<li>Try to create all interconnected objects</li>
+				<li>Ensure all relationships between interconnected objects exist</li>
+				<li>If there is success, commit the transaction, log success</li>
+				<li>In all other cases roll-back the transaction & report errors/li>
+			</ul>
+			<p>This helped us to make import documents more easily humanly readable, it meant we could perform set-based workloads for documents with multiple symmetric entries. I won't go into heavy detail, but read up on <em>set-based operations</em>, <em>batching</em> and <em>computation thrashing</em></p>
+			<p>TLDR is that you can generally increase ideal case, without impacting worst-case by doing lots of a specific thing at once instead of doing many different things in cycles. Of course measure what is right for you, be pragmatic.</p>
+			<h3>Lying with good cause</h3>
+			<p>I've presented this to this point as-if there were one prior system in this analogous to an existing current project. There are actually multiple systems, following a faux-microservices, distributed monolith. There were decisions made to limit the complexity of this write-up and also import by materializing cross-system representations into a single source of truth.</p>
+			<p>We used a tool called <a href="https://chartio.com/" target="_blank">Chartio</a> which is more about dashboards, analytics and reporting than ETL. All I can offer here is to let your team use what they are comfortable with, but attempt to steer towards tooling made for the job. Chartio has allowed us to annotate data with corrections, impose further filtering and logic and had a read-only connection to some of the data needed. It's enabled interoperability amongst a distributed team where tooling is not standard, but uses interoperable export and import formats (CSV). I offer this not as an excuse, but to add further context to aid understanding.</p>
+			<p>This also has led to pinning some data in an interstitial format. Remote URI accessible resources are persisted using URI's for things like images. These add time to imports and often can be a source of distraction through network failures, yet more third-party services. The core thing is not to delete any third-party resources and in-fact take regular snapshots of all resources so you don't lose information.</p>
+			<h2>Troubleshooting</h2>
+			<p>Our next set of problems which are as-yet unresolved and in-progress are about bounding data. The business has a clear requirement to bring in all of a certain domain, bounded to a specific few entities. Those entities rely on other entities as is common when coming from an RDBMS system, and this means we need to select the greatest outer-scope first</p>
+			<p>If you had soccer teams that had played eachother and were in division 1, you'd first need to select soccer teams, not division 1 teams, if teams could play other teams outside of their division, and you wanted to honestly reflect their match history.</p>
+			<p>Just because a team is not part of division 1, if data that relies on it points to it, you have some choices</p>
+			<ul>
+				<li>Don't import the data (can you do it later?)</li>
+				<li>Accept that you'll need to import more than just what you want, but what is connected to it</li>
+				<li>Don't import anything (rare, but giving up is a valid option)</li>
+			</ul>
+			<h2>Verification</h2>
+			<p>It may seem strange given that we are not done that we are already in this stage. Essentially any time you iterate you need to verify the outcomes. In my current role we use Slack to communicate, Google Drive for artefacts as well as Chartio dashboards to track and produce data artefacts. I should probably link the Google drive import artefacts, chartio source, and import report logs to JIRA which is the project management tool. In-fact I shall do this tomorrow. Given a non-startup I may do this or make a dedicated resource to do this for me. Some things to avoid</p>
+			<ul>
+				<li>Clutter - How can I find what I want?</li>
+				<li>Ambiguity - What is needed to reproduce results?</li>
+			</ul>
+			<p>For other projects I've worked on verification has ranged from check every single record imported to check a few known entries. Some advice I will offer is start by telling the business you need to check everything, but be open to negotiate downwards, getting in writing if you cannot verify the entire data-set that it's acceptable. That writing can be as simple as an IM message from a stakeholder, but people's lives and jobs and the success of product will rest on this keystone.</p>
+			<h2>Wrapping up</h2>
+			<p>Having reduced some import timings, got many more records than the initial import you'll be able to deliver iterative value, showing progress until it's time to launch, deliver and move-on. I hope you've learned some things, this was by no means exhaustive, but covered some points I've had on my mind. I Hope to look back at this and find either I know better methods, or it keeps the methods I do know fresh.</p>
+		</article>
+	</main>
+	<footer>
+	<div class="widget-area">
+	<div class="noPad tC">
+		<div id="text-2" class="widget widget_text">
+		<div class="textwidget">
+			<p>
+			Copyright © 2014-2019 Lewis Cowles, All Rights Reserved.<br>Font Icons By
+			<a href="http://fortawesome.github.io/Font-Awesome/" target="_blank" rel="noreferrer">FontAwesome</a><br>
+			Website coded using CSS3, HTML5,
+			<a href="http://www.php.net" target="_blank" rel="noreferrer">PHP</a>,
+			<a href="https://www.ruby-lang.org/en/" target="_blank" rel="noreferrer">Ruby</a>
+			<a href="http://www.jekyllrb.com" target="_blank" rel="noreferrer">Jekyll</a>.<br>
+			Images use
+			<a href="http://gimp.org" target="_blank" rel="noreferrer">GIMP</a> &amp; Adobe Creative Suite.
+			</p>
+		</div>
+		</div>
+	</div>
+	</div>
+	</footer>
+	<link href="/css/style.css" rel="stylesheet" media="all">
+	<link rel="stylesheet" id="google-fonts-css" href="//fonts.googleapis.com/css?family=Russo+One%7COswald%7COpen+Sans" type="text/css" media="all">
+</body>
+</html>
