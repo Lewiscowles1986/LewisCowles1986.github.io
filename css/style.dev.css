@@ -642,3 +642,10 @@ tbody > tr:last-of-type {
 }
 
 li { line-height: 2 }
+
+span[title] {
+  border: 1px dashed;
+  display: inline-block;
+  padding: 5px;
+  line-height: 1;
+}
