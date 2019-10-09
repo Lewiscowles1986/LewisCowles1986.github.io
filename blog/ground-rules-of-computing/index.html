@@ -1,0 +1,151 @@
+<!doctype html>
+<html itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="generator" content="hand-crafted">
+	<meta name="description" content="A post about another attempt at blogging">
+    <link rel="alternate" hreflang="en-gb" href="https://www.lewiscowles.co.uk/" />
+
+	<link rel="icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
+
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+
+	<title>Web log - Ground rules of computing, by Lewis Cowles</title>
+	<link rel="canonical" href="https://www.lewiscowles.co.uk/">
+	<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@type": "Person",
+		"name": "Lewis Cowles",
+		"url": "http://www.lewiscowles.co.uk",
+		"sameAs": [
+			"https://www.facebook.com/lewis.r.cowles",
+			"https://www.instagram.com/lewiscowles/",
+			"https://www.linkedin.com/in/lewiscowles/",
+			"https://www.youtube.com/channel/UCl0VmButd52e4GvN8YQh7og",
+			"https://github.com/LewisCowles1986",
+			"https://gist.github.com/LewisCowles1986"
+		]
+	}
+	</script>
+	<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"url": "https://www.lewiscowles.co.uk",
+		"logo": "https://www.lewiscowles.co.uk/img/lewiscowles-logo-vector.png"
+	}
+	</script>
+</head>
+<body class="page">
+	<header>
+		<div class="inner">
+			<div class="header-logo tC">
+				<img src="/img/lewiscowles-logo-vector.svg" alt="" class="logo" style="width: 12em; width: 12rem;" role="logo">
+				<span class="header-logo-text">Lewis Cowles</span>
+			</div>
+			<nav>
+				<ul id="menu-top-menu" class="menu">
+					<li>
+						<a href="/about/">About</a>
+					</li><li>
+						<a href="/blog/">Blog</a>
+					</li><li>
+						<a href="/">Contact</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+
+
+	</header>
+	<!-- straight after header -->
+	<main>
+		<article>
+			<h1><a href="/blog/ground-rules-of-computing/">Ground rules of computing</a></h1>
+			<p>Most of this should be redundant to the computing professional. I hope it is obvious, regardless of religious, political or cultural affiliation. This is so often ignored by most of the materials you engage in when making decisions about computers; I thought I'd write it, if for nothing else than to provide myself of a written record of my current understanding, for future improvement.</p>
+			<h2>Computers run within the laws of physics</h2>
+			<p>This should not need to be re-iterated, but it often is a source of friction between me and the wider world. Because of this need to think within physics, which I am by no means an expert in, we immediately can throw away anything that is said to be free of cost into a container of nonsense and hype, designed to harm people.</p>
+			<ul>
+				<li>Nothing is free</li>
+				<li>Scaling infinitely is not possible</li>
+				<li>Energy is our currency</li>
+				<li>Things covering long distances will take time</li>
+			</ul>
+			<h2>A need for grounding in statistics</h2>
+			<p>I know that there are lies, damn lies, and publicly quoted statistics. Of course there is nothing wrong with statistics, usually criticism comes from would-be pedants who cannot differentiate the exception from the average or common cases. Outliers are not inconsequential, and you need to be mindful of them, but probably won't reflect averages.</p>
+			<ul>
+				<li>Pay more attention to things that happen often</li>
+				<li>Record extreme, weird or edge cases, but dedicate time to main cases</li>
+			</ul>
+			<h2>Things should be reproducible</h2>
+			<p>The infamous IT catchphrase "works for me" or "works on my machine" is not good enough. Sadly we all say this sometimes.</p>
+			<p>My last time was just last week. I've still not tracked down what the root cause was, but working with another engineer we did release a patch for the issue, which was confirmed on two machines and we understood. We likely were not taking control of enough of the environment to guarantee reproducibility.</p>
+			<p>The greater the number of confirmations in a reproducible environment, the greater the chance is that something will hold true for the same environment. Clean rooms such as VM's and containers, disk images have come some way towards improving this. Sadly it's not an area given enough attention.</p>
+			<p>This is especially important as part of the environment may not be within our control, or may be unknown to the observer. Only through time, education and iteration will we gain the depth of knowledge to exert full-control over that environment and give better advice, and guidance to make good decisions.</p>
+			<ul>
+				<li>If things work differently for you, try to find out why</li>
+				<li>The more places a thing can be independently reproduced, the closer to certainty you can be</li>
+				<li>Always be open to learning more</li>
+				<li>Seek out tools rather than rituals to achieve repeat-ability</li>
+			</ul>
+			<h2>Anything non-pure compute flows through memory</h2>
+			<p>As I write this, I hope the reader is aware of this, but recently I've encountered technical leadership which astounded me by not knowing this, or over-simplifying their model of computing to infer this was not true. In most cases this means RAM, CPU registers or cache memory.</p>
+			<p>While I will accept that there are oddities to some computing models allowing direct read and write without deliberate usage of RAM; I've yet to find a suitable explanation other than "There is memory used somewhere, which may or may not be RAM, but is used for the same purpose".</p>
+			<p>Memory is just a place that is generally able to be a source of truth which is faster, so we go there rather than waste time for general-case. Those in business may see this as trading high fixed-costs, for variable-costs.</p>
+			<p>Traditional storage is also sequential in access from punch-cards to CD, DVD & Blu-ray, and spinning-platter hard-drives. There is a thing called a seek cost, because something mechanical needs to move to a place.</p>
+			<h2>Takeaways</h2>
+			<ul>
+				<li>Computers are not boxes of magic, they obey physics
+					<ul>
+						<li>Nothing is free</li>
+						<li>Scaling infinitely is not possible</li>
+						<li>Energy is our currency</li>
+						<li>Things covering long distances will take time</li>
+					</ul>
+				</li>
+				<li>Statistics can help us understand and direct effort
+					<ul>
+						<li>Pay more attention to things that happen often</li>
+						<li>Record extreme, weird or edge cases, but dedicate time to main cases</li>
+					</ul>
+				</li>
+				<li>Things should be reproducible
+					<ul>
+						<li>If things work differently for you, try to find out why</li>
+						<li>The more places a thing can be independently reproduced, the closer to certainty you can be</li>
+						<li>Always be open to learning more</li>
+						<li>Seek out tools rather than rituals to achieve repeat-ability</li>
+					</ul>
+				</li>
+				<li>All roads to interesting things usually lead through memory</li>
+			</ul>
+		</article>
+	</main>
+	<footer>
+	<div class="widget-area">
+	<div class="noPad tC">
+		<div id="text-2" class="widget widget_text">
+		<div class="textwidget">
+			<p>
+			Copyright © 2014-2019 Lewis Cowles, All Rights Reserved.<br>Font Icons By
+			<a href="http://fortawesome.github.io/Font-Awesome/" target="_blank" rel="noreferrer">FontAwesome</a><br>
+			Website coded using CSS3, HTML5,
+			<a href="http://www.php.net" target="_blank" rel="noreferrer">PHP</a>,
+			<a href="https://www.ruby-lang.org/en/" target="_blank" rel="noreferrer">Ruby</a>
+			<a href="http://www.jekyllrb.com" target="_blank" rel="noreferrer">Jekyll</a>.<br>
+			Images use
+			<a href="http://gimp.org" target="_blank" rel="noreferrer">GIMP</a> &amp; Adobe Creative Suite.
+			</p>
+		</div>
+		</div>
+	</div>
+	</div>
+	</footer>
+	<link href="/css/style.css" rel="stylesheet" media="all">
+	<link rel="stylesheet" id="google-fonts-css" href="//fonts.googleapis.com/css?family=Russo+One%7COswald%7COpen+Sans" type="text/css" media="all">
+</body>
+</html>
