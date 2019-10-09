@@ -1,0 +1,169 @@
+<!doctype html>
+<html itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="generator" content="hand-crafted">
+	<meta name="description" content="A post about another attempt at blogging">
+    <link rel="alternate" hreflang="en-gb" href="https://www.lewiscowles.co.uk/" />
+
+	<link rel="icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
+
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+
+	<title>Web log - Unintuitive aspects of computing, by Lewis Cowles</title>
+	<link rel="canonical" href="https://www.lewiscowles.co.uk/">
+	<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@type": "Person",
+		"name": "Lewis Cowles",
+		"url": "http://www.lewiscowles.co.uk",
+		"sameAs": [
+			"https://www.facebook.com/lewis.r.cowles",
+			"https://www.instagram.com/lewiscowles/",
+			"https://www.linkedin.com/in/lewiscowles/",
+			"https://www.youtube.com/channel/UCl0VmButd52e4GvN8YQh7og",
+			"https://github.com/LewisCowles1986",
+			"https://gist.github.com/LewisCowles1986"
+		]
+	}
+	</script>
+	<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"url": "https://www.lewiscowles.co.uk",
+		"logo": "https://www.lewiscowles.co.uk/img/lewiscowles-logo-vector.png"
+	}
+	</script>
+</head>
+<body class="page">
+	<header>
+		<div class="inner">
+			<div class="header-logo tC">
+				<img src="/img/lewiscowles-logo-vector.svg" alt="" class="logo" style="width: 12em; width: 12rem;" role="logo">
+				<span class="header-logo-text">Lewis Cowles</span>
+			</div>
+			<nav>
+				<ul id="menu-top-menu" class="menu">
+					<li>
+						<a href="/about/">About</a>
+					</li><li>
+						<a href="/blog/">Blog</a>
+					</li><li>
+						<a href="/">Contact</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+
+
+	</header>
+	<!-- straight after header -->
+	<main>
+		<article>
+			<h1><a href="/blog/unintuitive-aspects-of-computing/">Unintuitive aspects of computing</a></h1>
+			<p>We've all heard the hype. Computers are here, they want to make our lives easier, solve our problems as we sleep. Some might even pop the coffee pot on, take care of shopping or vaccuum your abode.</p>
+			<p>What people rarely, if ever, communicate are the edge cases, darkened corners which pervade and disrupt our digital utopia.</p>
+			<h2>What can go wrong?</h2>
+			<ul>
+				<li>Things that seem reasonable, don't happen</li>
+				<li>Things that seem unreasonable, happen</li>
+				<li>There is lack of clarity about how things work</li>
+				<li>How things work, often change</li>
+			</ul>
+			<h3>Things that seem reasonable, don't happen</h3>
+			<p>The first time I remember encountering this, I was very young and I'd sat down at our amstrad laptop and I was exploring the system of DOS.</p>
+			<p>I gleefully typed commands which I had little idea about and responded to the machine as a young child might. Do I want to do something? No. Well that wasn't very exciting, so I think I'll try again with yes.</p>
+			<p>It wasn't long before I became unstuck having formatted the A: drive, which contained the operating system. Far from calamity, I proceeded on, blissfully unaware, I'd just deleted that computers record of the universe... Until my father arrived home and attempted to turn the thing on.</p>
+			<p>Are you sure you want to do something? A poor excuse for guard rails for the developing mind.</p>
+			<h3>Things that seem unreasonable, happen</h3>
+			<p>1-2 weeks ago, whilst working on bringing data into a new system, I encountered something pretty useless.</p>
+			<p>If the code running the application changed, all in-progress activity stopped, no record of activity was present, no progress or indicator of a catastrophic failure.</p>
+			<p>This is what I would consider to be unreasonable, if not utterly stupid behaviour. Immediately I was incensed at the lack of thought that had gone into this. My mind turned to remitting the issue after logging the issue.</p>
+			<p>Upon reading the documentation of the deployment platform, which to their credit existed; I got a sinking feeling.</p>
+			<blockquote>
+				To shut down the app, CF sends the app process in the container a SIGTERM. The process has ten seconds to shut down gracefully. If the process has not exited after ten seconds, CF sends a SIGKILL.
+				<cite><a href="https://docs.cloudfoundry.org/devguide/deploy-apps/app-lifecycle.html#-shutdown" rel="noopener">CloudFoundry app-lifecycle docs</a></cite>
+			</blockquote>
+			<p>Imagine that you have a friend over for tea, or a meeting with a co-worker. You have a less than favourable exchange, you ask them to leave. They have not left in 10 seconds, so you brutally murder them. I don't think that many will support this set of actions and outcomes.</p>
+			<p>Multiple expectations of reasonability were violated here.</p>
+			<ul>
+				<li>We had no log messages that this was happening</li>
+				<li>The documentation for this is in an unexpected place</li>
+				<li>The documentation for this was not referenced elsewhere</li>
+				<li>This seems like somewhere a big red flashing box should appear</li>
+				<li>When I raised this with others, "We know" was at least one strategic member of staff viewpoint</li>
+			</ul>
+			<p>Once I knew what was wrong, it took a very short amount of time to work out a strategy to overcome my immediate needs.</p>
+			<h3>There is lack of clarity about how things work</h3>
+			<p>Thankfully the past 20 years of my life, things are improving in this area of software. Things are still not as self-obviate as I would like, but we're getting to an era where people are employed as operators of software.</p>
+			<p>Operators, often cannot program that software, and may have very little idea about configuring. Perhaps this is someone else job. "Would all amber multi-skill staff please come to the checkouts please."</p>
+			<p>When I first started at my job, and then a month or so later when a colleague started. We all had questions about how various pieces of the software fitted together.</p>
+			<p>Consulting the documentation, a phrase <span title="you ain't gonna need it">YAGNI</span> was strewn with almost blissful abandon around. There is a famous quote about this sort of thing...</p>
+			<blockquote>
+				If you do not know where you come from, then you don't know where you are, and if you don't know where you are, then you don't know where you're going. And if you don't know where you're going, you're probably going wrong.
+				<cite>Terry Pratchett, I Shall Wear Midnight</cite>
+			</blockquote>
+			<p>The result of this attitude was that many members of staff were less productive than they otherwise would have been. Luckily we changed that and write down a lot more, even focusing on how to write things more accessibly.</p>
+			<h3>How things work, often change</h3>
+			<p>The first of many gotchas in computing, is that there is more than one way to do a thing. Our picture-perfect is stained with diappointment of a reality that context is still needed. It's just not communicated.</p>
+			<p>There are probably a whole set of decisions about when it's right to do a thing, when it becomes inappropriate, or less than desired, many steps to get something in just the right position that it might succeed often enough to be suitable.</p>
+			<p>Cognitive load being one of the things we seek to reduce, computers often act as designed, but do not communicate or provide simple tooling to see what is happening under the hood.</p>
+			<p>Even in my role as software engineer, we use terms such as heisenbug, far too often rely on not knowing, but observing. History has lessons about this sort of thing.</p>
+			<p>What really helps with this is flow-charts, spreadsheets of known event names, tracking column changes outside of code for the auditor, or would-be assistant.</p>
+			<p>So far as I can tell this is not deliberate, but yet it is so pervasive in an industry created by thinkers, logic. I Hope that at some point, how fast will become much less celebrated than how well a thing was done.</p>
+			<h2>What do I want to do, and have done?</h2>
+			<p>Hoping someone has read this far, even if it's me 6-months from now, less hair, less happy. This is what I would like.</p>
+			<ul>
+				<li>Make small, focused things</li>
+				<li>Have those things report</li>
+				<li>Aim not to surprise your users</li>
+				<li>Try to frame questions in another light. You may notice, I prefer the humorously absurd</li>
+				<li>You might not need things, consider that others will</li>
+				<li>Please document as flow-charts decisions, processes</li>
+				<li>Please find UX people who are not re-branded graphic artists</li>
+				<li>Try to keep a log of where you have been</li>
+			</ul>
+			<p>If you are a systems engineer I have a broader ask.</p>
+			<ul>
+				<li>Please consider correctness over speed
+					<ul>
+						<li>Don't <span title="go back to the starting point">roll around</span> when a number gets too high</li>
+						<li>Develop serialization formats to convey context of computation</li>
+					</ul>
+				</li>
+				<li>Persist valid state early, and often.</li>
+				<li>Think about how to cope with mistakes and failure.</li>
+				<li>Document even unfinished, or undesirable things.</li>
+				<li>Try to make things as accessible as you can.</li>
+			</ul>
+		</article>
+	</main>
+	<footer>
+	<div class="widget-area">
+	<div class="noPad tC">
+		<div id="text-2" class="widget widget_text">
+		<div class="textwidget">
+			<p>
+			Copyright © 2014-2019 Lewis Cowles, All Rights Reserved.<br>Font Icons By
+			<a href="http://fortawesome.github.io/Font-Awesome/" target="_blank" rel="noreferrer">FontAwesome</a><br>
+			Website coded using CSS3, HTML5,
+			<a href="http://www.php.net" target="_blank" rel="noreferrer">PHP</a>,
+			<a href="https://www.ruby-lang.org/en/" target="_blank" rel="noreferrer">Ruby</a>
+			<a href="http://www.jekyllrb.com" target="_blank" rel="noreferrer">Jekyll</a>.<br>
+			Images use
+			<a href="http://gimp.org" target="_blank" rel="noreferrer">GIMP</a> &amp; Adobe Creative Suite.
+			</p>
+		</div>
+		</div>
+	</div>
+	</div>
+	</footer>
+	<link href="/css/style.css" rel="stylesheet" media="all">
+	<link rel="stylesheet" id="google-fonts-css" href="//fonts.googleapis.com/css?family=Russo+One%7COswald%7COpen+Sans" type="text/css" media="all">
+</body>
+</html>
