@@ -1,0 +1,128 @@
+<!doctype html>
+<html itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="generator" content="hand-crafted">
+	<meta name="description" content="An entry about the challenges of being a programmer">
+	<link rel="alternate" hreflang="en-gb" href="https://www.lewiscowles.co.uk/" />
+
+	<link rel="icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
+
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+
+	<title>Web log - Holistic system design, by Lewis Cowles</title>
+	<link rel="canonical" href="https://www.lewiscowles.co.uk/">
+	<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@type": "Person",
+		"name": "Lewis Cowles",
+		"url": "http://www.lewiscowles.co.uk",
+		"sameAs": [
+			"https://www.facebook.com/lewis.r.cowles",
+			"https://www.instagram.com/lewiscowles/",
+			"https://www.linkedin.com/in/lewiscowles/",
+			"https://www.youtube.com/channel/UCl0VmButd52e4GvN8YQh7og",
+			"https://github.com/LewisCowles1986",
+			"https://gist.github.com/LewisCowles1986"
+		]
+	}
+	</script>
+	<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"url": "https://www.lewiscowles.co.uk",
+		"logo": "https://www.lewiscowles.co.uk/img/lewiscowles-logo-vector.png"
+	}
+	</script>
+</head>
+<body class="page">
+	<header>
+
+		<div class="inner">
+			<div class="header-logo tC">
+				<img src="/img/lewiscowles-logo-vector.svg" alt="" class="logo" style="width: 12em; width: 12rem;" role="logo">
+				<span class="header-logo-text">Lewis Cowles</span>
+			</div>
+			<nav>
+				<ul id="menu-top-menu" class="menu">
+					<li>
+						<a href="/about/">About</a>
+					</li><li>
+						<a href="/blog/">Blog</a>
+					</li><li>
+						<a href="/">Contact</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+
+
+	</header>
+	<!-- straight after header -->
+	<main>
+		<article>
+			<h1><a href="/blog/holistic-systems-design/">Holistic system design</a></h1>
+			<p>When I started designing systems, it was mostly to scratch an itch I had. To do a thing I couldn't believe was not provisioned for in the software I use, and I could get my head around. It was exciting and empowering to make edits from trivial colour changes, to non-trivial additional & alternate behaviours, UI's, even systems.</p>
+			<p>One of the things I've noticed in nearly 30 years using software is that nothing is perfect, and even the most popular systems have areas for improvement. This could be that things would work better for smaller or larger systems, or perhaps just for your particular way of using software. After all the clue is in the name. Software is not meant to be hard.</p>
+			<h2>Iterative design</h2>
+			<p>One of the first movements I came across that I became excited to use was <a href="https://en.wikipedia.org/wiki/Rapid_application_development">rapid application development</a>. I was lucky enough to get on-board with this movement around the time Visual Basic & MFC were popular. My initial source control was zip and tarball archives, then <a href="https://en.wikipedia.org/wiki/Concurrent_Versions_System">CVS</a> & later sites such as <a href="https://www.sourceforge.net">sourceforge.net</a> emerged & became popular. These all made better the things that came before them.</p>
+			<p>I was already a user of Linux, but I had not got the message on the <a href="https://en.wikipedia.org/wiki/Unix_philosophy">UNIX philosophy</a> yet. I loved all the things of the day; <a href="https://en.wikipedia.org/wiki/Tab_(interface)">Tabbed UI</a>, the <a href="https://en.wikipedia.org/wiki/Multiple_document_interface">multiple document interface</a>, which was fairly non-standard and new. Challenges. My adventures included capturing window handles and launching <a href="https://en.wikipedia.org/wiki/Process_(computing)">processes</a> and <a href="https://en.wikipedia.org/wiki/Child_process">child-processes</a> to composite and orchestrate my software from other software. This made extension easy and even as my software grew, distribution and management were never a pain point.</p>
+			<h2>Enter libraries & frameworks</h2>
+			<p>The existing software engineers amongst us will note that I'd obviously not been coding in a vaccum, but using <a href="https://en.wikipedia.org/wiki/Library_(computing)">libraries</a> and <a href="https://en.wikipedia.org/wiki/Software_framework">frameworks</a>, which at the time I knew only as shared objects and DLL's, which were implementation details.</p>
+			<p>This fast-food approach to software had left me coupled to vendors I'd mistakenly assumed had made the same choices I would. I'm not suggesting they were operating in bedlam, or that my initial leanings were or have become the canonical source of how to do a thing; but the more I've learned about software and the motivations behind it, I become convinced the technology driving force was to isolate thought to corporate islands. Whoever owns your language, owns a thing you use to think, and undoubtedly owns a larger part of your future. [<a href="https://en.wikipedia.org/wiki/Intellectual_property">Intellectual Property</a>]</p>
+			<h2>Being sensible</h2>
+			<p>I'm not advocating we all go back to islands of machine code, or try to build our own island states of <a href="https://en.wikipedia.org/wiki/Not_invented_here">NIH</a>. I'm also not assuming everyone has reached the level where they can shed their framework or libraries, or write their own. It's more to say that we should be very careful of who we entrust our future to, and how much we trust them.</p>
+			<p>Lazily accepting that a framework or library approach to a problem is the best, or only approach is a decidedly immature viewpoint, and yet one I hear far too much.</p>
+			<ul>
+				<li>Your CMS is not the easiest for everyone, or the best for everyone.</li>
+				<li>Your database vendor does not have a monopoly on information design or layout.</li>
+				<li>That framework which saves you a day getting started might cost you years.</li>
+			</ul>
+			<h2>What to do then?</h2>
+			<ul>
+				<li>Regularly map out your problem space.</li>
+				<li>Try to fix issues by prevalence & severity.</li>
+				<li>Try to discuss technology using facts & data specific to you, not feelings, blogs, phrases from memes.</li>
+				<li>Try to do less things, but do them better than anyone else.</li>
+				<li>Search for information refuting your views, expanding your knowledge.</li>
+			</ul>
+			<p>The last point takes a lot of time. You'd be shocked to know system & library vendors are not known for cataloguing the limitations, edge cases, or mostly design considerations of their systems exhaustively. I know, but it's okay to be human and assume these people are human.</p>
+			<p>A good rule of thumb is that unless everything is working as designed all of the time, those assumptions are eternal and you can prove that; It's not good enough.</p>
+			<ul>
+				<li>Okay so it took 5 minutes to set something up in <a href="https://en.wikipedia.org/wiki/OSI_model">layer 7</a>.<br>It might be faster solving in layers 3 or 4.<br>It's okay to not write all your software in one language.</li>
+				<li>Perhaps your storage library creates many decisions.<br> Maybe those trap you in your code to talk to your files.<br>Are there other tools or approaches?</li>
+				<li>Maybe it will be hard to secure that 1GB software package.<br>Maybe it's made of tinier parts, <br>Maybe those parts are what you should use.<br>Maybe it's fine to use, but only in a deffered environment</li>
+			</ul>
+			<p>You can break down a problem by iterating, partitioning, relinquish parts of a problem you have data to show are not important, or simply don't care about.</p>
+			<p>You can do this and you'll make better systems if you do.</p>
+		</article>
+	</main>
+	<footer>
+	<div class="widget-area">
+	<div class="noPad tC">
+		<div id="text-2" class="widget widget_text">
+		<div class="textwidget">
+			<p>
+			Copyright © 2014-2019 Lewis Cowles, All Rights Reserved.<br>Font Icons By
+			<a href="http://fortawesome.github.io/Font-Awesome/" target="_blank" rel="noreferrer">FontAwesome</a><br>
+			Website coded using CSS3, HTML5,
+			<a href="http://www.php.net" target="_blank" rel="noreferrer">PHP</a>,
+			<a href="https://www.ruby-lang.org/en/" target="_blank" rel="noreferrer">Ruby</a>
+			<a href="http://www.jekyllrb.com" target="_blank" rel="noreferrer">Jekyll</a>.<br>
+			Images use
+			<a href="http://gimp.org" target="_blank" rel="noreferrer">GIMP</a> &amp; Adobe Creative Suite.
+			</p>
+		</div>
+		</div>
+	</div>
+	</div>
+	</footer>
+	<link href="/css/style.css" rel="stylesheet" media="all">
+	<link rel="stylesheet" id="google-fonts-css" href="//fonts.googleapis.com/css?family=Russo+One%7COswald%7COpen+Sans" type="text/css" media="all">
+</body>
+</html>
