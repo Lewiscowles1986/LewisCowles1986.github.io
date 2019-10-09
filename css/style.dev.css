@@ -1,10 +1,5 @@
 @charset "UTF-8";
-/*
- * Vars
- */
-/*
- * Mixins
- */
+
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -21,9 +16,7 @@ body {
   font-size: 20px;
   font-family: OpenSans, Helvetica, Arial, Verdana, sans-serif;
   color: rgb(25,25,25);
- /*
-* Pallette
-*/ }
+}
 
 body.page > main, body.blog > main article {
     background-color: #efefef;
@@ -42,9 +35,7 @@ body.page > main, body.blog > main article {
 
 .lblue {
   background-color: #09f;
- /*
-* Typography & alignment
-*/ }
+}
 
 .fL, .row .col, .row .col.fL, .row .row .col.col, .row .row .col.col {
   float: left; }
@@ -61,9 +52,7 @@ body.page > main, body.blog > main article {
   clear: both;
   display: block;
   display: table;
- /*
-* General rules
-*/ }
+}
 
 .tL {
   text-align: left; }
@@ -86,9 +75,6 @@ body.page > main, body.blog > main article {
 .tN {
   font-weight: 400; }
 
-/*
- * Forms and input
- */
 form {
   margin: 0;
   border: 0;
@@ -120,9 +106,7 @@ fieldset {
 textarea {
   resize: vertical;
   min-height: 10rem;
- /*
-* Quote Box
-*/ }
+}
 
 .quote {
   text-align: center;
@@ -136,9 +120,7 @@ textarea {
   padding-top: 2rem;
   padding-bottom: 1rem;
   background-color: rgba(255, 255, 255, 0.5);
- /*
-* Grid
-*/ }
+}
 
 .quote:before, .quote:after {
   vertical-align: middle;
@@ -167,9 +149,7 @@ textarea {
   clear: both;
   display: block;
   display: table;
- /*
-* General rules
-*/ }
+}
 
 .row .col {
   width: 100%;
@@ -198,9 +178,7 @@ textarea {
     clear: both;
     display: block;
     display: table;
-   /*
-* General rules
-*/ }
+ }
 
   .row.grid2 .col.sp2 {
     content: "";
@@ -208,9 +186,7 @@ textarea {
     clear: both;
     display: block;
     display: table;
-   /*
-* General rules
-*/
+
     width: 100%; }
 
   .row.grid3 .col, .row.grid6.flex .col {
@@ -222,9 +198,7 @@ textarea {
     clear: both;
     display: block;
     display: table;
-   /*
-* General rules
-*/ }
+ }
 
   .row.grid3 .col.sp2, .row.grid6.flex .col.sp2 {
     width: 66.6%; }
@@ -235,9 +209,7 @@ textarea {
     clear: both;
     display: block;
     display: table;
-   /*
-* General rules
-*/
+
     width: 100%; }
 
   .row.grid4 .col, .row.grid8.flex .col {
@@ -249,9 +221,7 @@ textarea {
     clear: both;
     display: block;
     display: table;
-   /*
-* General rules
-*/ }
+ }
 
   .row.grid4 .col.sp2, .row.grid8.flex .col.sp2 {
     width: 50%; }
@@ -265,9 +235,7 @@ textarea {
     clear: both;
     display: block;
     display: table;
-   /*
-* General rules
-*/
+
     width: 100%; }
 
   .row.grid7.tab .col {
@@ -279,9 +247,7 @@ textarea {
     clear: both;
     display: block;
     display: table;
-   /*
-* General rules
-*/ }
+ }
 
   .row.grid7.tab .col.sp2 {
     width: 28.57%; }
@@ -295,9 +261,7 @@ textarea {
     clear: both;
     display: block;
     display: table;
-   /*
-* General rules
-*/
+
     width: 100%; } }
 @media (min-width: 1000px) {
   .row.grid8.flex .col {
@@ -309,9 +273,7 @@ textarea {
     clear: both;
     display: block;
     display: table;
-   /*
-* General rules
-*/ }
+}
 
   .row.grid8.flex .col.sp2 {
     width: 25%; }
@@ -337,9 +299,7 @@ textarea {
     clear: both;
     display: block;
     display: table;
-   /*
-* General rules
-*/
+
     width: 100%; }
 
   .row.grid7 .col {
@@ -351,9 +311,7 @@ textarea {
     clear: both;
     display: block;
     display: table;
-   /*
-* General rules
-*/ }
+ }
 
   .row.grid7 .col.sp2 {
     width: 28.57%; }
@@ -376,9 +334,7 @@ textarea {
     clear: both;
     display: block;
     display: table;
-   /*
-* General rules
-*/
+
     width: 100%; }
 
   .row.grid6.flex .col {
@@ -390,9 +346,7 @@ textarea {
     clear: both;
     display: block;
     display: table;
-   /*
-* General rules
-*/ }
+ }
 
   .row.grid6.flex .col.sp2 {
     width: 33.33%; }
@@ -412,9 +366,7 @@ textarea {
     clear: both;
     display: block;
     display: table;
-   /*
-* General rules
-*/
+
     width: 100%; }
 
   .row.grid5.flex .col {
@@ -426,9 +378,7 @@ textarea {
     clear: both;
     display: block;
     display: table;
-   /*
-* General rules
-*/ }
+ }
 
   .row.grid5.flex .col.sp2 {
     width: 40%; }
@@ -445,9 +395,7 @@ textarea {
     clear: both;
     display: block;
     display: table;
-   /*
-* General rules
-*/
+
     width: 100%; } }
 body, html {
   min-width: 320px; }
@@ -461,7 +409,7 @@ img {
 
 a {
   text-decoration: none;
-  color: #4d005b; /* #731484 #9577b1 #d5c7e2 */ }
+  color: #4d005b; }
 
 a, a img {
   border: none;
@@ -558,9 +506,7 @@ nav ul li a, h1, h2, h3, h4, h5, h6 {
     display: inline-block; } }
 body > main, body article {
   margin: 0 auto;
-  max-width: 45em;
-/*  padding-bottom: 2.5em; */
-/*  min-height: 320px; */ }
+  max-width: 45em; }
 .post-date {
   padding: 1rem .5rem;
   display: inline-block;
@@ -622,18 +568,7 @@ body > main, body article {
   .feature .title {
     top: 29%;
     left: 2em; } }
-/*
-.quote:before, .quote:after {
-	font-family: fontawesome;
-	font-size: 250%;
-}
-.quote:before {
-	content: "\f10d";
-}
-.quote:after {
-	content: "\f10e";
-}
-*/
+
 img.emoji {
   display: inline !important;
   border: none !important;
@@ -668,42 +603,6 @@ img.emoji {
   padding: 0 !important;
   margin: 0 !important; }
 
-/*
-.a-stats {
-	width: auto;
-}
-.a-stats a {
-	background: #7CA821;
-	background-image:-moz-linear-gradient(0% 100% 90deg,#5F8E14,#7CA821);
-	background-image:-webkit-gradient(linear,0% 0,0% 100%,from(#7CA821),to(#5F8E14));
-	border: 1px solid #5F8E14;
-	border-radius:3px;
-	color: #CFEA93;
-	cursor: pointer;
-	display: block;
-	font-weight: normal;
-	height: 100%;
-	-moz-border-radius:3px;
-	padding: 7px 0 8px;
-	text-align: center;
-	text-decoration: none;
-	-webkit-border-radius:3px;
-	width: 100%;
-}
-.a-stats a:hover {
-	text-decoration: none;
-	background-image:-moz-linear-gradient(0% 100% 90deg,#6F9C1B,#659417);
-	background-image:-webkit-gradient(linear,0% 0,0% 100%,from(#659417),to(#6F9C1B));
-}
-.a-stats .count {
-	color: #FFF;
-	display: block;
-	font-size: 15px;
-	line-height: 16px;
-	padding: 0 13px;
-	white-space: nowrap;
-}
-*/
 body.custom-background {
   background-color: #d5c7e2; }
 
@@ -741,3 +640,5 @@ thead > tr:last-of-type,
 tbody > tr:last-of-type {
   border-bottom: 1px solid #000
 }
+
+li { line-height: 2 }
