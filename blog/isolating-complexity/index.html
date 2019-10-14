@@ -1,0 +1,165 @@
+<!doctype html>
+<html itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="hand-crafted">
+    <meta name="description" content="A post about another attempt at blogging">
+    <link rel="alternate" hreflang="en-gb" href="https://www.lewiscowles.co.uk/" />
+
+    <link rel="icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
+
+    <link rel="profile" href="http://gmpg.org/xfn/11">
+
+    <title>Web log - Isolating complexity, by Lewis Cowles</title>
+    <link rel="canonical" href="https://www.lewiscowles.co.uk/">
+    <script type="application/ld+json">
+    {
+    "@context": "http://schema.org",
+    "@type": "Person",
+    "name": "Lewis Cowles",
+    "url": "http://www.lewiscowles.co.uk",
+    "sameAs": [
+      "https://www.facebook.com/lewis.r.cowles",
+      "https://www.instagram.com/lewiscowles/",
+      "https://www.linkedin.com/in/lewiscowles/",
+      "https://www.youtube.com/channel/UCl0VmButd52e4GvN8YQh7og",
+      "https://github.com/LewisCowles1986",
+      "https://gist.github.com/LewisCowles1986"
+    ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+    "@context": "http://schema.org",
+    "@type": "Organization",
+    "url": "https://www.lewiscowles.co.uk",
+    "logo": "https://www.lewiscowles.co.uk/img/lewiscowles-logo-vector.png"
+    }
+    </script>
+</head>
+<body class="page">
+    <header>
+    <div class="inner">
+      <div class="header-logo tC">
+        <img src="/img/lewiscowles-logo-vector.svg" alt="" class="logo" style="width: 12em; width: 12rem;" role="logo">
+        <span class="header-logo-text">Lewis Cowles</span>
+      </div>
+      <nav>
+        <ul id="menu-top-menu" class="menu">
+         <li>
+           <a href="/about/">About</a>
+         </li><li>
+           <a href="/blog/">Blog</a>
+         </li><li>
+           <a href="/">Contact</a>
+         </li>
+        </ul>
+      </nav>
+    </div>
+
+
+    </header>
+    <!-- straight after header -->
+    <main>
+        <article>
+            <h1><a href="/blog/isolating-complexity/">Isolating complexity</a></h1>
+            <p>Friday before I left work, I felt like I'd done very little valuable that day. I can console myself with the knowledge that I did my best, and that I'll pick things up another day. I helped those I work with, progressed some tasks, but ultimately spent a lot of the day thinking and planning, hitting roadblocks, and feeling a little useless.</p>
+            <p>Working on a greenfield effort, where some of my suggestions were deemed not possible; I've aimed to take a machete to the jungles of complexity in the software we work on. I am striving for a few things, which to my view are basic. Whilst a violent analogy this doesn't come from a place of malice. Perhaps despair, awe, futility. In writing things down, I hope to find a path.</p>
+            <h2>A Distant Spark of Light</h2>
+            <p>I often do not live very much in the present when I'm upset. Without an immediate, often physical reason for discomfort, I resign myself to working towards a future-perfect, or even improved scenario.</p>
+            <p>It's hard to imagine now, but I used to really like going out and running. I Had a simple method, I'd set a destination up in my head, I'd leave the house, warm up, and then run to the next landmark until I reached my destination.</p>
+            <p>By doing a lot of small things, you'd be surprised the distance you can cover.</p>
+            <p>For me, the distant light right now is that we have less complexity, and I want to get us to a place of even less. Where complexity must live it will be isolated.</p>
+            <h2>Why I Want These Things</h2>
+            <p>I've had these things for years; they've benefitted me, they have given benefit to those I've worked for. Sadly, much of my efforts to spread these have been met with derision, pomp and puff.</p>
+            <p>People who do not need nice things, are remarkably good at watching as others around them struggle. They are remarkably good at making themselves struggle. People are remarkably good at knowing better, and picking petty flaws in the language, rather than the ideas. Efforts to adjust to this take opportunity for another attempt.</p>
+            <p>I'm not perfect. While efforts against my advice have floundered, I've a track record of remaining relatively technically care-free, coming in and fixing things after things go wrong. I've simple rules, I understand them, and I try my very best to explain them.</p>
+            <p>I wasn't a passenger; I did offer to help. Hubris and condescension are not my intent, but it was what I've received from people, no-doubt more competent, no-doubt more intelligent, no-doubt better perhaps, viewed through their own lenses.</p>
+            <h2>Simple Goals</h2>
+            <p>I know that true simplicity will likely lead to unhappiness in the team. If I take an inch each day, or week, or month, I can make this happen.</p>
+            <ul >
+            <li>Smaller, atomic data-structures</li>
+            <li>Trade-offs for speed to incur storage cost</li>
+            <li>Rejection of AIO framework solutions</li>
+            <li>Natural keys where possible</li>
+            <li>Progressive enhancement</li>
+            <li>Handing non-engineering tasks back to the business</li>
+            <li>Pushing parts of the system out to shared libraries</li>
+            <li>Deferring flourishes</li>
+            </ul>
+            <h2>The Hold-Up</h2>
+            <p>I've already had to move on several of these. Pushing uploads out of the core-presentation foundation seemed unfamiliar to everyone but me.</p>
+            <p>Even if you run Instagram, even if uploads are on the critical path to how a user interacts with a system, coupling them to the presentation is a recipe for disaster. My attempts to explain what seemed obvious to me had failed. I'll try again here.</p>
+            <h3>Software Should Be</h3>
+            <ul>
+            <li>simple</li>
+            <li>small</li>
+            <li>predictable</li>
+            <li>focused</li>
+            <li>have measurable usage &amp; impact</li>
+            </ul>
+            <p>I do not believe the above should be controversial, if applied pragmatically. Uploads and storage of complex data are tasks which take more time than storage of simple and normalised value chains.</p>
+            <h3>Towards A De-Coupled Future</h3>
+            <p>De-coupling means a simple value-chain can complete faster, which means you may serve more people. Perhaps some of that time, even if you don't need it today, could be put towards a rainy-day fund for when you do need a little extra</p>
+            <p>If you won't let me bank that time now, you won't have it later!</p>
+            <p>De-coupling also makes it easier to change where you store and retrieve data. I won't cover it too much here in the interests of brevity, but if the only way to load and save data is via file, or network, you're waiting for resources you cannot fully, or easily control.</p>
+            <h2>True Story</h2>
+            <blockquote>Other than partitioning, less time tied up transmitting things through the main application, and predictable storage, what benefit(s) does your plan have?</blockquote>
+            <p>I only wish that were not something said to me. I might be paraphrasing, but those were the accepted points. This was then supported by the CTO about tested, existing code, which had already been written.</p>
+            <p>More upsetting is that the focus was not on logical flaws, or something difficult to reason about.</p>
+            <p>People insisted they understood, but seemed more worried about shielding my ego, ensuring feelings were not hurt, inventing stories not on a backlog or part of any discussion or future. I am more concerned with the waste; than the problems they admitted they could see.</p>
+            <p>What also upset me was that non-reliance on a single database, via an application, traded for predictable storage paths, fan-out computing was reportedly understood, but not accepted as a benefit.</p>
+            <p>Something else which upset me was that apparently... blog-posts are a metric of software quality now; as-are AIO frameworks, popularity, feelings, deliberately rushing towards something you admit is likely going to be a source of problems.</p>
+            <p>The last thing that upsets me is that I am willing to be wrong and have explained to me why I am wrong so that I do not repeat mistakes. Not receiving this makes these situations 100% waste.</p>
+            <h2>Dealing with Not Achieving the Basic</h2>
+            <p>I've dealt with this my entire software career. I don't have a formal background; although I love math, believe in the empiricist scientific method, I'm more of a whizz with the basics than an aficionado of the frontier and fine cuisine.</p>
+            <p>I know this has been as-much of a benefit as a drawback. Those at the top, only see things from a niche perspective. I'm incredibly good at working with older people, people with dyslexia, autism; I've had a lot of success with ESL and non-native English speakers.</p>
+            <p>I Also take notes on situations. That is apparently odd. I find it makes discussions about improvement easier to ground, the empirically measurable.</p>
+            <ul >
+            <li>initial intent</li>
+            <li>execution</li>
+            <li>objections</li>
+            <li>understood flaws</li>
+            <li>outcomes</li>
+            <li>my behaviour</li>
+            </ul>
+            <p>The last might seem odd, but I accept fully that I can be at fault. I respect others that do this. It's not encouraged nearly enough, and is incredibly difficult, especially when you don't have pressure to change externally to do the right thing.</p>
+            <h2>Why Continue?</h2>
+            <p>When our great ancestors first crawled, slithered, writhed out of the ooze, their life was objectively much worse than mine.</p>
+            <ul >
+            <li>We've no evidence of them having tools</li>
+            <li>There were very little protections</li>
+            <li>Most died out, producing something mildly better or worse</li>
+            <li>They could not understand for a very long time</li>
+            </ul>
+            <p>I'm okay with things not being perfect. In-fact if they got perfect today, I'd find new things to want tomorrow. I encourage this type of optimistic nihilism. They who constantly strives towards progress, not for some vain continuation of the species, but to move forwards, not feel trapped, in despair, hopeless or helpless.</p>
+        </article>
+    </main>
+    <footer>
+        <div class="widget-area">
+        <div class="noPad tC">
+            <div id="text-2" class="widget widget_text">
+            <div class="textwidget">
+                <p>
+                Copyright © 2014-2019 Lewis Cowles, All Rights Reserved.<br>Font Icons By
+                <a href="http://fortawesome.github.io/Font-Awesome/" target="_blank" rel="noreferrer">FontAwesome</a><br>
+                Website coded using CSS3, HTML5,
+                <a href="http://www.php.net" target="_blank" rel="noreferrer">PHP</a>,
+                <a href="https://www.ruby-lang.org/en/" target="_blank" rel="noreferrer">Ruby</a>
+                <a href="http://www.jekyllrb.com" target="_blank" rel="noreferrer">Jekyll</a>.<br>
+                Images use
+                <a href="http://gimp.org" target="_blank" rel="noreferrer">GIMP</a> &amp; Adobe Creative Suite.
+                </p>
+            </div>
+            </div>
+        </div>
+        </div>
+    </footer>
+    <link href="/css/style.css" rel="stylesheet" media="all">
+    <link rel="stylesheet" id="google-fonts-css" href="//fonts.googleapis.com/css?family=Russo+One%7COswald%7COpen+Sans" type="text/css" media="all">
+</body>
+</html>
+        
