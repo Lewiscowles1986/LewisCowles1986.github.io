@@ -649,3 +649,7 @@ span[title] {
   padding: 5px;
   line-height: 1;
 }
+
+h1 {font-size: 1.6em}
+h2 {font-size: 1.4em}
+h3 {font-size: 1.2em}
