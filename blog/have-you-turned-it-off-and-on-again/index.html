@@ -1,0 +1,116 @@
+<!doctype html>
+<html itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="hand-crafted">
+    <meta name="description" content="Web-log entry: Sometimes the fastest, kindest thing to do is to turn something off and on again.">
+    <link rel="alternate" hreflang="en-gb" href="https://www.lewiscowles.co.uk/" />
+
+    <link rel="icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
+
+    <link rel="profile" href="http://gmpg.org/xfn/11">
+
+    <title>Web log - Have you turned it off and on again?, by Lewis Cowles</title>
+    <link rel="canonical" href="https://www.lewiscowles.co.uk/">
+    <script type="application/ld+json">
+    {
+    "@context": "http://schema.org",
+    "@type": "Person",
+    "name": "Lewis Cowles",
+    "url": "http://www.lewiscowles.co.uk",
+    "sameAs": [
+      "https://www.facebook.com/lewis.r.cowles",
+      "https://www.instagram.com/lewiscowles/",
+      "https://www.linkedin.com/in/lewiscowles/",
+      "https://www.youtube.com/channel/UCl0VmButd52e4GvN8YQh7og",
+      "https://github.com/LewisCowles1986",
+      "https://gist.github.com/LewisCowles1986"
+    ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+    "@context": "http://schema.org",
+    "@type": "Organization",
+    "url": "https://www.lewiscowles.co.uk",
+    "logo": "https://www.lewiscowles.co.uk/img/lewiscowles-logo-vector.png"
+    }
+    </script>
+</head>
+<body class="page">
+    <header>
+    <div class="inner">
+      <div class="header-logo tC">
+        <img src="/img/lewiscowles-logo-vector.svg" alt="" class="logo" style="width: 12em; width: 12rem;" role="logo">
+        <span class="header-logo-text">Lewis Cowles</span>
+      </div>
+      <nav>
+        <ul id="menu-top-menu" class="menu">
+         <li>
+           <a href="/about/">About</a>
+         </li><li>
+           <a href="/blog/">Blog</a>
+         </li><li>
+           <a href="/">Contact</a>
+         </li>
+        </ul>
+      </nav>
+    </div>
+
+
+    </header>
+    <!-- straight after header -->
+    <main>
+        <article>
+            <h1><a href="/blog/have-you-turned-it-off-and-on-again/">Have you turned it off and on again?</a></h1>
+            <p>When I was a child, turning a computer, a modem, a tv or vcr off and on again to get it to work, was a right of passage.</p>
+            <p>Every member of my family should have known to do this, because it was one of the first things my father and I would try.</p>
+            <p>Many years later as a seasoned IT professional, it's not a tool I use as-often, but maybe I should!</p>
+            <h2>Today at work, we had a production outage.</h2>
+            <p>Shortly after I arrived, a Lead engineer noticed something wrong. The system remained up for most of the day, whilst they and another engineer investigated.</p>
+            <p>It looked like a connected service, Perhaps a third-party provider was letting us down. I'm rather used to that. It's one of the reasons engineering teams can be so focused on resilience, and scale, even when the rest of the world doesn't get it. When you operate at scale above a single, or a few machines, and people's lives can be affected, special measures have to be taken to avoid disaster.</p>
+            <p>They found users affected, checked if applications were running, traced requests using patterns such as distributed request ID's, assembled facts, checked APM, considered code changes, thread pools.</p>
+            <p>I'd reached out and let people know I was there if they needed me. I actually don't like to not be involved, but too many people should not drop everything. I got some nice work delivered that I'm proud of and whenever I would run a test-suite, I'd consider the last time I checked in. The problem sounded like it could make waves, but I'd logged in and things worked. I was confident they would find something interesting.</p>
+            <p>Eventually a third engineer stepped in and production went down. This is no longer some error messages, this is no longer something I can sit back from. Our CTO organises a meeting, several more engineers step in.</p>
+            <h2>Group think</h2>
+            <p>We had a group-call, everyone put out suggestions and we checked them, looking for evidence, often working in parallel. This is a read-heavy operation, so it's fine and no further risk is present. Some people are silent, these people are essential. If everyone is talking, understanding disappears. Their presence and support was welcomed and appreciated.</p>
+            <p>I pointed out some things I'd found, so did others, and we tried them one at a time. I communicated my understanding of the number of failure points so that we were all on the same page. It seemed we all knew.</p>
+            <p>Eventually I restarted some apps. The details are not important. They got turned off and on again.</p>
+            <p>Production now works</p>
+            <details>
+              <summary>The details if they matter to you</summary>
+              <p>The actual problem seems to have been an nginx load-balancer.</p>
+              <p>Many people use Nginx in this way. It's a pretty good tool, and has saved my bacon on more than a few occasions. The only tool I prefer more is the BSD http server.</p>
+              <p>I had noticed when looking at logs, a message that an upstream server was unavailable. From years of working with nginx, I knew this was a potential candidate for a fix, because I've seen some of it's behaviours. This message presented often. After the restart / re-deploy it ceased presenting.</p>
+            </details>
+            <p>The important take-away is that we could have saved a lot of mind-power by simply turning some things off and on again.</p>
+        </article>
+    </main>
+    <footer>
+        <div class="widget-area">
+        <div class="noPad tC">
+            <div id="text-2" class="widget widget_text">
+            <div class="textwidget">
+                <p>
+                Copyright © 2014-2019 Lewis Cowles, All Rights Reserved.<br>Font Icons By
+                <a href="http://fortawesome.github.io/Font-Awesome/" target="_blank" rel="noreferrer">FontAwesome</a><br>
+                Website coded using CSS3, HTML5,
+                <a href="http://www.php.net" target="_blank" rel="noreferrer">PHP</a>,
+                <a href="https://www.ruby-lang.org/en/" target="_blank" rel="noreferrer">Ruby</a>
+                <a href="http://www.jekyllrb.com" target="_blank" rel="noreferrer">Jekyll</a>.<br>
+                Images use
+                <a href="http://gimp.org" target="_blank" rel="noreferrer">GIMP</a> &amp; Adobe Creative Suite.
+                </p>
+            </div>
+            </div>
+        </div>
+        </div>
+    </footer>
+    <link href="/css/style.css" rel="stylesheet" media="all">
+    <link rel="stylesheet" id="google-fonts-css" href="//fonts.googleapis.com/css?family=Russo+One%7COswald%7COpen+Sans" type="text/css" media="all">
+</body>
+</html>
+        
