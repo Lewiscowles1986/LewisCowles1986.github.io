@@ -507,11 +507,9 @@ nav ul li a, h1, h2, h3, h4, h5, h6 {
 body > main, body article {
   margin: 0 auto;
   max-width: 45em; }
-.post-date {
-  padding: 1rem .5rem;
-  display: inline-block;
-  width: 11rem;
-}
+
+.post-date{ font-size: 0.8em; padding-top: 1rem; display: block; }
+@media (min-width: 50rem) { .post-date{ font-size: 1em; padding: 1rem .5rem;display: inline-block;width: 11rem} }
 
 @media (min-width: 800px) {
     ul.two-col::after {
