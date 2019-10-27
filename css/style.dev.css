@@ -508,7 +508,7 @@ body > main, body article {
   margin: 0 auto;
   max-width: 45em; }
 
-.post-date{ font-size: 0.8em; padding-top: 1rem; display: block; }
+.post-date{ font-size: 0.8em; padding-top: 1rem; display: block; font-style: italic; }
 @media (min-width: 50rem) { .post-date{ font-size: 1em; padding: .5rem 0;display: inline-block;width: 11rem} }
 
 @media (min-width: 800px) {
