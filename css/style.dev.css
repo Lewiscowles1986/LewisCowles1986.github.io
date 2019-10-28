@@ -659,3 +659,6 @@ summary {
 details {
   margin-bottom: 1em;
 }
+details[open] {
+  border-bottom: 1px dashed;
+}
