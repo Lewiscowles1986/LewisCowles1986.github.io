@@ -13,7 +13,7 @@ function includeFragmentionScript(elem) {
     if(usesFragmention(window.location.href)) {
         includeFragmentionScript(document.body);
     }
-    const button = document.querySelector('.toggle-fragmention');
+    const button = document.querySelector('.toggle-fragmention, .toggle-fragmention > a');
     if (button) {
         button.classList.remove('hidden');
         button.addEventListener('click', function() { includeFragmentionScript(document.body); })

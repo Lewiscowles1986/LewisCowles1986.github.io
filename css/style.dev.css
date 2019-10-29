@@ -664,3 +664,5 @@ details[open] {
 }
 /* This is not screen-reader only text, this is hidden, hidden text */
 .hidden {display: none;}
+
+.toggle-fragmention {cursor: pointer}
