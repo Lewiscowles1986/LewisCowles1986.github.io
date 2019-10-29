@@ -22,7 +22,7 @@ function getElementsByText(scope, text) {
             var selectedText = selection.toString(),
                 selectedNode = selection.anchorNode && selection.anchorNode.parentElement;
             if (selectedText.length > 1) {
-                var hash = '#' + encodeURIComponent(selectedText);
+                var hash = '##' + encodeURIComponent(selectedText.trim());
 
                 var elements = getElementsByText(document, selectedText),
                     length = elements.length,

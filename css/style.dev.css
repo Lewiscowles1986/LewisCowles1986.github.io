@@ -662,3 +662,5 @@ details {
 details[open] {
   border-bottom: 1px dashed;
 }
+/* This is not screen-reader only text, this is hidden, hidden text */
+.hidden {display: none;}
