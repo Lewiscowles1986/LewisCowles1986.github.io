@@ -85,6 +85,7 @@
 		function updateOnlineStatus(event) {
 			var condition = navigator.onLine ? "Online" : "Offline";
 			status.innerHTML = condition;
+			status.addEventListener('click', function(){ window.location.reload(); });
 		}
 
 		window.addEventListener('online',  updateOnlineStatus);
