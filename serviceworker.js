@@ -78,6 +78,9 @@ function fromNetwork(request, timeout) {
 
         fulfill(response.clone()); // Fulfill in case of success.
       }
+      if(response.status) {
+        fulfill(response.clone()); // Fulfill in case of having a status code
+      }
     }).catch(reject); // Reject also if network fetch rejects.
   });
 }
