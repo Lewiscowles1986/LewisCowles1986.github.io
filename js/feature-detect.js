@@ -19,3 +19,22 @@ function includeFragmentionScript(elem) {
         button.addEventListener('click', function() { includeFragmentionScript(document.body); })
     }
 })();
+
+(function() {
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register(
+            '/serviceworker.js',
+            {
+                scope: '/'
+            }
+        ).then(function(reg) {
+            if(reg.installing) { // installing
+            } else if(reg.waiting) { // installed
+            } else if(reg.active) { // active
+            }
+            reg.update();
+        }).catch(function(error) { // registration failed
+            console.error('Registration failed with ' + error);
+        });
+    }
+})();
