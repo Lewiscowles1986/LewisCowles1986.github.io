@@ -1,5 +1,5 @@
 const MAX_WAIT = 500;
-const CACHEVERSION = 'v1';
+const CACHEVERSION = 'v2';
 const CACHEDSTATICASSETS = [
   '/',
   '/index.html',
@@ -7,6 +7,8 @@ const CACHEDSTATICASSETS = [
   '/blog/index.html',
   '/css/style.css'
 ];
+const OFFLINE_PAGE = '/offline.html';
+
 const THIS_SITE = `${self.location.protocol}//${self.location.host}`;
 console.log(THIS_SITE);
 if ('serviceWorker' in navigator) {
@@ -21,6 +23,7 @@ if ('serviceWorker' in navigator) {
 self.addEventListener('install', function(event) {
   caches.open(CACHEVERSION).then(function(cache) {
     cache.addAll(CACHEDSTATICASSETS)
+    cache.add(OFFLINE_PAGE);
   }).then(self.skipWaiting());
 });
 
@@ -80,12 +83,18 @@ function fromNetwork(request, timeout) {
 }
 
 // Open the cache where the assets were stored and search for the requested
-// resource. Notice that in case of no matching, the promise still resolves
-// but it does with `undefined` as value.
+// resource. In case of no matching, if 'text/html' is requested (headers),
+// then the the offline fallback page is rendered. Otherwise the promise 
+// still resolves, but it does with `undefined` as value, which shows as a
+// Network error.
 function fromCache(request) {
   return caches.open(CACHEVERSION).then(function (cache) {
     return cache.match(request).then(function (matching) {
       return matching || Promise.reject('no-match');
+    }).catch(function(err) {
+      if (request.headers.get('Accept').includes('text/html')) {
+        return caches.match(OFFLINE_PAGE);
+      }
     });
   });
 }

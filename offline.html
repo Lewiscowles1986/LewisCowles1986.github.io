@@ -1,0 +1,96 @@
+<!doctype html>
+<html itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="generator" content="hand-crafted">
+	<meta name="description" content="Lewis Cowles is currently offline or missing this resource">
+	<link rel="alternate" hreflang="en-gb" href="https://www.lewiscowles.co.uk/" />
+
+	<link rel="icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
+
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+
+	<title>Offline or Missing - Lewis Cowles</title>
+	<link rel="canonical" href="https://www.lewiscowles.co.uk/">
+</head>
+<body class="page">
+	<header>
+
+		<div class="inner">
+			<div class="header-logo tC">
+				<img src="/img/lewiscowles-logo-vector.svg" alt="" class="logo" style="width: 12em; width: 12rem;" role="logo">
+				<span class="header-logo-text">Lewis Cowles</span>
+			</div>
+			<nav>
+				<ul id="menu-top-menu" class="menu">
+					<li>
+						<a href="/about/">About</a>
+					</li><li>
+						<a href="/blog/">Blog</a>
+					</li><li>
+						<a href="/">Contact</a>
+					</li><li>
+						<a id="onlineStatus" href="#">Offline</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+
+
+	</header>
+	<!-- straight after header -->
+	<main>
+		<article>
+			<h1>Sorry</h1>
+			<p>Either you have no internet and this page is not saved, or it doesn't exist.</p>
+			<p>You can still visit the homepage and any previously visited urls, but the one you're asking for right now needs internet access in order to download to your device the first time, if it exists.</p>
+			<h2>If it exists?</h2>
+			<p>While we could work on a list of URL's, save them to your computer and check it, this is a blog so new articles are published all the time. Changing this would likely result in the need to update this file more often, which would result in the deletion of the saved pages and more bandwidth used.</p>
+			<p>The bottom line is that I don't know if the page you're looking for exists</p>
+			<h2>What if pages change?</h2>
+			<p>Well the way this is written, this tries to access the network first of all. If the network takes too long, or does not respond, then we try to get the page as it was when last saved. Once your network is back, and I have few enough visitors to give you an updated copy, you'll have it.</p>
+			<h2>Why does it work like this?</h2>
+			<p>Well, partially this saves bandwidth for visitors with modern browsers and serviceworker technology enabled. The other reason is because I believe this is the right way.</p>
+		</article>
+	</main>
+	<footer>
+	<div class="widget-area">
+	<div class="noPad tC">
+		<div id="text-2" class="widget widget_text">
+		<div class="textwidget">
+			<p>
+			Copyright © 2014-2019 Lewis Cowles, All Rights Reserved.<br>Font Icons By
+			<a href="http://fortawesome.github.io/Font-Awesome/" target="_blank" rel="noreferrer">FontAwesome</a><br>
+			Website coded using CSS3, HTML5,
+			<a href="http://www.php.net" target="_blank" rel="noreferrer">PHP</a>,
+			<a href="https://www.ruby-lang.org/en/" target="_blank" rel="noreferrer">Ruby</a>
+			<a href="http://www.jekyllrb.com" target="_blank" rel="noreferrer">Jekyll</a>.<br>
+			Images use
+			<a href="http://gimp.org" target="_blank" rel="noreferrer">GIMP</a> &amp; Adobe Creative Suite.
+			</p>
+		</div>
+		</div>
+	</div>
+	</div>
+	</footer>
+	<link href="/css/style.css" rel="stylesheet" media="all">
+	<script type="text/javascript" src="/js/feature-detect.js" async></script>
+	<script>
+	(function() {
+		var status = document.getElementById("onlineStatus");
+
+		function updateOnlineStatus(event) {
+			var condition = navigator.onLine ? "Online" : "Offline";
+			status.innerHTML = condition;
+		}
+
+		window.addEventListener('online',  updateOnlineStatus);
+		window.addEventListener('offline', updateOnlineStatus);
+		updateOnlineStatus();
+	})();
+	</script>
+</body>
+</html>
