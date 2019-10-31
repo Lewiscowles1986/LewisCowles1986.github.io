@@ -79,7 +79,11 @@ function fromNetwork(request, timeout) {
         fulfill(response.clone()); // Fulfill in case of success.
       }
       if(response.status) {
-        fulfill(response.clone()); // Fulfill in case of having a status code
+        // Respect 4XX errors and remove from cache
+        if(`${response.status}`[0] === '4') { caches.open(CACHEVERSION).then(function (cache) { cache.delete(request); }) }
+        // Resiliency against 5XX errors
+        if(`${response.status}`[0] === '5') { reject(); }
+        fulfill(response.clone()); // Fulfill using server response
       }
     }).catch(reject); // Reject also if network fetch rejects.
   });
