@@ -1,0 +1,157 @@
+<!doctype html>
+<html itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="generator" content="hand-crafted">
+	<meta name="description" content="A post about nested contexts, their importance in software engineering.">
+    <link rel="alternate" hreflang="en-gb" href="https://www.lewiscowles.co.uk/" />
+
+	<link rel="icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
+
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+
+	<title>Web log - What is the outer context?, by Lewis Cowles</title>
+	<link rel="canonical" href="https://www.lewiscowles.co.uk/blog/what-is-the-outer-context/">
+	<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@type": "Person",
+		"name": "Lewis Cowles",
+		"url": "http://www.lewiscowles.co.uk",
+		"sameAs": [
+			"https://www.facebook.com/lewis.r.cowles",
+			"https://www.instagram.com/lewiscowles/",
+			"https://www.linkedin.com/in/lewiscowles/",
+			"https://www.youtube.com/channel/UCl0VmButd52e4GvN8YQh7og",
+			"https://github.com/LewisCowles1986",
+			"https://gist.github.com/LewisCowles1986"
+		]
+	}
+	</script>
+	<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"url": "https://www.lewiscowles.co.uk",
+		"logo": "https://www.lewiscowles.co.uk/img/lewiscowles-logo-vector.png"
+	}
+	</script>
+	<link rel="pingback" href="https://webmention.io/www.lewiscowles.co.uk/xmlrpc">
+	<link rel="webmention" href="https://webmention.io/www.lewiscowles.co.uk/webmention">
+</head>
+<body class="page">
+	<header>
+		<div class="inner">
+			<div class="header-logo tC">
+				<img src="/img/lewiscowles-logo-vector.svg" alt="" class="logo" style="width: 12em; width: 12rem;" role="logo">
+				<span class="header-logo-text">Lewis Cowles</span>
+			</div>
+			<nav>
+				<ul id="menu-top-menu" class="menu">
+					<li>
+						<a href="/about/">About</a>
+					</li><li>
+						<a href="/blog/">Blog</a>
+					</li><li>
+						<a href="/">Contact</a>
+					</li>
+					<li class="toggle-fragmention hidden">
+						<a href="#" title="use fragmention (requires JavaScript)">#</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+
+
+	</header>
+	<!-- straight after header -->
+	<main>
+		<article class="h-entry">
+			<h1 class="p-name"><a class="u-url" href="/blog/what-is-the-outer-context/">What is the outer context?</a></h1>
+			<time class="post-date dt-published" datetime="2019-10-31">
+				<span class="year">2019</span>-<span class="month">10</span>-<span class="day">31</span> 
+			</time>
+			<div class="e-content">
+				<p>When programming anything (and I mean absolutely anything); one of the greatest things I learned early-on was that context matters. Even simple operations like addition and subtraction are littered with contextual nuance to avoid overflows, underflows, precision errors. The machines are our tools, and they are here to help, but sometimes we need to help them, and ourselves.</p>
+				<p>If you've programmed hello world, regardless of raw ISA-specific byte-code or drag-and-drop GUI, you'll understand that given a different device, or the wrong editor, your code should be useless. This is one such context, which is important. Not all people understand this, because logically they fail to induct the context that businesses benefit from a fractured compute mindset; or they just feel like a computer is a computer is a computer.</p>
+				<p>We can do a lot to help these people to understand. Using analogies such as you wouldn't put gas in an electric, or don't put diesel in a petrol, and vice versa.</p>
+				<p>We can also help ourselves by trying to document our software, and dependencies. Everyone should know this, and many people do. What they miss is generally the context. Lost in a sea of feel-good phrases like YAGNI, or "move fast", "don't be afraid to fail".</p>
+				<h2>Commonly overlooked contexts</h2>
+				<ul>
+					<li>Shared, versus exclusive environments</li>
+					<li>Generation of software product</li>
+					<li>User setup, including input language</li>
+					<li>Supporting code or systems</li>
+				</ul>
+				<p>That is not an exhuasive list, but it's quite often that I see people treating their cloud compute, the same as their laptop. <strong>Those things are not the same!</strong></p>
+				<p>If for example you were to run a program, which used multi-threading to deal with network IO, but then added multiple sub-processes of a multi-threaded decompression or image manipulation program: <strong>You're going to have a bad time.</strong></p>
+				<h2>True story</h2>
+				<p>This year I encountered a problem with a calendar tool at work. Calendars are hard and anyone that reports differently is a genius or a fraud.</p>
+				<p>The error reported by the much maligned JIRA we use to manage our software, was that incorrect availability was showing via our calendar. I started by checking the payload. No context was recorded by the error reporter, so we had time taken retrieving that. Once I had that, I'd be in a position to write a test.</p>
+				<p>Most bugs were sadly most easily visible from a blackbox take on the system. Confusing fixtures, erroneous comments, a system that looked like the result of some academic study, and a gradually rotting stew of code.</p>
+				<p>I noticed the result we got had less than 31 days for a 31-day month. Knowing about calendars, and that this was from a backend system; I went to that backend code-base and found some more answers. I noticed 30 was the limit on the number of days returned, so I increased the number of results to 31, and sorted by date.</p>
+				<p>Some cases resolved. I declared mission success. It wasn't until much later that I found the real problem was that the frontend in one specific place did not page forwards or backwards, and the query used to select dates from a perhaps naive attempt at date-spans meant some events were never captured.</p>
+				<p>Once I had this context, fixing was easy. It just took a UX designer, me and three frontend specialists to establish the context.</p>
+				<p>This made me sad. Not because I didn't solve right away, but because with the context available, I could give this to any junior or intern programmer and teach them something. Instead it had tied up many people.</p>
+				<h2>Commonly considered contexts</h2>
+				<ul>
+					<li>variable scope</li>
+					<li>visibility</li>
+					<li>library / framework features</li>
+					<li>programming language</li>
+					<li>team preferences</li>
+				</ul>
+				<p>The above is also not exhaustive, but represents something I encounter people thinking about. It's a very different list to the unconsidered list. Most of these are immediately obvious when troubleshooting or debugging. Oh I called X and it's not available until after Y happens. I want to store files and ActiveStorage is something that works well with Ruby on Rails. I know that if I use this approach, then team-mate will like or dislike.</p>
+				<p>I feel that both sets are important, and I would not like to represent that I always take full-stock of all context. I'm not a machine, so it would be quite unrealistic for me to believe that. But I do feel like one is easier than the others.</p>
+				<h2>Some problems</h2>
+				<p>As all good programmers will know, encapsulation helps hide the unnecesarry implementation details. This is absolutely a readability win. Often though, we move on to the next thing, or are standing on the shoulders of giants, long dead or retired, that defined many parts of the systems we use, without adequate, or accessible documentation. Worse still, even with the documentation, we lack context.</p>
+				<blockquote>
+					so the other kind of interesting thing about x86 is, that like no one really knows exactly how many instructions there are. Like if you get an Intel x86 like manual these days, it's like this big (visual demonstration). Like 5,000 pages, so it's like, really unwieldy to deal with.<cite><a href="https://www.youtube.com/watch?v=tWBPPDtk_d0" rel="nofollow">Jessica Frazelle - A dive into RISC-V - dot Go [Video]</a></cite>
+				</blockquote>
+				<p>One of the other problems is specialisation. Will your React DEV really understand why webpack is so much slower than webpack-dev-server, or will they simply state that it doesn't save files? This leaves even the experienced guessing. Turns out that because it does a lot in-memory, it seems faster. One alternative to this blind acceptance is to copy sources and build within a tmpfs, if you have enough RAM and the people to do this. A far simpler solution, which I love is to not use WebPack from day zero.</p>
+				<h2>What am I selling?</h2>
+				<p>Honestly, nothing. I just hate putting piles of nonsense in my head next-to useful information. If more people record context, it can shave off time re-constructing context after-the-fact; help drive to better solutions faster.</p>
+				<p>Some strategies that may help with this</p>
+				<ul>
+					<li>Really critically think about your dependencies.</li>
+					<li>Try to delve a little deeper than the point your framework magically selects your code.</li>
+					<li>Read the framework source code.</li>
+					<li>Try to explain the context or sequence of events to a less experienced person.</li>
+					<li>Contribute to documentation.</li>
+					<li>Try to find out how a thing you use, that you didn't write works.</li>
+					<li>Try to re-approach some problems without following others.</li>
+					<li>Revisit assumptions.</li>
+					<li>Try to think outside the terms of the technologies you use.</li>
+				</ul>
+				<p>Ultimately, we got ourselves into this mess, and only by uncovering existing context, perhaps lowering the amount of context needed, will we reach our goals of easily maintained, understandable software.</p>
+			</div>
+		</article>
+	</main>
+	<footer>
+	<div class="widget-area">
+	<div class="noPad tC">
+		<div id="text-2" class="widget widget_text">
+		<div class="textwidget">
+			<p>
+			Copyright © 2014-2019 Lewis Cowles, All Rights Reserved.<br>Font Icons By
+			<a href="http://fortawesome.github.io/Font-Awesome/" target="_blank" rel="noreferrer">FontAwesome</a><br>
+			Website coded using CSS3, HTML5,
+			<a href="http://www.php.net" target="_blank" rel="noreferrer">PHP</a>,
+			<a href="https://www.ruby-lang.org/en/" target="_blank" rel="noreferrer">Ruby</a>
+			<a href="http://www.jekyllrb.com" target="_blank" rel="noreferrer">Jekyll</a>.<br>
+			Images use
+			<a href="http://gimp.org" target="_blank" rel="noreferrer">GIMP</a> &amp; Adobe Creative Suite.
+			</p>
+		</div>
+		</div>
+	</div>
+	</div>
+	</footer>
+	<link href="/css/style.css" rel="stylesheet" media="all">
+	<link rel="stylesheet" id="google-fonts-css" href="//fonts.googleapis.com/css?family=Russo+One%7COswald%7COpen+Sans" type="text/css" media="all">
+	<script type="text/javascript" src="/js/feature-detect.js" async></script>
+</body>
+</html>
