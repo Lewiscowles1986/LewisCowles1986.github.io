@@ -1,0 +1,133 @@
+<!doctype html>
+<html itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="generator" content="hand-crafted">
+	<meta name="description" content="A post about OfflineFirst and this blog approach to flaky networks.">
+    <link rel="alternate" hreflang="en-gb" href="https://www.lewiscowles.co.uk/" />
+
+	<link rel="icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
+
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+
+	<title>Web log - How this blog manages OfflineFirst, by Lewis Cowles</title>
+	<link rel="canonical" href="https://www.lewiscowles.co.uk/blog/how-this-blog-manages-offline-first/">
+	<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@type": "Person",
+		"name": "Lewis Cowles",
+		"url": "http://www.lewiscowles.co.uk",
+		"sameAs": [
+			"https://www.facebook.com/lewis.r.cowles",
+			"https://www.instagram.com/lewiscowles/",
+			"https://www.linkedin.com/in/lewiscowles/",
+			"https://www.youtube.com/channel/UCl0VmButd52e4GvN8YQh7og",
+			"https://github.com/LewisCowles1986",
+			"https://gist.github.com/LewisCowles1986"
+		]
+	}
+	</script>
+	<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"url": "https://www.lewiscowles.co.uk",
+		"logo": "https://www.lewiscowles.co.uk/img/lewiscowles-logo-vector.png"
+	}
+	</script>
+	<link rel="pingback" href="https://webmention.io/www.lewiscowles.co.uk/xmlrpc">
+	<link rel="webmention" href="https://webmention.io/www.lewiscowles.co.uk/webmention">
+</head>
+<body class="page">
+	<header>
+		<div class="inner">
+			<div class="header-logo tC">
+				<img src="/img/lewiscowles-logo-vector.svg" alt="" class="logo" style="width: 12em; width: 12rem;" role="logo">
+				<span class="header-logo-text">Lewis Cowles</span>
+			</div>
+			<nav>
+				<ul id="menu-top-menu" class="menu">
+					<li>
+						<a href="/about/">About</a>
+					</li><li>
+						<a href="/blog/">Blog</a>
+					</li><li>
+						<a href="/">Contact</a>
+					</li>
+					<li class="toggle-fragmention hidden">
+						<a href="#" title="use fragmention (requires JavaScript)">#</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+
+
+	</header>
+	<!-- straight after header -->
+	<main>
+		<article class="h-entry">
+			<h1 class="p-name"><a class="u-url" href="/blog/how-this-blog-manages-offline-first/">How this blog manages OfflineFirst</a></h1>
+			<time class="post-date dt-published" datetime="2019-10-31">
+				<span class="year">2019</span>-<span class="month">10</span>-<span class="day">31</span> 
+			</time>
+			<div class="e-content">
+				<p>You may not realise this, but this site is at least partially accessible offline. Visitors have to have been here before, and be using an internet browser which supports a technology called ServiceWorkers. If that is true, then you can still visit whilst offline and access content that you've already accessed.</p>
+				<h2>Internet. Flaky. Never</h2>
+				<p>For many of us in the west, connectivity is often spoken about like something we expect from the products and users we service. As the richest, we don't give too much thought to how those not as fortunate experience connectivity.</p>
+				<p>Even in the west, our connectivity, although assumed to be constant, is really in a perpetual state of flux. In 2017 whilst visiting Cornwall with my wife, the power to the whole house went out. With it the router. I had not experienced a power-loss in nearly 30 years. It was a surreal experience.</p>
+				<h2>So what?</h2>
+				<p>It might be that this never affects you, or your customers in the sense of being offline. I've had people within 50 miles phone me because their software was unreachable, who were using AWS. It still stopped them dead.</p>
+				<p>If that is inconceivable, imagine instead that for every visitor to your website, you had to pay a penny. With ServiceWorker technology and OfflineFirst approaches, you potentially save money on bandwidth, in the same way a cache works, but with explicit control. You can even (if you wanted) serve offline versions of pages.</p>
+				<p>The last benefit is in having something cool. As a technologist, I'll take the trade-off to serve more content, but also the learning experience. This month alone I saved any visitors to this blog around 300KB if they only visited a single page. In-fact the ServiceWorker this blog uses is HTTP status aware. If I delete a page, it deletes it from your cache. If there is a server error, then if the page was in your cache, it will be served, or the offline fallback served.</p>
+				<h2>Interested?</h2>
+				<p>Check out these links</p>
+				<ul>
+					<li><a href="http://offlinefirst.org/" rel="nofollow">OfflineFirst online community</a></li>
+					<li><a href="https://indieweb.org/offline" rel="nofollow">IndieWeb wiki Offline</a></li>
+					<li><a href="https://indieweb.org/offline_first" rel="nofollow">IndieWeb wiki OfflineFirst</a></li>
+					<li><a href="https://developers.google.com/web/ilt/pwa/caching-files-with-service-worker" rel="nofollow">Google caching files using ServiceWorker</a></li>
+					<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API" rel="nofollow">MDN Docs - ServiceWorker API</a></li>
+					<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Cache/add" rel="nofollow">MDN Docs - Cache API</a></li>
+					<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/NavigatorOnLine/Online_and_offline_events" rel="nofollow">MDN Docs - Online & Offline browser events</a></li>
+				</ul>
+				<h2>Known problems?</h2>
+				<p>Some things I would ask you to consider with ServiceWorker approach to OfflineFirst technologies.</p>
+				<ul>
+					<li>Only able to cache GET requests</li>
+					<li>It's easy to get wrong</li>
+					<li>There are storage limits</li>
+					<li>Consider impact of resources from other sites</li>
+				</ul>
+				<p>TTFN</p>
+			</div>
+		</article>
+	</main>
+	<footer>
+	<div class="widget-area">
+	<div class="noPad tC">
+		<div id="text-2" class="widget widget_text">
+		<div class="textwidget">
+			<p>
+			Copyright © 2014-2019 Lewis Cowles, All Rights Reserved.<br>Font Icons By
+			<a href="http://fortawesome.github.io/Font-Awesome/" target="_blank" rel="noreferrer">FontAwesome</a><br>
+			Website coded using CSS3, HTML5,
+			<a href="http://www.php.net" target="_blank" rel="noreferrer">PHP</a>,
+			<a href="https://www.ruby-lang.org/en/" target="_blank" rel="noreferrer">Ruby</a>
+			<a href="http://www.jekyllrb.com" target="_blank" rel="noreferrer">Jekyll</a>.<br>
+			Images use
+			<a href="http://gimp.org" target="_blank" rel="noreferrer">GIMP</a> &amp; Adobe Creative Suite.
+			</p>
+		</div>
+		</div>
+	</div>
+	</div>
+	</footer>
+	<link href="/css/style.css" rel="stylesheet" media="all">
+	<link rel="stylesheet" id="google-fonts-css" href="//fonts.googleapis.com/css?family=Russo+One%7COswald%7COpen+Sans" type="text/css" media="all">
+	<script type="text/javascript" src="/js/feature-detect.js" async></script>
+</body>
+</html>
