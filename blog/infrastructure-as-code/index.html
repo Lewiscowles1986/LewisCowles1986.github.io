@@ -1,0 +1,159 @@
+<!doctype html>
+<html itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="generator" content="hand-crafted">
+	<meta name="description" content="A post about Infrastructure as code">
+
+	<link rel="icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
+
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+
+	<title>Web log - Infrastructure as code, by Lewis Cowles</title>
+	<link rel="canonical alternate"  hreflang="en-gb" href="https://www.lewiscowles.co.uk/blog/infrastructure-as-code/">
+	<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@type": "Person",
+		"name": "Lewis Cowles",
+		"url": "http://www.lewiscowles.co.uk",
+		"sameAs": [
+			"https://www.facebook.com/lewis.r.cowles",
+			"https://www.instagram.com/lewiscowles/",
+			"https://www.linkedin.com/in/lewiscowles/",
+			"https://www.youtube.com/channel/UCl0VmButd52e4GvN8YQh7og",
+			"https://github.com/LewisCowles1986",
+			"https://gist.github.com/LewisCowles1986"
+		]
+	}
+	</script>
+	<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"url": "https://www.lewiscowles.co.uk",
+		"logo": "https://www.lewiscowles.co.uk/img/lewiscowles-logo-vector.png"
+	}
+	</script>
+	<link rel="pingback" href="https://webmention.io/www.lewiscowles.co.uk/xmlrpc">
+	<link rel="webmention" href="https://webmention.io/www.lewiscowles.co.uk/webmention">
+</head>
+<body class="page">
+	<header>
+
+		<div class="inner">
+			<div class="header-logo tC">
+				<img src="/img/lewiscowles-logo-vector.svg" alt="" class="logo" style="width: 12em; width: 12rem;" role="logo">
+				<span class="header-logo-text">Lewis Cowles</span>
+			</div>
+			<nav>
+				<ul id="menu-top-menu" class="menu">
+					<li>
+						<a href="/about/">About</a>
+					</li><li>
+						<a href="/blog/">Blog</a>
+					</li><li>
+						<a href="/">Contact</a>
+					</li>
+					<li class="toggle-fragmention hidden">
+						<a href="#" title="use fragmention (requires JavaScript)">#</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+
+
+	</header>
+	<!-- straight after header -->
+	<main>
+		<article class="h-entry">
+			<h1 class="p-name"><a class="u-url" href="/blog/infrastructure-as-code/">Infrastructure as code</a></h1>
+			<time class="post-date dt-published" datetime="2019-11-16">
+				<span class="year">2019</span>-<span class="month">11</span>-<span class="day">16</span> 
+			</time>
+			<div class="e-content">
+				<p>This week at work I got to define the infrastructure as code for a new greenfield project. I've taken over as principal / lead on infrastructure matters as I seem to be the most comfortable, but I'd also like to get others involved.</p>
+				<p>Our older infrastructure as code was hard to work with and reason about. It had some interesting design choices, but if I'm honest, none that I'd be comfortable using outside of an environment where they exist.</p>
+				<h2>Table manners</h2>
+				<p>Like any API, you should not start trying to push your own preferences within an existing IaC repository without team buy-in, and wider understanding. I like simplicity, was new to several technologies, including terraform and concourse.</p>
+				<p>A Single lead engineer and another senior that is not interested in backend or IaC are the only two people that have shown any interest in simplifying code. I don't want to create things that the team cannot work with, but I also don't want to split their brains within a single repo.</p>
+				<p>Ideally, your organisation should move towards a single coding style. To be fair my team does. Most others want to drape a thing in the most syntactic sugar possible, and throw a link to an article over the wall so you have to waste just as much time as they did.</p>
+				<h2>Seizing Opportunity</h2>
+				<p>I knew I was owning the epic, and that would mean I could make some moves. The team has shrunk since I onboarded, but we have some new junior, perhaps mid-level engineers that can own frontend and backend code, so I if could introduce them, then it spreads skills, and ensures that others can own details.</p>
+				<p>People not knowing enough about what is, or where a thing is, is another problem. I don't think it was intentional, but sometimes I struggled to understand why what was there when I arrived was. I didn't get more than 3 months, during which I was balancing probing questions with building team ties.</p>
+				<p>I pride myself on being time focused. Both my time and teammates time. If their time will be greater, they better be improving on a thing, or learning some computer science. At the end of the day, none of us have unlimited time.</p>
+				<h2>Defining goals</h2>
+				<p>Besides books, video's and others internet code; I didn't have any terraform experience prior to taking this role. What I did have after a year of working in that codebase, amongst others, is knowledge of things the team wouldn't budge on, and knowledge of what their pain points were.</p>
+				<ul>
+					<li>Simpler code organisation between modules and components.</li>
+					<li>Fewer modules. Why define an S3 bucket outside of usage in multiple places?</li>
+					<li>Simpler connectivity between parts (try just using terraform).</li>
+					<li>Defer to companies with the staff and expertise to manage things like databases.</li>
+				</ul>
+				<p>This may sound a little defeatist for hardcore infra fans, and it's certainly not the abstractly correct way to work, but it is pragmatic. Our team has so many more important things than infra. Maybe I won't be happy when providers inevitably screw up and our answer is to migrate from a backup, but there is less likely to be staying late to stop the business dying. It's happened twice and TBH although I don't mind the praise, I felt like it was due to laziness on the part of the business. That does not sit well with me.</p>
+				<h2>What I did</h2>
+				<p>For the first iteration, I shipped in a single day, all the persistent infrastructure we'd need by shrinking what we own.</p>
+				<ul>
+					<li>The greenfield app we are building uses heroku as a core platform for app instances.</li>
+					<li>I'll be able to use heroku cli to create persistent application services.</li>
+					<li>We'll stick to AWS for some things, like DNS and for-now email.</li>
+					<li>We'll be using third-party, verified terraform where possible with gitsubmodules as a lightweight vendoring tool.</li>
+					<li>Our secrets will need to live in encrypted files. I borrowed existing OpenSSL repo-secrets in a private repo.</li>
+					<li>I've upgraded terraform to the latest version along with providers.</li>
+					<li>Modules default to a focused and small by default, with best practices able to be controlled.</li>
+				</ul>
+				<p>I have a background leading software projects. I know that when too much changes, risk of not delivering goes through the roof, so I'm always a staunch advocate of the path most trodden in areas that do not matter. For most businesses the infrastructure configures commodity services, and so although it's integral, it's not important to be different in our infrastructure.</p>
+				<h3>A bit more detail</h3>
+				<p>I also setup terraform components in stages, a bit like a bootloader. I'm unsure how much people will like that, but it does keep the code simpler.</p>
+				<p>To give faster feedback and avoid 400 errors, which I find a pain in the backside; I'm using data attributes per-stage to ask for details of services defined in prior steps. This helps keep things simple. Creating, Modifying and deleting infrastructure can be done with Terraform apply, allowing simpler, focused, reversible changes per-commit. If something does not exist; it will raise a 404, which the very sparse documentation advises means a prior stage needs setting up first.</p>
+				<h3>Staged components</h3>
+				<ol>
+					<li>Bootstrap component, which for-now sets up a root DNS.</li>
+					<li>Stage 1 components, things requiring or logically following a root DNS.</li>
+					<li>Stage 2 components, things requiring or logically following stage 1 component parts.</li>
+				</ol>
+				<p>There are lots of things I could do, such as sprinking modules with depends_on statements. Because we don't own all our modules and it's likely to take some time to achieve upstreaming, I've avoided that. I believe the 404's will help us know things a stage on are missing.</p>
+				<p>I did have to upstream and fork on an SES -> S3 service which will be a placeholder for a formal gmail. It's a tiny change to allow me to take control of the SPF DNS record as there cannot be multiple, and the module sets up an SPF record, along with DKIM.</p>
+				<h2>To Recap</h2>
+				<ul>
+					<li>Know the scope of works.</li>
+					<li>Aim to reduce the moving parts.</li>
+					<li>Try to think of your team.</li>
+					<li>Remember table manners, and don't rush to change without context.</li>
+					<li>Defer to service-providers, but try to do it in a focused way, reducing entities, consolidating billing.</li>
+					<li>Document choices and be open to feedback.</li>
+					<li>Have components be high-level short-form syntactic sugar for your modules.</li>
+				</ul>
+				<p>I've a talk to give at a local group Wednesday coming, some pairing sessions with coworkers, who I hope will be more interested in less cumbersome IaC, with sane defaults, the ability to override and control without forking modules. Want a CNAME app origin with 4 hosts weighted? Send in weights and 4 names to the DNS record module with cname type and the TTL you desire.</p>
+				<p>Hopefully this helps others.</p>
+			</div>
+		</article>
+	</main>
+	<footer>
+	<div class="widget-area">
+	<div class="noPad tC">
+		<div id="text-2" class="widget widget_text">
+		<div class="textwidget">
+			<p>
+			Copyright © 2014-2019 Lewis Cowles, All Rights Reserved.<br>Font Icons By
+			<a href="http://fortawesome.github.io/Font-Awesome/" target="_blank" rel="noreferrer">FontAwesome</a><br>
+			Website coded using CSS3, HTML5,
+			<a href="http://www.php.net" target="_blank" rel="noreferrer">PHP</a>,
+			<a href="https://www.ruby-lang.org/en/" target="_blank" rel="noreferrer">Ruby</a>
+			<a href="http://www.jekyllrb.com" target="_blank" rel="noreferrer">Jekyll</a>.<br>
+			Images use
+			<a href="http://gimp.org" target="_blank" rel="noreferrer">GIMP</a> &amp; Adobe Creative Suite.
+			</p>
+		</div>
+		</div>
+	</div>
+	</div>
+	</footer>
+	<link href="/css/style.css" rel="stylesheet" media="all">
+	<link rel="stylesheet" id="google-fonts-css" href="//fonts.googleapis.com/css?family=Russo+One%7COswald%7COpen+Sans" type="text/css" media="all">
+	<script type="text/javascript" src="/js/feature-detect.js" async></script>
+</body>
+</html>
