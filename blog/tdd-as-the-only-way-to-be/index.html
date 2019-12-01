@@ -1,0 +1,182 @@
+<!doctype html>
+<html itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="generator" content="hand-crafted">
+	<meta name="description" content="A post about TDD evangelism and my current thoughts">
+
+	<link rel="icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
+
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+
+	<title>Web log - TDD as the only way to be, by Lewis Cowles</title>
+	<link rel="canonical alternate"  hreflang="en-gb" href="https://www.lewiscowles.co.uk/blog/tdd-as-the-only-way-to-be/">
+	<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@type": "Person",
+		"name": "Lewis Cowles",
+		"url": "http://www.lewiscowles.co.uk",
+		"sameAs": [
+			"https://www.facebook.com/lewis.r.cowles",
+			"https://www.instagram.com/lewiscowles/",
+			"https://www.linkedin.com/in/lewiscowles/",
+			"https://www.youtube.com/channel/UCl0VmButd52e4GvN8YQh7og",
+			"https://github.com/LewisCowles1986",
+			"https://gist.github.com/LewisCowles1986"
+		]
+	}
+	</script>
+	<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"url": "https://www.lewiscowles.co.uk",
+		"logo": "https://www.lewiscowles.co.uk/img/lewiscowles-logo-vector.png"
+	}
+	</script>
+	<link rel="pingback" href="https://webmention.io/www.lewiscowles.co.uk/xmlrpc">
+	<link rel="webmention" href="https://webmention.io/www.lewiscowles.co.uk/webmention">
+</head>
+<body class="page">
+	<header>
+
+		<div class="inner">
+			<div class="header-logo tC">
+				<img src="/img/lewiscowles-logo-vector.svg" alt="" class="logo" style="width: 12em; width: 12rem;" role="logo">
+				<span class="header-logo-text">Lewis Cowles</span>
+			</div>
+			<nav>
+				<ul id="menu-top-menu" class="menu">
+					<li>
+						<a href="/about/">About</a>
+					</li><li>
+						<a href="/blog/">Blog</a>
+					</li><li>
+						<a href="/">Contact</a>
+					</li>
+					<li class="toggle-fragmention hidden">
+						<a href="#" title="use fragmention (requires JavaScript)">#</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+
+
+	</header>
+	<!-- straight after header -->
+	<main>
+		<article class="h-entry">
+			<h1 class="p-name"><a class="u-url" href="/blog/tdd-as-the-only-way-to-be/">TDD as the only way to be</a></h1>
+			<time class="post-date dt-published" datetime="2019-11-30">
+				<span class="year">2019</span>-<span class="month">11</span>-<span class="day">30</span> 
+			</time>
+			<div class="e-content">
+				<p>I suppose if you've clicked through, you either have no idea what <abbr title="Test driven development">TDD</abbr> means, or you may have pre-existing views on the subject. If you haven't yet hovered the term, it means test-driven development. It's very similar to the scientific method; in-that you want to investigate something, you record initial assumptions, test in isolation, and iterate constantly until you're sure you have repeatable, and desirable outcomes.</p>
+				<h2>Sounds good sign me up</h2>
+				<p>A few of the problems with this are that, outside of very simple things, or things you fully understand ahead of time; which I'd also argue are therefore likely to be less valuable, it can cause problems when misapplied. It also despite constant claims it will, doesn't help with hard design problems.</p>
+				<ul>
+					<li>Not using a things without or with hard to write tests</li>
+					<li>Writing tests confirming third-party libraries work</li>
+					<li>White-box tests where you reach in and change internal state</li>
+					<li>A test suite which does not reflect real-life requirements</li>
+				</ul>
+				<h2>Doesn't everyone TDD?</h2>
+				<p>Either I live in a bubble, or very few people actually do TDD. I do find it quite nice when I have the opportunity to pick-up something without someone else touching it, and working in a TDD workflow, but I know when to, and when not to. I think Tweet streams like the following don't help.</p>
+				<blockquote>
+					<p>Developers say "We don't have time to write unit tests because management rushes us." Regardless of whether they're rushed or not, no developer who understands how unit testing makes us go faster is going to say that.</p>
+					<p>But if the developers don't understand how unit tests make developing working software faster, not slower, are they going to tell their managers that they need to adopt a practice of writing tests? Of course not.</p>
+					<p>Will developers who don't understand a practice tell their managers that the reason they go slower and create more defects is that they don't follow a practice they don't understand? Of course not.</p>
+					<p>If the developers don't know that they need to write tests, how is their less technical manager supposed to know that? What are the odds that their manager is going to ask them whether they write tests or recommend it?</p>
+					<p>btw although I think writing tests is critical, I'm also using it as a stand-in for all sorts of development practices that make us more productive.</p>
+					<p>I've seen this impasse remain for years, and I've been part of it. Development is slow and buggy, devs want to rewrite, once in a while a mgr gets fired, people move on, they go through the motions of Agile while ignoring the "technical excellence" part, but nothing changes.</p>
+					<p>What is the way out? For devs, don't dismiss unit tests. If you don't already know how they make us more productive, try a leap of faith. Don't google and read all the reasons to justify not doing it. Just try it.</p>
+					<p>Yes, you'll get it wrong and do some unproductive stuff. I'm certain I'm nowhere near getting it all right. But that's the same thing that happened when we learned how to code in the first place. We can't go around it. We can only work through it.</p>
+					<p>If you're a manager and have no idea what this is or why devs should do it, read about it. You can't manage developers without understanding what developers do or what makes them more productive.</p>
+					<p>Talk to your developers. Find out if they're writing tests. If some are, encourage them to help others. If no one is, try to get them some help. Don't try to force it on them.</p>
+					<p>Again, I don't emphasize writing tests because it's the only practice that matters. Rather, because it's a likely sign of where we're at with trying to grow our technical practices.</p>
+					<p>Writing tests is also a gateway drug that leads to all sorts of ways to improve how we write code. It requires us to make other changes, and at the same time we start to see the benefits.</p>
+					<cite><a href="https://twitter.com/scotthannen/status/1200155790398697472?s=19">Scott Hannen - Twitter, Nov 28 2019</a></cite>
+				</blockquote>
+				<h2>The problem</h2>
+				<p>The fact is that a lot of people are not intimately conversant with testing and some apps, protocols and features are still a heck of a lot easier to manually test, or hack-through, than to test. There is a cost to that, but there are costs to everything!</p>
+				<p>Scott isn't the most avid hard-liner, even by my standards. But he does advocate that many people try a thing without great links to how, why and where. Without context, he's setting people up to misapply a powerful technique, which generally creeps in over-time.</p>
+				<p>A lot of people this hard-line are IMO and experience, often capable of looking very good on paper. Part of the issue is that they bring a lot of baggage. Often this time could be spent focusing on the core cause of most bugs.</p>
+				<ul>
+					<li>Too many lines in a single function / program</li>
+					<li>Too much functionality</li>
+					<li>Poorly specified requirements</li>
+					<li>Lack of knowledge, or research</li>
+				</ul>
+				<p>You shouldn't unit test your walking skeleton. You should have users letting you know what the value to test for them is.</p>
+				<h2>Okay, so then what?</h2>
+				<p>Seek to avoid, icebox or invest in learning how to save yourself time testing.</p>
+				<p>Often people think the hardest thing about being a developer is remembering all the things. It's not. The hardest part of anything is choosing what to spend time and resources on.</p>
+				<h3>Nobody remembers all the things</h3>
+				<p>Instead we get techniques to intuit, and develop resources to aid us. Some mistakenly become pinpoint focused on a few things which make us useless everywhere else. I'd suggest this is as risky a strategy as trying to know everything.</p>
+				<h2>Avoiding harm</h2>
+				<p>Extensive testing prematurely, or when innovating can be a sign of wasted effort and immaturity. More than a few times I've omitted pushing tests for something I can have working and manually tested in an hour. If it's new, it's not critical, and if it's not critical, then gaining real feedback can be more important.</p>
+				<p>Flipping this on it's head, the reason for this, is that many times, it's taken the rest of the day for something that was binned within 3 months, or fighting others tests, which are as clear as mud. If the reason you test is ceremony, or to get approval, then something is broken. If you'd omitted the problem tests, or deferred, then you could save time, ship faster and get real feedback.</p>
+				<h2>Testing smells</h2>
+				<h3>Upstream / private details</h3>
+				<p>My largest bug-bear is that some devs test code they consume and don't own. That bugs the absolute heck out of me. E2E tests and integration tests will probably touch on this stuff, but as a black-box incidental detail, which is one of the areas decomposing can come into play.</p>
+				<p>If your upstream vendor does not have tests, then you've selected a poor vendor, and you should either find a new one, or contribute tests so that you don't suffer a death by 1,000 cuts. Another way to solve this is to only use data from the vendor, and avoid the contribution. You don't know if they are worth the effort yet to upstream tests to something you may abandon. Internet points are likely not paying your bills or your employers.</p>
+				<h3>Testing Incidentals</h3>
+				<p>Cringey as it is, many people test messages. In my current role, even I do this because it's expected. There is no greater waste of human effort than testing bits of text in many places.</p>
+				<p>Worse than testing text, is testing constants, or contrived cases where you reach into a thing, suggest the world is golden and then point at the test saying "But it passes the tests".</p>
+				<h3>Incorrect matchers</h3>
+				<p>Sometimes it's just hard-luck that you are testing for an exact match, when you want or need something to contain just one thing, or you check for ordered list of things, which should be all of the things in any order.</p>
+				<p>Read the documentation, search for alternative matchers or assertions, often through libraries, or simplify what you are doing.</p>
+				<h3>Flaky tests</h3>
+				<p>Sometimes tests just fail. It sucks, but when you try to re-run, crickets...</p>
+				<p>This is often a sign that you need to stop talking to external services, or add more test cases. Quite often I'm sure many of us just hit retry. My rule of thumb is 10 retries for me and I'll attack a test, unless it's obvious / egregious. In-fact, one answer can be to remove the test if you don't have time to fix, as an unreliable tool, is not a tool you can rely on.</p>
+				<h2>True story</h2>
+				<p>2 days ago I ran a small piece of code from 2006.</p>
+				<ul>
+					<li>It didn't use modern browser API's, because they didn't exist.</li>
+					<li>It didn't have tests, and it still worked, because backwards compatibility</li>
+					<li>This is a feature of the medium I built it to interact with.</li>
+					<li>I didn't need to test that adding event listeners works</li>
+					<li>The thing was small, and that is a feature, not an excuse or edge case.</li>
+				</ul>
+				<h2>Takeaways</h2>
+				<p>Knowing not just how to test, but when to test is a win.</p>
+				<p>Knowing what to test, what to trust, and what to avoid are the things I look for. Not dogma.</p>
+				<p>Keeping software small, reducing coupling is often a better initial win than tests.</p>
+				<p>Keep copies of all your code source controlled, and snapshots of deploys, so regressions can be reverted.</p>
+				<p>Don't feel bad if you're not testing everything.</p>
+				<p>Don't create everything. Lean on others, but try to be choosy.</p>
+				<p>Write less code; Lines of code can be strongly correlated with bug-count in software.</p>
+				<p>Look to ship initial prototypes without any tests. Although a faux pas for established software, it can help you validate ideas.</p>
+				<p>Strike a balance when it comes to testing. Maybe TDD isn't right for you.</p>
+			</div>
+		</article>
+	</main>
+	<footer>
+	<div class="widget-area">
+	<div class="noPad tC">
+		<div id="text-2" class="widget widget_text">
+		<div class="textwidget">
+			<p>
+			Copyright © 2014-2019 Lewis Cowles, All Rights Reserved.<br>Font Icons By
+			<a href="http://fortawesome.github.io/Font-Awesome/" target="_blank" rel="noreferrer">FontAwesome</a><br>
+			Website coded using CSS3, HTML5,
+			<a href="http://www.php.net" target="_blank" rel="noreferrer">PHP</a>,
+			<a href="https://www.ruby-lang.org/en/" target="_blank" rel="noreferrer">Ruby</a>
+			<a href="http://www.jekyllrb.com" target="_blank" rel="noreferrer">Jekyll</a>.<br>
+			Images use
+			<a href="http://gimp.org" target="_blank" rel="noreferrer">GIMP</a> &amp; Adobe Creative Suite.
+			</p>
+		</div>
+		</div>
+	</div>
+	</div>
+	</footer>
+	<link href="/css/style.css" rel="stylesheet" media="all">
+	<link rel="stylesheet" id="google-fonts-css" href="//fonts.googleapis.com/css?family=Russo+One%7COswald%7COpen+Sans" type="text/css" media="all">
+	<script type="text/javascript" src="/js/feature-detect.js" async></script>
+</body>
+</html>
