@@ -1,0 +1,190 @@
+<!doctype html>
+<html itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="generator" content="hand-crafted">
+	<meta name="description" content="A post about metadata. Many rave about it, but what do you need to know?">
+    <link rel="alternate" hreflang="en-gb" href="https://www.lewiscowles.co.uk/" />
+
+	<link rel="icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
+
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+
+	<title>Web log - What you need to know about metadata</title>
+	<link rel="canonical alternate"  hreflang="en-gb" href="https://www.lewiscowles.co.uk/blog/what-you-need-to-know-about-metadata/">
+	<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@type": "Person",
+		"name": "Lewis Cowles",
+		"url": "http://www.lewiscowles.co.uk",
+		"sameAs": [
+			"https://www.facebook.com/lewis.r.cowles",
+			"https://www.instagram.com/lewiscowles/",
+			"https://www.linkedin.com/in/lewiscowles/",
+			"https://www.youtube.com/channel/UCl0VmButd52e4GvN8YQh7og",
+			"https://github.com/LewisCowles1986",
+			"https://gist.github.com/LewisCowles1986"
+		]
+	}
+	</script>
+	<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"url": "https://www.lewiscowles.co.uk",
+		"logo": "https://www.lewiscowles.co.uk/img/lewiscowles-logo-vector.png"
+	}
+	</script>
+	<link rel="pingback" href="https://webmention.io/www.lewiscowles.co.uk/xmlrpc">
+	<link rel="webmention" href="https://webmention.io/www.lewiscowles.co.uk/webmention">
+</head>
+<body class="page">
+	<header>
+		<div class="inner">
+			<div class="header-logo tC">
+				<img src="/img/lewiscowles-logo-vector.svg" alt="" class="logo" style="width: 12em; width: 12rem;" role="logo">
+				<span class="header-logo-text">Lewis Cowles</span>
+			</div>
+			<nav>
+				<ul id="menu-top-menu" class="menu">
+					<li>
+						<a href="/about/">About</a>
+					</li><li>
+						<a href="/blog/">Blog</a>
+					</li><li>
+						<a href="/">Contact</a>
+					</li>
+					<li class="toggle-fragmention hidden">
+						<a href="#" title="use fragmention (requires JavaScript)">#</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+
+
+	</header>
+	<!-- straight after header -->
+	<main>
+		<article class="h-entry">
+			<h1 class="p-name"><a class="u-url" href="/blog/what-you-need-to-know-about-metadata/">What you need to know about metadata</a></h1>
+			<time class="post-date dt-published" datetime="2019-12-27">
+				<span class="year">2019</span>-<span class="month">12</span>-<span class="day">27</span> 
+			</time>
+			<div class="e-content">
+				<p>In this post I'll hope to explain what metadata is, cover some use-cases and crucial facts.</p>
+				<blockquote>Metadata is data, about data</blockquote>
+				<p>If you feel like we're done after the quote; nice for you, but there are more considerations than the subject the data pertains to.</p>
+				<h2>Properties of metadata</h2>
+				<ul>
+					<li>Relevant only with given context</li>
+					<li>Enhancement to core-value data</li>
+					<li>Possibly missing or indeterminate data</li>
+				</ul>
+				<h2>Where does it live?</h2>
+				<p>Often unspoken or implicitly, you don't care where it lives, and it can live in any one of a number of places. This is partially because metadata is a huge area rather than one thing or another. This isn't to say it doesn't matter where it lives, just that there is no consistent best-practice.</p>
+				<ul>
+					<li>You might have a TeamConfig concept with a rather large database table of 100+ software options.</li>
+					<li>You might have a Graph database storing the various connections between people.</li>
+					<li>You may have a table called settings or options with individual values and data about where and to whom they belong.</li>
+					<li>You might store JSON documents which represent a thing at a time.</li>
+					<li>You might simply have a table which stores information about the creation, selection, deletion & modification of other data.</li>
+				</ul>
+				<p>Where these live should really depend on what characteristics you need. I have a strong preference for primary-key accessible and natural-key accessible metadata offline. That's more about how we interact with metadata.</p>
+				<p>Where it lives should really be about meeting business needs.</p>
+				<h2>When to build?</h2>
+				<p>In 2013 I made my own "metadata" server for my business core platform which is half-marketing, half practical-engineering.</p>
+				<ul>
+					<li>I wanted to take load off of a database for simple lookups that were not searchable.</li>
+					<li>Keeping the data in an active-server system made little sense.</li>
+					<li>The data being served could be treated like a file</li>
+					<li>It was in-fact desirable that it not be modified within the system.</li>
+					<li>This simplified storage & retrieval, and took advantage of things like OS filesystem disk-caching.</li>
+					<li>Horizontal scaling via servers sub-path routed was desirable for low-cost.</li>
+					<li>Vertical scaling via RAM + disk-space if partitioning was ever difficult.</li>
+					<li>Ability to store saved data to be retrieved later.</li>
+				</ul>
+				<p>I'm not sure anyone should really design their own metadata servers. 7 years on I'm not entirely sure mine was that much of a success, but it did a job, helped in a few projects, and didn't get in anyone's way. More positively it didn't invent much, but re-use patterns from elsewhere.</p>
+				<p>My message here is know why to store metadata, what the benefits are and what you are taking on.</p>
+				<h2>How do you address it?</h2>
+				<p>When talking about where data lives I mentioned my preferred access to metadata, via the primary or natural key your main, or conventional datastore uses. The solutions I've dealt with have been a mix of internal and third-party, and a mix of SaaS and internal tooling. Addressing is by far one of the least thought-out aspects of metadata access, but I'm glad solutions like ElasticSearch and Neo4J in 2019 have capable HTTP interfaces following patterns I recognise.</p>
+				<details>
+					<summary>Primary and natural keys explained</summary>
+					<h3>Primary keys</h3>
+					<p>In order to stop duplication and operations applied by mistake to records, databases use a <em>unique</em> piece of information <em>per-record</em> called primary keys. These are the main ways to interact with a piece of data and be sure that your operations apply to that data. If I try to add a record about person 5472 and they exist, it gives us the benefit of complaining.</p>
+					<p>Users can take full-control of these, but populist techniques use auto-generated machine identifiers such as auto-incrementing ID's, or UUID's. There are other options, but if you don't have a way to specify using a piece of information about something, you'll generally nominate a synthetic primary key, which is to say it's meaning exists only within your program.</p>
+					<h3>Natural keys</h3>
+					<p>Natural keys are pieces of information that apply to records and are part of the record usable, supplied data. UUID's and primary keys are not natural keys, but synthetic. You could say that for some systems, first name, or first and last name is a suitable natural key. When I was in school as a child our names were often used as natural keys. As you get older you might get a government ID, and if it's unique to you, and unlikely to change, it might be a good natural key candidate.</p>
+					<p>Because natural keys are external to our systems, we must take care in nominating them, but can gain significant advantage in using them. A really great example of the pitfalls and peaks are email addresses.</p>
+				</details>
+				<p>Talking about how you address data can be very important to understanding the performance characteristics of using that data. For example it might not be a good idea to build an upload system which uses a database to store information about a distributed object store.</p>
+				<p>Lots of software makes these mistakes; very prominent examples are in most popular web-frameworks including ActiveStorage of Ruby on Rails; but why do I call these mistakes?</p>
+				<h3>Inter-system dependencies</h3>
+				<p>If I predicate my system, on the behaviour of your system. I Either have to exert control over coordinating both systems and their errors, or to accept that changes to your system, including availability may break my system.</p>
+				<p>Worse still, I now have a useless system sitting in the middle, with the sole purpose of turning metadata into data, which is an inversion of intent.</p>
+				<p>If I have to talk to my database through my web-app, to get to files I stored on your service, then it's a very specific, but indirect bus-route. If my database is deleted, then the actual data, which we treat as metadata is rendered useless.</p>
+				<p>If instead I can talk directly to the file-service, I might be able to take advantage of properties of each specific service.</p>
+				<p>I might choose to contain within my interactions to that specific service, details to avoid unnecesarry metadata, interstitial systems and the accidental reliance on metadata to get to my data. For file uploading, direct uploads from an application frontend, provide such benefits and others.</p>
+				<ul>
+					<li>Shorter chain of dependency</li>
+					<li>Can remove provider and storage backend of security access</li>
+					<li>Faster lookups based upon the known</li>
+				</ul>
+				<h2>How long does it live for?</h2>
+				<p>I was extremely excited to hear this year that Sky, the UK digital services business, purges hundreds of gigabytes per-day. Surely in the age of data, they are quite mad, and I'm cheering on poor practice?</p>
+				<p>In-fact my excitement was not at the deletion, but the removal from active-data, as well as several other best-practices conveyed in a talk by <a href="http://rmnaveed.co.uk/" rel="noreferrer">Raja M Naveed</a>.</p>
+				<p>By removing data from active-data, we shrink and focus our efforts. It also highlights that this is metadata, not core-value data. In much the same way you don't drive to every shop when you want a new sofa, and you would not want to search a database of all chairs ever made. Older chairs could be moved to a metadata store on chairs you used to own to provide provinence.</p>
+				<h3>Active Data</h3>
+				<p>Active data is data you need to reduce when querying. The strict definition may differ by your choice of technology. SQL has schemas, logical databases and tables, mongodb has collections.</p>
+				<p>Amongst the things I like to tout on my CV is sub-second searches on systems with hundreds of gigabytes of data. One of the easiest ways to do this is to not search the entire data-set. Whilst I've not yet worked for a billion dollar company, I'm fairly certain that physics still applies to them, and both moving and matching several billions of electrons is not the fastest way to get things done.</p>
+				<p>So the more data you can put outside of active data, can speed up access times. It doesn't need to couple the two systems either, but you do need to know either a primary or natural key before acessing data in other systems.</p>
+				<h2>What does it look like?</h2>
+				<p>This is perhaps the most difficult question of all to answer. Much like core-value data, metadata takes many shapes. The most common are often mixed amongst our data.</p>
+				<p>This is unfortunate because it needlessly bloats the most valuable data, which leads to increases in backup time, scanability, and general noise.</p>
+				<p>As time increases, usually data-volume does too, sometimes by orders of magnitude; which make separation harder, if not unthinkable. While I applaud those who do not verify every single record after a migration; it's not something I do when I own the business or manage the account.</p>
+				<p>Simple exercises to discern if something should be metadata or core-data include</p>
+				<ul>
+					<li>What the outcome is if it's missing or incorrect.</li>
+					<li>Can it be derrived from core-data.</li>
+					<li>How will it be accessed (in relation to something else or standalone).</li>
+				</ul>
+				<h2>What shape should it be?</h2>
+				<p>Around 2010 I started to notice inconsistencies in digital systems due to changes in data shape.</p>
+				<p>I started to take a rather radical approach for core-data, to not change existing data-stores, but rather produce new structures and objects to deal with new data. A Person with a data of birth, multiple names and an age would be a different type to a person with a government id, a gender, or an income.</p>
+				<p>When dealing with metadata, I did not want to follow this pattern, as I might have some objects with some data, and some with other data. I was storing notes and appointments, addressable to a case, attributes, alliances and inventory addressable to participants, who's shape would not change, or who's metadata must remain associated.</p>
+				<p>I came up with a strategy to help, which was using adaptors and version numbers to describe the shapes of each type of data.</p>
+				<p>If I needed to save the IP address along with a user on a note, then I'd create a new object adaptor to present a single object with optional IP address, or a known canned value, even for older records. This could cope with unit and precision changes, as well as format changes, in much the same way as a migration, but on a per-record basis.</p>
+				<p>It's been one of my immense frustrations with NoSQL and free-form SQL that they do not view versioning as important as primary keys, as without them, a prior date, becoming a date-time could lead to undesirable results.</p>
+				<h2>Wrapping up</h2>
+				<p>If you're new to metadata, curious or have inherrited a system, I hope this helps. I'm sure I'll be infuriated at having missed something, but there is only so much.</p>
+			</div>
+		</article>
+	</main>
+	<footer>
+	<div class="widget-area">
+	<div class="noPad tC">
+		<div id="text-2" class="widget widget_text">
+		<div class="textwidget">
+			<p>
+			Copyright © 2014-2019 Lewis Cowles, All Rights Reserved.<br>Font Icons By
+			<a href="http://fortawesome.github.io/Font-Awesome/" target="_blank" rel="noreferrer">FontAwesome</a><br>
+			Website coded using CSS3, HTML5,
+			<a href="http://www.php.net" target="_blank" rel="noreferrer">PHP</a>,
+			<a href="https://www.ruby-lang.org/en/" target="_blank" rel="noreferrer">Ruby</a>
+			<a href="http://www.jekyllrb.com" target="_blank" rel="noreferrer">Jekyll</a>.<br>
+			Images use
+			<a href="http://gimp.org" target="_blank" rel="noreferrer">GIMP</a> &amp; Adobe Creative Suite.
+			</p>
+		</div>
+		</div>
+	</div>
+	</div>
+	</footer>
+	<link href="/css/style.css" rel="stylesheet" media="all">
+	<link rel="stylesheet" id="google-fonts-css" href="//fonts.googleapis.com/css?family=Russo+One%7COswald%7COpen+Sans" type="text/css" media="all">
+	<script type="text/javascript" src="/js/feature-detect.js" async></script>
+</body>
+</html>
