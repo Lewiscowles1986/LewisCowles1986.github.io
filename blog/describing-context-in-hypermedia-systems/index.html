@@ -1,0 +1,137 @@
+<!doctype html>
+<html itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="generator" content="hand-crafted">
+	<meta name="description" content="A post about describing and providing context in hypermedia systems">
+
+	<link rel="icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
+
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+
+	<title>Web log - Describing context in hypermedia systems, by Lewis Cowles</title>
+	<link rel="canonical alternate"  hreflang="en-gb" href="https://www.lewiscowles.co.uk/blog/describing-context-in-hypermedia-systems/">
+	<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@type": "Person",
+		"name": "Lewis Cowles",
+		"url": "http://www.lewiscowles.co.uk",
+		"sameAs": [
+			"https://www.facebook.com/lewis.r.cowles",
+			"https://www.instagram.com/lewiscowles/",
+			"https://www.linkedin.com/in/lewiscowles/",
+			"https://www.youtube.com/channel/UCl0VmButd52e4GvN8YQh7og",
+			"https://github.com/LewisCowles1986",
+			"https://gist.github.com/LewisCowles1986"
+		]
+	}
+	</script>
+	<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"url": "https://www.lewiscowles.co.uk",
+		"logo": "https://www.lewiscowles.co.uk/img/lewiscowles-logo-vector.png"
+	}
+	</script>
+	<link rel="pingback" href="https://webmention.io/www.lewiscowles.co.uk/xmlrpc">
+	<link rel="webmention" href="https://webmention.io/www.lewiscowles.co.uk/webmention">
+</head>
+<body class="page">
+	<header>
+
+		<div class="inner">
+			<div class="header-logo tC">
+				<img src="/img/lewiscowles-logo-vector.svg" alt="" class="logo" style="width: 12em; width: 12rem;" role="logo">
+				<span class="header-logo-text">Lewis Cowles</span>
+			</div>
+			<nav>
+				<ul id="menu-top-menu" class="menu">
+					<li>
+						<a href="/about/">About</a>
+					</li><li>
+						<a href="/blog/">Blog</a>
+					</li><li>
+						<a href="/">Contact</a>
+					</li>
+					<li class="toggle-fragmention hidden">
+						<a href="#" title="use fragmention (requires JavaScript)">#</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+
+
+	</header>
+	<!-- straight after header -->
+	<main>
+		<article class="h-entry">
+			<h1 class="p-name"><a class="u-url" href="/blog/describing-context-in-hypermedia-systems/">Describing context in hypermedia systems</a></h1>
+			<time class="post-date dt-published" datetime="2020-02-09">
+				<span class="year">2020</span>-<span class="month">02</span>-<span class="day">09</span> 
+			</time>
+			<div class="e-content">
+				<p>Today in the mind of me... Is rel-tag enough when it would need to stack encodings, to get any meaningful technical specification in?</p>
+        <p>I think it is not, and I'm not sure others have open specifications designed to communicate this information which is a shame</p>
+        <p>Without context, information can be benign/useless, or harmful. If you leave the house on a day dressed for the beech and it's sub-zero, you should change. Books, Training, Blogs and technology sites can be devoid of this information. The web is getting better at this, as are pre/non-web systems.</p>
+        <h2>Historical need for context</h2>
+        <p>I've been quite lucky over the past 20 years to have worked with numerous systems designed to solve this</p>
+        <ul>
+          <li>bundling [external] vendor and [internal] code together</li>
+          <li>bundling [internal] code, but omitting vendors, with a named reference</li>
+          <li>bundling [internal] code, but omitting vendors, with a structured reference</li>
+          <li>Package & Lock-file approach to contain structured references to a revision (ignoring bundling)</li>
+          <li>Package file containing specific project and revision</li>
+          <li>Undocumented systems</li>
+        </ul>
+        <p>After many years, I think I prefer aspects of several of the above and have come to expect and enforce them, so that I can reason about software. I also prefer commodity solutions to trying to play deity.</p>
+        <h2>Problems with web-address encoding</h2>
+        <p>Separating structured data, to convey at a minimum version information can be problematic with URL's</p>
+        <p>Thankfully strangers on the internet are winning for me, providing specifications such as <a href="http://microformats.org/wiki/rel-tag" rel="nofollow">microformats2 rel-tag</a>
+        <h3>Consider the following</h3>
+        <blockquote>&lt;a href="http://technorati.com/tag/WordPress" rel="tag"&gt;WordPress&lt;/a&gt;</blockquote>
+        <p>Is as valueless as a screenshot of the web frontend. It conveys no context to derive meaning of a post outside of WordPress.</p>
+        <p>Perhaps date could be used to infer context.</p>
+        <p>WordPress@5.3 might be better, but... Would perhaps fit a URL structure with hierarchy better for software which bundles it's vendor dependencies with it's distribution medium.</p>
+        <p>WordPress@cad04902d6a162ba8320f82a6c65c7eb58cf9759 may prove too narrow a definition (it's the 5.3.2 git sha hash)</p>      
+        <p>I believe the predicate that the tail-slash should be omitted means that hierarchical tags don't make a great deal of sense</p>
+        <ul>
+          <li>Perhaps more details than a specific version-control-system hash would be easier to understand.</li>
+          <li>Perhaps a taxonomy is the wrong place to put this.</li>
+        </ul>
+        <p>If a page had a specific version of WordPress tagged or within markup in an alternative way to provide context. How would the reader discern the difference between the software serving the URL describing it's internal technical setup and the content of the URL describing the context which it relates to?</p>
+        <hr>
+        <p>Of course this has nothing to do with WordPress. It's an illustrative example of a popular project.</p>
+        <p>As-yet I have no answers for a solution which is a standard not proprietary. When I setup the CODESIGN2 knowledgebase I simply used the project@release format. It was not perfect, but it was workable.</p>
+			</div>
+		</article>
+	</main>
+	<footer>
+	<div class="widget-area">
+	<div class="noPad tC">
+		<div id="text-2" class="widget widget_text">
+		<div class="textwidget">
+			<p>
+			Copyright © 2014-2019 Lewis Cowles, All Rights Reserved.<br>Font Icons By
+			<a href="http://fortawesome.github.io/Font-Awesome/" target="_blank" rel="noreferrer">FontAwesome</a><br>
+			Website coded using CSS3, HTML5,
+			<a href="http://www.php.net" target="_blank" rel="noreferrer">PHP</a>,
+			<a href="https://www.ruby-lang.org/en/" target="_blank" rel="noreferrer">Ruby</a>
+			<a href="http://www.jekyllrb.com" target="_blank" rel="noreferrer">Jekyll</a>.<br>
+			Images use
+			<a href="http://gimp.org" target="_blank" rel="noreferrer">GIMP</a> &amp; Adobe Creative Suite.
+			</p>
+		</div>
+		</div>
+	</div>
+	</div>
+	</footer>
+	<link href="/css/style.css" rel="stylesheet" media="all">
+	<link rel="stylesheet" id="google-fonts-css" href="//fonts.googleapis.com/css?family=Russo+One%7COswald%7COpen+Sans" type="text/css" media="all">
+	<script type="text/javascript" src="/js/feature-detect.js" async></script>
+</body>
+</html>
