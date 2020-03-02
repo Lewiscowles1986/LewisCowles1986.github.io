@@ -1,0 +1,353 @@
+<!doctype html>
+<html itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="generator" content="hand-crafted">
+	<meta name="description" content="A post concerning iOS & Android approach to web-views">
+
+	<link rel="icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
+
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+
+	<title>Web log - Mobile web-views; the non-obvious considerations, by Lewis Cowles</title>
+	<link rel="canonical alternate"  hreflang="en-gb" href="https://www.lewiscowles.co.uk/blog/mobile-web-views-non-obvious-considerations/">
+	<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@type": "Person",
+		"name": "Lewis Cowles",
+		"url": "http://www.lewiscowles.co.uk",
+		"sameAs": [
+			"https://www.facebook.com/lewis.r.cowles",
+			"https://www.instagram.com/lewiscowles/",
+			"https://www.linkedin.com/in/lewiscowles/",
+			"https://www.youtube.com/channel/UCl0VmButd52e4GvN8YQh7og",
+			"https://github.com/LewisCowles1986",
+			"https://gist.github.com/LewisCowles1986"
+		]
+	}
+	</script>
+	<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"url": "https://www.lewiscowles.co.uk",
+		"logo": "https://www.lewiscowles.co.uk/img/lewiscowles-logo-vector.png"
+	}
+	</script>
+	<link rel="pingback" href="https://webmention.io/www.lewiscowles.co.uk/xmlrpc">
+	<link rel="webmention" href="https://webmention.io/www.lewiscowles.co.uk/webmention">
+</head>
+<body class="page">
+	<header>
+
+		<div class="inner">
+			<div class="header-logo tC">
+				<img src="/img/lewiscowles-logo-vector.svg" alt="" class="logo" style="width: 12em; width: 12rem;" role="logo">
+				<span class="header-logo-text">Lewis Cowles</span>
+			</div>
+			<nav>
+				<ul id="menu-top-menu" class="menu">
+					<li>
+						<a href="/about/">About</a>
+					</li><li>
+						<a href="/blog/">Blog</a>
+					</li><li>
+						<a href="/">Contact</a>
+					</li>
+					<li class="toggle-fragmention hidden">
+						<a href="#" title="use fragmention (requires JavaScript)">#</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+
+
+	</header>
+	<!-- straight after header -->
+	<main>
+		<article class="h-entry">
+			<h1 class="p-name"><a class="u-url" href="/blog/mobile-app-frames-non-obvious-considerations/">Mobile web-views; the non-obvious considerations</a></h1>
+			<time class="post-date dt-published" datetime="2020-02-26">
+				<span class="year">2020</span>-<span class="month">02</span>-<span class="day">26</span> 
+			</time>
+			<div class="e-content">
+				<p>One of my last projects for the job I just left was to setup mobile applications to use the iOS and Android app stores as distribution mechanisms.</p>
+				<p>I came up with a mobile & testing strategy, which allowed our team to continue to focus on the web and just use some boilerplate I'd setup using a microsoft PWA builder; which I'd thoroughly reviewed.</p>
+				<p>This broadly went to plan, but there were some gotchas with expecting WkWebView and WebView to behave like internet browsers&hellip;</p>
+				<h2>What we needed</h2>
+				<p>Our needs from a web-browser were quantified informally. Here's a short list of needs.</p>
+				<ul>
+					<li>Display CSS3, ES5 JavaScript, HTML5</li>
+					<li>Offline / ServiceWorker support</li>
+					<li>Hyperlinks</li>
+					<li>Web-Forms</li>
+					<li>Cookies</li>
+				</ul>
+				<p>I think I could be forgiven in thinking modern Mobile devices, should have these amenities, especially when using a specialised component. I would of course forgive someone using a picturebox or similar component to painstakingly implement a DOM, CSS & JS parser for not matching what few companies have ever invented from scratch; but these were using at least a significant subset of established browsers.</p>
+				<h2>Not meeting expectations</h2>
+				<p>Firstly, I'd like to say that in complaining about free software, I know I'm being a brat. That aside; the effort required to produce the broken experiences we've endured, seem to defy logic.</p>
+				<h3>iOS</h3>
+				<h4>Scrolling out of component</h4>
+				<p>The first bug we noticed on using the iOS app-frame, was that upon scrolling, elements were showing over the "status" area of the Operating System. This might be pixel-pushing pedantry, but it's unexpected, and I feel exposes some of the implementation details of wkWebkitView. This took hours to fix, and was eventually done in CSS to avoid code-bloat of something we intended not to touch that often. We'd tried adjusting our app manifest, tweaking a variety of application views; one of which worked, but required a lot of code, and then broke other areas of the application.</p>
+				<details>
+					<summary>How I fixed</summary>
+					<pre>
+						<code>
+header::before {
+	content: ""; display: block;
+	position: fixed; top: -128em; left: 0;
+	width: 100%; height: 128em;
+	padding: 0; margin: 0;
+	background-color: white;
+	z-index: 99;
+}
+						</code>
+					</pre>
+					<p>Basically draw a giant white square off-screen to mask out the content. Nothing should render with when it has a position off-screen, so this is IMHO a bug, not a feature and I'm happier with a pseudo-element fix.</p>
+				</details>
+				<h4>Everyone like cookies right?</h4>
+				<p>The second bug was that cookies seemed to be non-persistent.</p>
+				<ol>
+					<li>Visit one of our app URLs</li>
+					<li>Login using valid credentials</li>
+					<li>Potentially click around</li>
+					<li>Close the app</li>
+					<li>Open the app</li>
+					<li>See that you're logged in</li>
+				</ol>
+				<p>This seemed to be a problem for the view, which uses webkit, so I know cookies are an option. Everything until the last step worked just fine; but opening the app and having to login each time, is tedious.</p>
+				<p>We actually never fixed this one. Given that our app allows social logins and seemed to work with password managers, we decided not to fight the platform decisions; although I will fight the notion this is somehow security related.</p>
+				<p>We've read many suggestions online to ensure cookies are not HTTP only, capture the cookies, save elsewhere; then restore, but that seems like a lot of manual handling and opportunity for something to go wrong. In-fact I'd suggest that is worse for security than sandboxing them within the web view and not allowing cookie injection.</p>
+				<h3>Android</h3>
+				<p>Android is a totally separate OS from iOS, but they share a domain, so you'd be forgiven for thinking they might share problems. They both suffer one problem I'll get to later, but for the most part they've introduced new and seemingly novel problems for those wishing to publish to their platforms, besides their asinine app-store experiences.</p>
+				<h4>Cannot use a file-upload without writing Java</h4>
+				<p>I was actually furious when I found out about this. I'm quite sure it was not always the case; and if you're writing in a normal web-browser, you can be assured you need not write Java, although you may choose to write JavaScript; I'm talking purely about having <pre><code>&lt;input type="file"&gt;</code></pre> clickable and opening a file-open dialogue. This is squarely back in winforms and prior to that C++ C# & VB6 territory; it's disgusting and the creators should be ashamed!</p>
+				<details>
+					<summary>The solution for modern Android > 23</summary>
+					<h5>AndroidManifest.xml</h5>
+					<pre>
+						<code>
+&lt;!-- This is a patch to the files contents, not something to overwrite the file with --&gt;
+&lt;uses-permission android:name="android.permission.INTERNET" /&gt;
+&lt;uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /&gt;
+&lt;uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /&gt;
+&lt;uses-permission android:name="android.permission.CAMERA" /&gt;
+&lt;uses-feature android:name="android.hardware.camera" /&gt;
+&lt;uses-feature android:name="android.hardware.camera.autofocus" /&gt;
+						</code>
+					</pre>
+					<h5>MainActivity.java</h5>
+					<pre>
+						<code>
+package lewiscowles.co.uk.android;
+
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.res.AssetManager;
+import android.net.Uri;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.util.Log;
+import android.webkit.*;
+
+import org.json.*;
+
+import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Date;
+
+public class MainActivity extends AppCompatActivity {
+    private String mediaFilePath;
+    private ValueCallback&lt;Uri[]&gt; mediaFileCallback;
+    private final static int FILE_CHOOSER_RESULT_CODE = 1;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        loadManifest();
+        setDisplay(this);
+        setOrientation(this);
+        setName(this);
+        setContentView(R.layout.activity_main);
+        setWebView((WebView) this.findViewById(R.id.webView));
+    }
+
+	// Omitted nonsense about names, orientation & display of activity
+
+    @SuppressLint("SetJavaScriptEnabled")
+    private void setWebView(WebView myWebView) {
+        WebSettings webSettings = myWebView.getSettings();
+        String start_url = this.manifestObject.optString("start_url");
+		String scope = this.manifestObject.optString("scope");
+		/*
+		 * This is Java8.
+		 * It's The Java I got excited to come back to, with anonymous overrides.
+		 * The below syntax as opposed to managing a class in a separate file.
+		 * It could still be better if it were JSON or YAML config.
+		 * It's a step forward from writing concrete classes for configuration overrides
+		 */
+        myWebView.setWebChromeClient(new WebChromeClient() {
+            @Override
+            public boolean onShowFileChooser(WebView webView, ValueCallback&lt;Uri[]&gt; filePathCallback, WebChromeClient.FileChooserParams fileChooserParams) {
+                if (mediaFileCallback != null) {
+                    mediaFileCallback.onReceiveValue(null);
+                }
+                mediaFileCallback = filePathCallback;
+                Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                if (takePictureIntent.resolveActivity(MainActivity.this.getPackageManager()) != null) {
+                    File photoFile = null;
+                    try {
+                        photoFile = createImageFile();
+                        takePictureIntent.putExtra("PhotoPath", mediaFilePath);
+                    } catch (IOException ex) {
+                        Log.e("Webview", "Image file creation failed", ex);
+                    }
+                    if (photoFile != null) {
+                        mediaFilePath = "file:" + photoFile.getAbsolutePath();
+                        takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(photoFile));
+                    } else {
+                        takePictureIntent = null;
+                    }
+                }
+
+                Intent contentSelectionIntent = new Intent(Intent.ACTION_GET_CONTENT);
+                contentSelectionIntent.addCategory(Intent.CATEGORY_OPENABLE);
+                contentSelectionIntent.setType("*/*");
+                Intent[] intentArray;
+                if (takePictureIntent != null) {
+                    intentArray = new Intent[]{takePictureIntent};
+                } else {
+                    intentArray = new Intent[0];
+                }
+
+                Intent chooserIntent = new Intent(Intent.ACTION_CHOOSER);
+                chooserIntent.putExtra(Intent.EXTRA_INTENT, contentSelectionIntent);
+                chooserIntent.putExtra(Intent.EXTRA_TITLE, "Image Chooser");
+                chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, intentArray);
+                startActivityForResult(chooserIntent, FILE_CHOOSER_RESULT_CODE);
+                return true;
+            }
+        });
+        myWebView.setWebViewClient(new PwaWebViewClient(start_url, scope));
+		webSettings.setJavaScriptEnabled(true);
+        myWebView.loadUrl(start_url);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+        Uri[] results = null;
+        //Check if response is positive
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == FILE_CHOOSER_RESULT_CODE) {
+                if (null == mediaFileCallback) {
+                    return;
+                }
+                if (intent == null) {
+                    //Capture Photo if no image available
+                    if (mediaFilePath != null) {
+                        results = new Uri[]{Uri.parse(mediaFilePath)};
+                    }
+                } else {
+                    String dataString = intent.getDataString();
+                    if (dataString != null) {
+                        results = new Uri[]{Uri.parse(dataString)};
+                    }
+                }
+            }
+        }
+        mediaFileCallback.onReceiveValue(results);
+        mediaFileCallback = null;
+    }
+
+    // omitted manifest loading
+
+    private File createImageFile() throws IOException {
+        @SuppressLint("SimpleDateFormat") String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "img_" + timeStamp + "_";
+        File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+        return File.createTempFile(imageFileName, ".jpg", storageDir);
+    }
+}
+						</code>
+					</pre>
+				</details>
+				<hr>
+				<p>I will say this was the extent to which we'd implemented Android-only fixes; I'd also chosen to allow the camera for upload; however I would note that location, accelerometer, peripherals were outside of the remit discussed and in my final weeks I did push back a lot on scope creep in order to ensure I left delivering something working; rather than a WiP.</p>
+				<h3>Shared Issues</h3>
+				<p>Not really a Google or iOS thing, although something I did choose to bypass was that our social logins, prevented us from logging in using some social providers, including Google. I'd assume this is to bypass cookie stores from keeping a person logged in; but for iOS it's less clear as they managed to screw-up cookie handling.</p>
+				<p>To work around this I simply accessed our application while live tail'ing the logs, checking the user-agent headers. Whilst frustrating, I did not want to impersonate a desktop and chose the specific browser presents in the devices and emulators.</p>
+				<details>
+					<summary>iOS fix</summary>
+					<pre>
+						<code>
+override func viewDidLoad() {
+	super.viewDidLoad()
+
+	// important. this is the user-agent string from an iOS emulator. Blocking this would require the vendor to harm genuine browser users.
+	let userAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.4 Mobile/15E148 Safari/604.1"
+	let myURL = URL(string:"https://www.lewiscowles.co.uk")
+	let myRequest = URLRequest(url: myURL!)
+	webView.load(myRequest)
+	// I've no idea if this adds extra cruft to the client request, but it seems to work for google login using devise with omnicontact. YMMV
+	webView.customUserAgent = userAgent
+}
+						</code>
+					</pre>
+				</details>
+				<details>
+					<summary>Android fix</summary>
+					<pre>
+						<code>
+// I actually made the variable a private final static String on the activity class
+String FAKE_UA = "Mozilla/5.0 (Linux; Android 10; Android SDK built for x86) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.185 Mobile Safari/537.36";
+webSettings.setUserAgentString(FAKE_UA);
+						</code>
+					</pre>
+				</details>
+				<p>I can't say I recommend against user-agent spoofing, because I don't. I did it now and I've done it before many times, for legitimate web access, to recover lost things and to bypass API hostile web-services. I think it's as trivial as referer spoofing and speaks to interacting with a system designed by those lacking a variety of analytical and technical skills, who don't understand the following.</p>
+				<blockquote>
+					Never blindly trust user input!
+				</blockquote>
+				<p>In the future I hope that browser vendors and mobile OS proponents challenge security by obscurity, and instead focus on not creating cookies or user-agent insecure oauth screens; perhaps insisting a referer header is set with the full origin, and checking that page at a minimum prevents a number of genuine security faux-pas; transmitting unnecessary details, using HTTP 3XX redirects; missing vital compatibility security headers or meta-tag equivalents.</p>
+				<h2>Summary</h2>
+				<p>This turned a bit towards a rant at points. I am incredibly passionate about the web, as it's allowed me to escape and avoid the existence many others around me endure, as well as help others I'm not so sure would be as successful without the internet.</p>
+				<p>I Hope you've found some use from the information included here, especially the workarounds. I'm particularly fond of the approachability of the 1990's web I joined; and keen to keep many things this way for future generations. Hopefully this will provide some technical assistance to others, or a bookmark for me.</p>
+			</div>
+		</article>
+	</main>
+	<footer>
+	<div class="widget-area">
+	<div class="noPad tC">
+		<div id="text-2" class="widget widget_text">
+		<div class="textwidget">
+			<p>
+			Copyright © 2014-2019 Lewis Cowles, All Rights Reserved.<br>Font Icons By
+			<a href="http://fortawesome.github.io/Font-Awesome/" target="_blank" rel="noreferrer">FontAwesome</a><br>
+			Website coded using CSS3, HTML5,
+			<a href="http://www.php.net" target="_blank" rel="noreferrer">PHP</a>,
+			<a href="https://www.ruby-lang.org/en/" target="_blank" rel="noreferrer">Ruby</a>
+			<a href="http://www.jekyllrb.com" target="_blank" rel="noreferrer">Jekyll</a>.<br>
+			Images use
+			<a href="http://gimp.org" target="_blank" rel="noreferrer">GIMP</a> &amp; Adobe Creative Suite.
+			</p>
+		</div>
+		</div>
+	</div>
+	</div>
+	</footer>
+	<link href="/css/style.css" rel="stylesheet" media="all">
+	<link rel="stylesheet" id="google-fonts-css" href="//fonts.googleapis.com/css?family=Russo+One%7COswald%7COpen+Sans" type="text/css" media="all">
+	<script type="text/javascript" src="/js/feature-detect.js" async></script>
+</body>
+</html>
