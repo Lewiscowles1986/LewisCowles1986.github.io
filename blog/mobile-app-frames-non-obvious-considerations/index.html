@@ -95,7 +95,7 @@
 				<p>The first bug we noticed on using the iOS app-frame, was that upon scrolling, elements were showing over the "status" area of the Operating System. This might be pixel-pushing pedantry, but it's unexpected, and I feel exposes some of the implementation details of wkWebkitView. This took hours to fix, and was eventually done in CSS to avoid code-bloat of something we intended not to touch that often. We'd tried adjusting our app manifest, tweaking a variety of application views; one of which worked, but required a lot of code, and then broke other areas of the application.</p>
 				<details>
 					<summary>How I fixed</summary>
-					<pre>
+					<pre class="multiline">
 						<code>
 header::before {
 	content: ""; display: block;
@@ -129,7 +129,7 @@ header::before {
 				<details>
 					<summary>The solution for modern Android > 23</summary>
 					<h5>AndroidManifest.xml</h5>
-					<pre>
+					<pre class="multiline">
 						<code>
 &lt;!-- This is a patch to the files contents, not something to overwrite the file with --&gt;
 &lt;uses-permission android:name="android.permission.INTERNET" /&gt;
@@ -141,7 +141,7 @@ header::before {
 						</code>
 					</pre>
 					<h5>MainActivity.java</h5>
-					<pre>
+					<pre class="multiline">
 						<code>
 package lewiscowles.co.uk.android;
 
@@ -289,7 +289,7 @@ public class MainActivity extends AppCompatActivity {
 				<p>To work around this I simply accessed our application while live tail'ing the logs, checking the user-agent headers. Whilst frustrating, I did not want to impersonate a desktop and chose the specific browser presents in the devices and emulators.</p>
 				<details>
 					<summary>iOS fix</summary>
-					<pre>
+					<pre class="multiline">
 						<code>
 override func viewDidLoad() {
 	super.viewDidLoad()
@@ -307,7 +307,7 @@ override func viewDidLoad() {
 				</details>
 				<details>
 					<summary>Android fix</summary>
-					<pre>
+					<pre class="multiline">
 						<code>
 // I actually made the variable a private final static String on the activity class
 String FAKE_UA = "Mozilla/5.0 (Linux; Android 10; Android SDK built for x86) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.185 Mobile Safari/537.36";

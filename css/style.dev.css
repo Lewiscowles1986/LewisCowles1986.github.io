@@ -666,3 +666,6 @@ details[open] {
 .hidden {display: none;}
 
 .toggle-fragmention {cursor: pointer}
+
+pre{overflow:auto;}
+pre.multiline{display: block; max-height: 15em; max-height: 15rem; max-height: 80vh; max-height: 80vh}
