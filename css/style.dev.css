@@ -669,3 +669,5 @@ details[open] {
 
 pre{overflow:auto;}
 pre.multiline{display: block; max-height: 15em; max-height: 15rem; max-height: 80vh; max-height: 80vh}
+
+.u-x-icon {max-height: 1.3em; margin-right: -1ex; border-radius: 25%; width: auto}
