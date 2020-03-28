@@ -110,7 +110,7 @@
 				<li>Excludes some of</li>
 			</ul>
 			<p>This pattern makes the most sense when you have 2 or more thresholded or absolute boolean values, such as has attachment on email, is known (but not how you know), can be taxonomically identified by, read/unread. It's not impossible to pack more complex values into these, but the goal is to perform a basic check which takes a single (or fewer) inexpensive operation(s) over many records instead of many operations (regardless of expense) over the same number.</p>
-			<p>If you were to attempt this over 10,000 records with 4 checks, the result if you could compress to a bitfield of 4 bits would be 25% of the time + overhead to construct the comparison bit-field.</p>
+			<p>If you were to attempt this over 10,000 records with 4 checks, the result if you could compress to a bitfield of 4 bits would be 25% of the time + overhead to construct the comparison bit-field.</p>By <a href="https://www.lewiscowles.co.uk/" class="u-author">Lewis Cowles</a>
 		</article>
 	</main>
 	<footer>
