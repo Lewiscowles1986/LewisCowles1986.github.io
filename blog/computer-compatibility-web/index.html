@@ -1,0 +1,151 @@
+<!doctype html>
+<html itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="generator" content="hand-crafted">
+	<meta name="description" content="A post about compatibility and computing, with an ask for the web.">
+
+	<link rel="icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
+
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+
+	<title>Web log - Computer compatibility and the web - by Lewis Cowles</title>
+	<link rel="canonical alternate"  hreflang="en-gb" href="https://www.lewiscowles.co.uk/blog/computer-compatibility-web/">
+	<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@type": "Person",
+		"name": "Lewis Cowles",
+		"url": "http://www.lewiscowles.co.uk",
+		"sameAs": [
+			"https://www.facebook.com/lewis.r.cowles",
+			"https://www.instagram.com/lewiscowles/",
+			"https://www.linkedin.com/in/lewiscowles/",
+			"https://www.youtube.com/channel/UCl0VmButd52e4GvN8YQh7og",
+			"https://github.com/LewisCowles1986",
+			"https://gist.github.com/LewisCowles1986"
+		]
+	}
+	</script>
+	<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"url": "https://www.lewiscowles.co.uk",
+		"logo": "https://www.lewiscowles.co.uk/img/lewiscowles-logo-vector.png"
+	}
+	</script>
+	<link rel="pingback" href="https://webmention.io/www.lewiscowles.co.uk/xmlrpc">
+	<link rel="webmention" href="https://webmention.io/www.lewiscowles.co.uk/webmention">
+</head>
+<body class="page">
+	<header>
+
+		<div class="inner">
+			<div class="header-logo tC">
+				<img src="/img/lewiscowles-logo-vector.svg" alt="" class="logo" style="width: 12em; width: 12rem;" role="logo">
+				<span class="header-logo-text">Lewis Cowles</span>
+			</div>
+			<nav>
+				<ul id="menu-top-menu" class="menu">
+					<li>
+						<a href="/about/">About</a>
+					</li><li>
+						<a href="/blog/">Blog</a>
+					</li><li>
+						<a href="/">Contact</a>
+					</li>
+					<li class="toggle-fragmention hidden">
+						<a href="#" title="use fragmention (requires JavaScript)">#</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+
+
+	</header>
+	<!-- straight after header -->
+	<main>
+		<article class="h-entry">
+			<h1 class="p-name"><a class="u-url" href="/blog/computer-compatibility-web/">Computer compatibility and the web</a></h1>
+			<time class="post-date dt-published" datetime="2020-03-09">
+				<span class="year">2020</span>-<span class="month">03</span>-<span class="day">09</span> 
+			</time>
+			<div class="e-content">
+				<p>Since the inception of computers, things have been breaking and changing. The two are not synonymous, although early works were so exploratory, I suspect things broke with more regularity and the two seemed linked. At least I hope this because otherwise it means horrible things for "progress".</p>
+				<p>I don't want us to be using our laptops from today in 20 years, although I do suspect not much would be lost in doing so, and that much would mature and create deeper understandings where things like that are possible.</p>
+				<p>This post is my exploration, and plea more than anything, to try to increase compatibility and accessibility for the greater good.</p>
+				<h2>Early computing</h2>
+				<p>Earliest computing was plagued by incompatibilities between systems of different vendors, and to some extent; systems from the same vendors. As when learning or exploring anything totally new; you don't know what you don't know.</p>
+				<p>The reasons for this were varied and rich. At it's simplest; computers had less capacity because miniturization was also in it's infancy; and engineering had not yet made it cost effective to throw billions of bits in commodity hardware.</p>
+				<h2>The rise of Virtual machines</h2>
+				<p>There are two types of virtual machines. System and process. One is concerned with providing a compatible environment for hardware, and the other is concerned with providing compatible environment for only a piece of software. Both have been in active development since the 1960s; but really came to the fore in my opinion in the 1990's.</p>
+				<p>Process virtual machines allowed code to compile once and be deployable to various operating systems and instruction sets. There was a cost for this flexibility, but the payout was the ability to have standardized backwards compatibility on some level.</p>
+				<p>This wasn't free of effort. Each platform would still need development to port the runtime, or managed environment to a new OS, machine architecture; but it would enable non-breaking changes.</p>
+				<p>It could be argued that all modern x86 PC's ship with a sort of compatibility layer akin to a virtual machine. I won't concern this article with that, but it is a fascinating topic to google. The crux is that we found ways to ensure some degree of management of backwards compatibility, because it is incredibly expensive to re-tool every 3-6 months, or even 18 months.</p>
+				<h2>Why am I on about this?</h2>
+				<p>Recently, protocols that define the internet have been changing. This affects my job. As more and more people and organizations compete for mind-space in arguably the very language and concepts we compose to perform our jobs; I do start to worry.</p>
+				<p>There are only so many things I can consider. This manifested last year in me not considering streaming responses for a REST API receiving payloads of < 100KB. You don't need to stream 100KB, there is no benefit whatsoever to it; however because a specification existed, two people mutilated some software to support the use-case.</p>
+				<p>It's not that I don't think others are also worrying, or that I believe we have entered a golden age where nothing should change; but as I age, my capacity for change and appetite for more of what I've experienced already tends to diminish.</p>
+				<p>Not using streaming API's outside of streaming use-cases ensures a small software footprint and manageable surface area. You'll get more done, in short if you pick the specifications to support.</p>
+				<p>I was in the generation that started coding with the very first ECMA. Early JavaScript, ActionScript and several other variants and projects. In 2012 one of the technologies I was particularly adept with became obsolete. Nearly half a decade was lost before it's main competitor matched it for performance.</p>
+				<p>This is the balancing act any seasoned professional developer must face.</p>
+				<ul>
+					<li>You need to embrace new things</li>
+					<li>You need to maintain older things</li>
+					<li>You need to evaluate when "what you do", has now changed.</li>
+				</ul>
+				<h2>How this impacts the web</h2>
+				<p>We have choices when we innovate on the internet. Difficult choices, but choices nonetheless.</p>
+				<p>When a security vulnerability, or inability to serve 2000 images efficiently over HTTP is discovered; we get to chose if we break backwards compatibility to move to a new binary format created largely in an internet advertiser that seeks to continue serving hundreds and thousands of files per-request; or to put a stick in the ground and say "Actually, I'd rather not continue to subsidize or normalize your empire of greed."</p>
+				<p>Perhaps I can put that another way. If one stakeholder is creating an unreasonable amount of unnecessary work; then perhaps it's not your ability to do the work, that needs to exponentially increase.</p>
+				<p>I talk to people all the time about their problems developing for and using computers, and quite usually, the internet, or network enabled software. It's just better to do things together.</p>
+				<ul>
+					<li>You can get things done faster.</li>
+					<li>You can reduce risk.</li>
+					<li>You can reason about smaller parts of larger issues.</li>
+				</ul>
+				<p>I'd guess that at least half the issues; certainly more than half of those recorded; seem to be foot-gun scenario's. People have pointed, aimed and fired, then came to me about a hurt foot. My answers generally start by trying to get them to recognize the foot-gun existence. This isn't always easy in a world where persistence is often mistaken for expertise, and long-form, deep understanding requires both persistence and dedication, as well as consistency. Now they need to do 3 times the thinking.</p>
+				<h2>What can we do instead</h2>
+				<p>Some of my biggest peeves on the internet are lack of accessibility; over-use of solutions shifting problems to third parties without deep thought; and an abundance of marketing masquerading as knowledge. </p>
+				<ul>
+					<li>I'm unlikely to fix the last one; it seems a permanent fixture in human history.</li>
+					<li>The second one seems to require people to be regulated or tricked into the right thing.</li>
+					<li>Because the second and last are not generally available the first becomes problematic.</li>
+					<li>The first one is also an ongoing and generally remitive process.</li>
+				</ul>
+				<p>So, I'd like to appeal to my future self and any other readers, to come up with ideas for how to get people to act in societies shared-interests. Consider the overall cost, risks and direction of that new feature you need to install babel and transpile for. That killer feature you need ReactJS, or the latest PHP or Python for.</p>
+				<p>I was quite surprised today when someone told me they were coding using PHP7.3 runtime, but compatible to PHP5.3 language features. If they have the latest runtime, I guess it's just a lot more work.</p>
+				<h2>The plea</h2>
+				<p>If we can reduce breaking backwards compatibility unnecessarily; we may be able to keep the web the web, and allow others who've not yet caught up, or even started to get involved; participate and succeed. We may be able to explore alternative avenues, which none of us has trodden, which yield fantastic results. I'm ultimately not asking you to be Einstein; but consider not trying to be an olympic athlete either.</p>
+			</div>By <a href="https://www.lewiscowles.co.uk/" class="u-author">Lewis Cowles</a>
+		</article>
+	</main>
+	<footer>
+	<div class="widget-area">
+	<div class="noPad tC">
+		<div id="text-2" class="widget widget_text">
+		<div class="textwidget">
+			<p>
+			Copyright © 2014-2020 <span class="h-card"><img class="u-x-icon u-logo" src="/img/lewiscowles-logo-vector.svg" /><a class="p-name u-url u-uid" rel="me" href="https://www.lewiscowles.co.uk/">Lewis Cowles</a></span>, All Rights Reserved.<br>Font Icons By
+			<a href="http://fortawesome.github.io/Font-Awesome/" target="_blank" rel="noreferrer">FontAwesome</a><br>
+			Website coded using CSS3, HTML5,
+			<a href="http://www.php.net" target="_blank" rel="noreferrer">PHP</a>,
+			<a href="https://www.ruby-lang.org/en/" target="_blank" rel="noreferrer">Ruby</a>
+			<a href="http://www.jekyllrb.com" target="_blank" rel="noreferrer">Jekyll</a>.<br>
+			Images use
+			<a href="http://gimp.org" target="_blank" rel="noreferrer">GIMP</a> &amp; Adobe Creative Suite.
+			</p>
+		</div>
+		</div>
+	</div>
+	</div>
+	</footer>
+	<link href="/css/style.css" rel="stylesheet" media="all">
+	<link rel="stylesheet" id="google-fonts-css" href="//fonts.googleapis.com/css?family=Open+Sans" type="text/css" media="all">
+	<script type="text/javascript" src="/js/feature-detect.js" async></script>
+</body>
+</html>
