@@ -1,0 +1,133 @@
+<!doctype html>
+<html itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<head>
+    <link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#333333"/>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="generator" content="hand-crafted">
+	<meta name="description" content="A short-post about the Essex Web Developers Meetup. Derick Rethans showed us new features and gave insights into PHP language development improvements.">
+
+	<link rel="icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
+
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+
+	<title>Web log - Essex Web Devs meet Derick Rethans about PHP 7.4, by Lewis Cowles</title>
+	<link rel="canonical alternate"  hreflang="en-gb" href="https://www.lewiscowles.co.uk/blog/essex-web-devs-derick-rethans-php-74/">
+	<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@type": "Person",
+		"name": "Lewis Cowles",
+		"url": "http://www.lewiscowles.co.uk",
+		"sameAs": [
+			"https://www.facebook.com/lewis.r.cowles",
+			"https://www.instagram.com/lewiscowles/",
+			"https://www.linkedin.com/in/lewiscowles/",
+			"https://www.youtube.com/channel/UCl0VmButd52e4GvN8YQh7og",
+			"https://github.com/LewisCowles1986",
+			"https://gist.github.com/LewisCowles1986"
+		]
+	}
+	</script>
+	<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"url": "https://www.lewiscowles.co.uk",
+		"logo": "https://www.lewiscowles.co.uk/img/lewiscowles-logo-vector.png"
+	}
+	</script>
+	<link rel="pingback" href="https://webmention.io/www.lewiscowles.co.uk/xmlrpc">
+	<link rel="webmention" href="https://webmention.io/www.lewiscowles.co.uk/webmention">
+</head>
+<body class="page">
+	<header>
+
+		<div class="inner">
+			<div class="header-logo tC">
+				<img src="/img/lewiscowles-logo-vector.svg" alt="" class="logo" style="width: 12em; width: 12rem;">
+				<span class="header-logo-text">Lewis Cowles</span>
+			</div>
+			<nav>
+				<ul id="menu-top-menu" class="menu">
+					<li>
+						<a href="/about/">About</a>
+					</li><li>
+						<a href="/blog/">Blog</a>
+					</li><li>
+						<a href="/">Contact</a>
+					</li>
+					<li class="toggle-fragmention hidden">
+						<a href="#" title="use fragmention (requires JavaScript)">#</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+
+
+	</header>
+	<!-- straight after header -->
+	<main>
+		<article class="h-entry">
+			<h1 class="p-name"><a class="u-url" href="/blog/essex-web-devs-derick-rethans-php-74/">Essex Web Devs meet Derick Rethans about PHP 7.4</a></h1>
+			<time class="post-date dt-published" datetime="2020-04-16">
+				<span class="year">2020</span>-<span class="month">04</span>-<span class="day">16</span> 
+			</time>
+			<div class="e-content">
+				<p>We were treated to a great talk at <time datetime="2020-04-15">last nights</time> local web-dev <em>>programming</em> group taken online. Guest speaker <a href="https://derickrethans.nl/" rel="nofollow noreferrer noopener">Derick Rethans</a>, 17-year veteran of Quality control and introspection via <a href="https://xdebug.org/" rel="nofollow noreferrer noopener">PHP xDebug</a> and various other widely used libraries presented changes in the new PHP runtime 7.4 and 7.8, odd language bugs and future efforts to fix them.</p>
+				<p>We got a bit "energetic" as lockdown tends to make people, but it was a good turn-out with people remote attending from elsewhere around the world, including Germany.</p>
+				<h2>Funny PHP questions</h2>
+				<p>What does the following output in PHP? (No cheating by checking)</p>
+				<h3>1. Ternaries</h3>
+				<pre class="multiline">
+					<code>
+$a = 3;
+echo $a == 1 ? 'one' : $a == 2 ? 'two' : $a == 3 ? 'three' : $a == 4 ? 'four' : 'other'; 
+					</code>
+				</pre>					
+				<h3>2. Numeric Base Conversion</h3>
+				<pre class="multiline">
+					<code>
+echo base_convert('hello world', 16, 10);
+					</code>
+				</pre>
+				<h3>3. Concatenation with addition</h3>
+				<pre class="multiline">
+					<code>
+echo 'answer: ' . 4 + 5;
+					</code>
+				</pre>
+				<p>The answers are off the wall disturbing; and do not match other languages with these same features. The PHP team are fixing them.</p>
+				<p>I'm really glad that a local group managed to get such an experienced speaker, who shared so much in such a short space of time, and has undoubtedly helped millions to express themselves, introspect their ideas and even earn a living.</p>
+				<p>I found after some deprecation warnings Derick offered that I'll have until <time datetime="2021-12-06">December 2021</time> to patch support, or drop features in some very old work that connects to a FoxPro database file. Perhaps I'll just compile the extension from PECL, as they are not preventing people from optionally using code, just moving it out of the core language.</p>
+			</div>By <a href="https://www.lewiscowles.co.uk/" class="u-author" rel="author">Lewis Cowles</a>
+		</article>
+	</main>
+	<footer>
+	<div class="widget-area">
+	<div class="noPad tC">
+		<div id="text-2" class="widget widget_text">
+			<div class="textwidget">
+				<p>
+				Copyright © 2014-2020 <span class="h-card"><img class="u-x-icon u-logo" src="/img/lewiscowles-logo-vector.svg" alt="" /><a class="p-name u-url u-uid" rel="me" href="https://www.lewiscowles.co.uk/">Lewis Cowles</a></span>, All Rights Reserved.<br>Font Icons By
+				<a href="http://fortawesome.github.io/Font-Awesome/" target="_blank" rel="nofollow noopener noreferrer">FontAwesome</a><br>
+				Website coded using CSS3, HTML5,
+				<a href="http://www.php.net" target="_blank" rel="nofollow noopener noreferrer">PHP</a>,
+				<a href="https://www.ruby-lang.org/en/" target="_blank" rel="nofollow noopener noreferrer">Ruby</a>
+				<a href="http://www.jekyllrb.com" target="_blank" rel="nofollow noopener noreferrer">Jekyll</a>.<br>
+				Images use
+				<a href="http://gimp.org" target="_blank" rel="nofollow noopener noreferrer">GIMP</a> &amp; Adobe Creative Suite.
+				</p>
+			</div>
+		</div>
+	</div>
+	</div>
+	</footer>
+	<link href="/css/style.css" rel="stylesheet" media="all">
+	
+	<script type="text/javascript" src="/js/feature-detect.js" async></script>
+</body>
+</html>
