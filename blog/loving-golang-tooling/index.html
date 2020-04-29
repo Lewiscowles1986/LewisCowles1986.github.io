@@ -1,0 +1,152 @@
+<!doctype html>
+<html itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<head>
+    <link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#333333"/>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="generator" content="hand-crafted">
+	<meta name="description" content="A post about golang tooling.">
+
+	<link rel="icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
+
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+
+	<title>Web log - I am Loving Golang tooling, by Lewis Cowles</title>
+	<link rel="canonical alternate"  hreflang="en-gb" href="https://www.lewiscowles.co.uk/blog/loving-golang-tooling/">
+	<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@type": "Person",
+		"name": "Lewis Cowles",
+		"url": "http://www.lewiscowles.co.uk",
+		"sameAs": [
+			"https://www.facebook.com/lewis.r.cowles",
+			"https://www.instagram.com/lewiscowles/",
+			"https://www.linkedin.com/in/lewiscowles/",
+			"https://www.youtube.com/channel/UCl0VmButd52e4GvN8YQh7og",
+			"https://github.com/LewisCowles1986",
+			"https://gist.github.com/LewisCowles1986"
+		]
+	}
+	</script>
+	<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"url": "https://www.lewiscowles.co.uk",
+		"logo": "https://www.lewiscowles.co.uk/img/lewiscowles-logo-vector.png"
+	}
+	</script>
+	<link rel="pingback" href="https://webmention.io/www.lewiscowles.co.uk/xmlrpc">
+	<link rel="webmention" href="https://webmention.io/www.lewiscowles.co.uk/webmention">
+</head>
+<body class="page">
+	<header>
+
+		<div class="inner">
+			<div class="header-logo tC">
+				<img src="/img/lewiscowles-logo-vector.svg" alt="" class="logo" style="width: 12em; width: 12rem;">
+				<span class="header-logo-text">Lewis Cowles</span>
+			</div>
+			<nav>
+				<ul id="menu-top-menu" class="menu">
+					<li>
+						<a href="/about/">About</a>
+					</li><li>
+						<a href="/blog/">Blog</a>
+					</li><li>
+						<a href="/">Contact</a>
+					</li>
+					<li class="toggle-fragmention hidden">
+						<a href="#" title="use fragmention (requires JavaScript)">#</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+
+
+	</header>
+	<!-- straight after header -->
+	<main>
+		<article class="h-entry">
+			<h1 class="p-name"><a class="u-url" href="/blog/loving-golang-tooling/">I am Loving Golang tooling</a></h1>
+			<time class="post-date dt-published" datetime="2020-04-21">
+				<span class="year">2020</span>-<span class="month">04</span>-<span class="day">21</span> 
+			</time>
+			<div class="e-content">
+				<p>I recently interviewed for a role as a Golang Senior Engineer. I wasn't very interested in the culture. There seemed to be a distinct lack of things I was excited about; even after the recruiter was kind enough to get back to me with more information. What it allowed me to do was make the excuse I needed to start compiling, testing, debugging things in go seriously for the first time in a little while.</p>
+				<h2>Challenges</h2>
+				<h3>Finding time</h3>
+				<p>As a generalist in computing, I often find myself torn between tasks. Things like writing a blog article, improving work documentation, finish passion-projects, be a good husband, be a good family member, brother, son &hellip;</p>
+				<h3>Tooling</h3>
+				<p>Another thing that can make it hard to "come home" or at least visit, is developer friction.</p>
+				<p>There are many kinds of <dfn>developer friction</dfn> a term used to make tactile the feeling things could be better.</p>
+				<p>The one type, or way I'm focusing on it here is technical or tooling friction. How long do I need to spend, before I'm set up?</p>
+				<p>When I'm being a grump, I like to blame tooling for the rise of languages or pattens I don't enjoy existing. It's short-term enjoyable, but long term facile both to hate on languages and technologies, and to expect mass adoption without ubiquitous tooling.</p>
+				<h2>What golang gets right</h2>
+				<h3>10,000 foot view</h3>
+				<p>A Bit like Python, which I also love; golang has some strong opinions.</p>
+				<ul>
+					<li>Concurrency should not be an after-thought.</li>
+					<li>Formatting consistency <em>IS</em> important.</li>
+					<li>The standard library should be about more than passing a CS exam.</li>
+					<li>Documentation, coverage, testing & debugging should be front and center!</li>
+					<li>Types are important, but you should be able to work around the type system.</li>
+					<li>Objects are a way of talking about relationships, we can borrow from.</li>
+					<li>C is here. We'll need to play with it.</li>
+					<li>You can (most of the time) deploy a single executable.</li>
+				</ul>
+				<h3>Comfort blanket</h3>
+				<p>I have an authoritarian streak I cannot shake, so I rather enjoy being told off by a language for bad habits, and for it setting ground-rules. I should probably see a therapist about this, but typing with the ability to turn off when I'm desperate or stupid enough, is a wonder. I love strict typing, like I love expressive API's, but sometimes you need to get into <q cite="https://www.musixmatch.com/lyrics/Johnny-Cash/A-Boy-Named-Sue">the mud and the blood and the beer</q> to get things done.</p>
+				<p>I'm probably getting a bit boring so I'll wrap up this, but a standard library offering networking, common standards written in the tooling you use has amazing benefits for testing and understanding what the **** you're doing when stuck. Offering debugging and integration with support for expressing yourself similarly to other languages through interfaces etc, is also brilliant.</p>
+				<h2>Me and golang</h2>
+				<ul>
+					<li>Serverless functions using OpenFaaS</li>
+					<li>API projects for high-throughput around payments and invoicing</li>
+					<li>Command line applications without requiring extra runtimes or software</li>
+					<li>File storage API for uploads</li>
+					<li>Various test & exploratory projects</li>
+					<li>Cross-compiling for multi-arch targets</li>
+					<li>Understanding code such as CloudFoundry & Docker</li>
+					<li>Understanding and (hopefully helping to re-organise) SQL in cockroach DB</li>
+					<li>Integrating with Linux tooling for GUI's using Go & C-bindings</li>
+				</ul>
+				<p>I think it's safe to say that I'm still beginning my journey into all they can offer. I Feel a few new things came up</p>
+				<ul>
+					<li>A language-directed plugin build target, which looks promising for faster data-store-flexible systems.</li>
+					<li>Cross-architecture builds, which I've paired with GitHub actions for an SMTP testing / control MailHog.</li>
+					<li>Spec testing, specifically testing patterns.</li>
+				</ul>
+				<h2>To conclude</h2>
+				<p>I really enjoyed a jaunt with Golang and will endeavour to finish some of my newer projects using it. I am transitioning towards low-code, no-code and less-code solutions; because I'd like to tackle what I feel are some foundational issues for practical computing personally and for business; but I also love what 20 years has produced so-far, and cannot wait to be a part of the next 20.</p>
+			</div>By <a href="https://www.lewiscowles.co.uk/" class="u-author" rel="author">Lewis Cowles</a>
+		</article>
+	</main>
+	<footer>
+	<div class="widget-area">
+	<div class="noPad tC">
+		<div id="text-2" class="widget widget_text">
+			<div class="textwidget">
+				<p>
+				Copyright © 2014-2020 <span class="h-card"><img class="u-x-icon u-logo" src="/img/lewiscowles-logo-vector.svg" alt="" /><a class="p-name u-url u-uid" rel="me" href="https://www.lewiscowles.co.uk/">Lewis Cowles</a></span>, All Rights Reserved.<br>Font Icons By
+				<a href="http://fortawesome.github.io/Font-Awesome/" target="_blank" rel="nofollow noopener noreferrer">FontAwesome</a><br>
+				Website coded using CSS3, HTML5,
+				<a href="http://www.php.net" target="_blank" rel="nofollow noopener noreferrer">PHP</a>,
+				<a href="https://www.ruby-lang.org/en/" target="_blank" rel="nofollow noopener noreferrer">Ruby</a>
+				<a href="http://www.jekyllrb.com" target="_blank" rel="nofollow noopener noreferrer">Jekyll</a>.<br>
+				Images use
+				<a href="http://gimp.org" target="_blank" rel="nofollow noopener noreferrer">GIMP</a> &amp; Adobe Creative Suite.
+				</p>
+			</div>
+		</div>
+	</div>
+	</div>
+	</footer>
+	<link href="/css/style.css" rel="stylesheet" media="all">
+	
+	<script type="text/javascript" src="/js/feature-detect.js" async></script>
+</body>
+</html>
