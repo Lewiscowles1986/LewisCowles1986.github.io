@@ -740,3 +740,4 @@ code[data-language="php"]::before {
   content: "\A<?php";
 }
 figure { margin: 0; }
+figcaption { display: block; margin-bottom: 2em; font-style: italic; }
