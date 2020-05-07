@@ -1,0 +1,201 @@
+<!doctype html>
+<html itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<head>
+    <link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#333333"/>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="generator" content="hand-crafted">
+	<meta name="description" content="A post about the modern deployment process of using feature flags.">
+
+	<link rel="icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
+
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+
+	<title>Web log - Modern deployment patterns - feature flags, by Lewis Cowles</title>
+	<link rel="canonical alternate"  hreflang="en-gb" href="https://www.lewiscowles.co.uk/blog/modern-deployment-patterns/feature-flags/">
+	<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@type": "Person",
+		"name": "Lewis Cowles",
+		"url": "http://www.lewiscowles.co.uk",
+		"sameAs": [
+			"https://www.facebook.com/lewis.r.cowles",
+			"https://www.instagram.com/lewiscowles/",
+			"https://www.linkedin.com/in/lewiscowles/",
+			"https://www.youtube.com/channel/UCl0VmButd52e4GvN8YQh7og",
+			"https://github.com/LewisCowles1986",
+			"https://gist.github.com/LewisCowles1986"
+		]
+	}
+	</script>
+	<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"url": "https://www.lewiscowles.co.uk",
+		"logo": "https://www.lewiscowles.co.uk/img/lewiscowles-logo-vector.png"
+	}
+	</script>
+	<link rel="pingback" href="https://webmention.io/www.lewiscowles.co.uk/xmlrpc">
+	<link rel="webmention" href="https://webmention.io/www.lewiscowles.co.uk/webmention">
+</head>
+<body class="page">
+	<header>
+
+		<div class="inner">
+			<div class="header-logo tC">
+				<img src="/img/lewiscowles-logo-vector.svg" alt="" class="logo" style="width: 12em; width: 12rem;">
+				<span class="header-logo-text">Lewis Cowles</span>
+			</div>
+			<nav>
+				<ul id="menu-top-menu" class="menu">
+					<li>
+						<a href="/about/">About</a>
+					</li><li>
+						<a href="/blog/">Blog</a>
+					</li><li>
+						<a href="/">Contact</a>
+					</li>
+					<li class="toggle-fragmention hidden">
+						<a href="#" title="use fragmention (requires JavaScript)">#</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+
+
+	</header>
+	<!-- straight after header -->
+	<main>
+		<article class="h-entry">
+			<h1 class="p-name"><a rel="tag" href="/blog/modern-deployment-patterns/">Modern deployment patterns</a> - <a class="u-url" href="/blog/modern-deployment-patterns/feature-flags/">Feature flags</a></h1>
+			<time class="post-date dt-published" datetime="2020-05-07">
+				<span class="year">2020</span>-<span class="month">05</span>-<span class="day">07</span> 
+			</time>
+			<div class="e-content">
+				<p>I just watched a very cool video by Dave Karow of Split.io, a vendor that I've used for feature flagging in my last role. It made me stop and think.</p>
+				<blockquote>Why did I write a blog post about bread as code yesterday? I should have written about some of what I know, like this feature flagging business. It is a transformative way of thinking about de-coupling deployment from releasing software.</blockquote>
+				<p>you're in luck. I'm not dead yet and my adventures at baking haven't spoiled my appetite for blogging.</p>
+				<h2>Scope</h2>
+				<p>This isn't a computer science class, so I may omit details you can get elsewhere. <a href="https://www.youtube.com/watch?v=nsxVbX-dlCM" rel="nofollow noopener noreferrer">Dave's video on GOTO Conferences YouTube</a> is amazing at capturing the environments this is happening in and a mindset of post buy-in. I don't want to spend time convincing you that deploying more often is good, because to my mind you're an idiot if you need convincing of that.</p>
+				<h2>What will this get me</h2>
+				<p>On friday at 5pm when you want to merge or push some code. You'll be able to; knowing that come Monday morning, neither you, nor any of your team mates or managers weekends were ruined, and that all your customers still love you as much as before.</p>
+				<p>Sadly no statues or monuments will be erected to your efforts, no festivals or celebrations will be held. The world just won't burn.</p>
+				<p>You will be able to relinquish the details of your working day, and get on with being present elsewhere whenever you push code with flags, to decide who gets to use the cool new hotness you're presently working on.</p>
+				<h2>What is feature flagging?</h2>
+				<p><dfn>Feature flagging</dfn> is the ability to define parts of your software, to be able to activate and deactivate, based on data values, which can be released after deployment and enable continuous deployment to take place without branching and resolving conflicts. It's from the school of data-driven programs. The notion that the algorithms you write, should respond to data is <em>central</em>. It's a school of thought, I've followed personally since the 1990's, which is before my professional career. It also uses newer schools of thought such as software AGILITY and Continuous Deployment. The goal of regularly shipping code, so that you get feedback, be confident and focus your efforts, and can swiftly respond to changing requirements are front and center.</p>
+				<h2>Sounds like {X}</h2>
+				<p>It could be related if you're thinking that. The core differentiator in most feature flagging solutions is that:</p>
+				<ul>
+					<li>It's generally a separate piece of software.</li>
+					<li>It's generally a single control interface for impacting multiple users.</li>
+					<li>Mature feature-flagging solutions happen without redeploying.</li>
+				</ul>
+				<p>It's really important that you grasp these, especially the last, as without them, what you wind up creating are settings.</p>
+				<p>Settings are a good form of control for self-service. In-fact in my last role we often mixed settings with feature flags, and this can be a good post-release or post-rollout pattern, to transition some features to settings, so that after you've shown a thing works, you also ensure that it's still limited to those who want it.</p>
+				<p>This enables your organisation to experiment without risky data migrations; Isolated settings changes; or creating minor deity users, who become cruel like the Goddess Hera, accidentally messing up state at some point because a higher paid person thought it was a good idea in a pinch.</p>
+				<h2>Some considerations</h2>
+				<h3>Longevity</h3>
+				<p>My very good friend and past colleague <a href="https://roderick.dk/" rel="nofollow noopener noreferrer">Morgan</a>, suggested that it's a great idea to not have too many active experiments and shared with me this great <a href="https://martinfowler.com/articles/feature-toggles.html" rel="nofollow noopener noreferrer">Martin Fowler article on feature toggles</a>. The theory behind this is simple. On/Off boolean values, combine to represent a combination of possible states. You remember how much an unsigned 32-bit number can hold. How about 64-bit or 128-bit?</p>
+				<blockquote>If feature flags live for too long, soon you'll have 32 or more, of at-least true/false, and then you have 4 billion (abstractly) possible software states. Ain't nobody got time for 4 billion states.</blockquote>
+				<h3>Resisting the urge to embed in your application</h3>
+				<p>On a past project, we had a micro-services approach to building, which turned out to be a distributed monolith. We had feature flagging and authentication embedded deep within a legacy application and because it wasn't a new feature; it was never extracted, meaning every system depended on the legacy system.</p>
+				<p>If you ever might have two or more systems impacted by feature flagging; take the time to extract the things your feature flags depend on as arguments to a separate feature flagging service, and ensure you have at least three systems. The feature flagging service, the original service, and the new service. This will keep all your dependencies pointing forwards, and provide opportunity to challenge bit-rot.</p>
+				<h3>Resisting deploy-time feature flags</h3>
+				<p>This is actually from CODESIGN2, my last business, but I recognize from several past roles. We used feature flagging via the environment, code or file-system of each deployed edition of software. Sometimes this was because that software didn't support feature flags. Sometimes it was to save costs. Most changes would target a customer account; a software release. I'd repeated this mistake since a much earlier time, taking flags out of a database, so that different product features could be activated and deactivated for customers.</p>
+				<p>Problems with this approach are as-such:</p>
+				<ul>
+					<li>You lose simple visibility.</li>
+					<li>You often have to re-deploy to release.</li>
+					<li>You sacrifice space or control. Neither is great.</li>
+				</ul>
+				<p>From a raw CS-grad perspective, it might seem way more inefficient to poll a database; cross a network; cope with some envelope format.</p>
+				<p>All of the above being absolutely abstractly true. It is less efficient; it can lead to problems; but you need to own those problems in order to stay ahead of the competition and be able to carry out controlled experiments with visibility.</p>
+				<h4>Strategies for iterating on runtime flags</h4>
+				<p>You can focus on mitigation later, like local caching after you're sure in a controlled environment the feature-flags work</p>
+				<p>You can also increase logging and serialize data to event-based systems, where feature flags might perhaps be included in event payloads, so you can inspect the state of a system at the time a thing was done and avoid needing to pass sensetive user-context through distributed systems.</p>
+				<p>There is too much to go into here, but the crux is that there is so much rigidity in avoiding this, you give every single feature, punchers-chance to knock-out one or more of your services.</p>
+				<p>Commercial offerings such as LaunchDarkly and Split.io have some mitigations for many of these problems, as well as trading time writing software, for time reading about existing software which operates in a consistent fashion, and is more likely to have external mindshare than the thing you frankenstein up. So you may want to use a provider to solve some efficiency related parts of not baking in state to releases.</p>
+				<h3>Number of experiments</h3>
+				<p>This last one is very close to the longevity of experiments. If you measure too much, it will cost too much or require so much data it becomes prohibitive.</p>
+				<p>Put in computing terms, you need to partition your workload, so that you operate within limited bounds.</p>
+				<p>32 teams working on one application should be enough. If you need more, or likely before then; split the program.</p>
+				<p>I've never worked somewhere with 32 teams all feature flagging one single piece of software at once. You got me; but I imagine it's a form of hell on earth you never quite recover from. This is where partitioning systems can be of use.</p>
+				<h4>Tales from the mines</h4>
+				<p>In my last role, we had a request from executive team to push multivariate experiments with variants of variants without concluding the original experiment, in line with many other experiments. Instead of 2 states, we now had 4 for a single email, which increased every time a new dimension was considered; and probably didn't spend as much time as we could or should validating information because controlling complex experiments is hard.</p>
+				<p>You can in cases like this, simplify. What that looks like will depend on your product team and leadership.</p>
+				<p>All of your experiments are constantly interacting. Don't let anyone lie to you that this is scientific. This is the best we can do because of a lack of scientific data and control being possible in limited days, with limited time and often limited people. Set yourself up for success.</p>
+				<h3>Impact on Approach to Engineering</h3>
+				<p>STOP. Don't change that code in-place. Extract it to it's own area if there is not already a control plane / point around it.</p>
+				<p>A central part of feature flagging is that you avoid altering existing code. This is a bug-bear when I see altering code in feature-flagged environments. The only code you should alter is dead code. Everything else is in-use, and could ruin someones day.</p>
+				<p>But I have to fix {x}</p>
+				<p>Please do so, by first ensuring you don't make {x} worse.</p>
+				<p>By replacing the outer-most function signature and implementing a strategy, no matter how calcified, or enshrined in your specific feature-flagged new-version, you enable yourself to be wrong without upsetting people.</p>
+				<h4>But what about...</h4>
+				<p>There are cases where this is not possible. I still advocate for the least possible changes, including optional arguments to recognise that you can go back, using language features such as Java <q>Optional</q> and Python or other language ternaries or branching logic</p>
+				<figure>
+<pre>
+<code>
+feature_flag_get_value(**inputs) if should_feature_flag else None
+</code>
+</pre>
+					<figcaption>Inline argument style optional argument</figcaption>
+				</figure>
+				<p>Perhaps this is more clear</p>
+				<figure>
+<pre>
+<code>
+if (should_feature_flag) {
+	arguments['something optional'] = feature_flag_get_value(**inputs);
+}
+</code>
+</pre>
+					<figcaption>Distinct block style optional argument</figcaption>
+				</figure>
+				<p>The point is not about the language, but the recognition there is some value in what-is; and that needs to be understood.</p>
+				<h4>Finishing up on not altering code</h4>
+				<p>For the wide majority of cases, you can and should, avoid altering existing code, when using this pattern. Instead, accept deploying more code. This enables a switch-back in the case an experiment has unforeseen outcomes, or you just were not perfect today. It happens.</p>
+				<p>You will have to then dedicate time to go-back and remove some of this complexity for non-optional components. Perhaps you don't have one product at the point you have 5 levels of strategy per-feature is a thing you should call-out to product teams.</p>
+				<h2>Concluding</h2>
+				<p>Feature flagging should absolutely be a part of your modern deployment workflow. If you're not there yet, don't worry, but know that you're consciously not doing, or not yet able to be doing a thing and roadmap it.</p>
+				<ul>
+					<li>You'll gain new language to address, segment, and think about your customers with product teams.</li>
+					<li>You can reduce or avoid on-call, and emergency actions.</li>
+					<li>Instead of thinking in binary exclusive terms, you can apply "in this situation, with this environment do {X} strategies".</li>
+					<li>You can rapidly respond to customer needs and ensure the business is enabled as soon as possible.</li>
+					<li>You'll be able to communicate risk in a clearer way, and gain operational visibility.</li>
+					<li>You may be able to use third-party services, to do this without inventing yourself.</li>
+				</ul>
+				<p>Stay safe, and have a drink. This was hard to keep short. Hopefully it helps.</p>
+			</div>By <a href="https://www.lewiscowles.co.uk/" class="u-author" rel="author">Lewis Cowles</a>
+		</article>
+	</main>
+	<footer>
+	<div class="widget-area">
+	<div class="noPad tC">
+		<div id="text-2" class="widget widget_text">
+			<div class="textwidget">
+				<p>
+				Copyright © 2014-2020 <span class="h-card"><img class="u-x-icon u-logo" src="/img/lewiscowles-logo-vector.svg" alt="" /><a class="p-name u-url u-uid" rel="me" href="https://www.lewiscowles.co.uk/">Lewis Cowles</a></span>, All Rights Reserved.<br>Font Icons By
+				<a href="http://fortawesome.github.io/Font-Awesome/" target="_blank" rel="nofollow noopener noreferrer">FontAwesome</a><br>
+				Website coded using CSS3, HTML5,
+				<a href="http://www.php.net" target="_blank" rel="nofollow noopener noreferrer">PHP</a>,
+				<a href="https://www.ruby-lang.org/en/" target="_blank" rel="nofollow noopener noreferrer">Ruby</a>
+				<a href="http://www.jekyllrb.com" target="_blank" rel="nofollow noopener noreferrer">Jekyll</a>.<br>
+				Images use
+				<a href="http://gimp.org" target="_blank" rel="nofollow noopener noreferrer">GIMP</a> &amp; Adobe Creative Suite.
+				</p>
+			</div>
+		</div>
+	</div>
+	</div>
+	</footer>
+	<link href="/css/style.css" rel="stylesheet" media="all">
+	
+	<script type="text/javascript" src="/js/feature-detect.js" async></script>
+</body>
+</html>
