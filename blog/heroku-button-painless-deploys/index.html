@@ -77,37 +77,37 @@
 				<span class="year">2019</span>-<span class="month">09</span>-<span class="day">14</span> 
 			</time>
 			<div class="e-content">
-				<p>This friday I made a few things I think are cool. One was a Dockerfile for a piece of software called indielogin, the other was a Heroku deploy button for the same software.</p>
+				<p>This Friday I made a few things I think are cool. One was a Dockerfile for a piece of software called indielogin.com, the other was a Heroku deploy button for the same software.</p>
 				<p>I am a firm believer that one of the best ways to learn, is to get something working. My plan was simple:</p>
 				<ol>
-					<li>Download the software source (it's a scripting language)</li>
+					<li>Download the software source (it is written in a scripting language)</li>
 					<li>Build one or more docker containers using the scripting runtimes</li>
 					<li>Try to get project to work (without services) in a docker container</li>
 					<li>Fill in services using docker-compose</li>
-					<li>Throw at heroku and iterate through remaining issues</li>
+					<li>Throw at Heroku and iterate through remaining issues</li>
 					<li>Refine solution</li>
 					<li>Adjust documentation</li>
 					<li>Ask for feedback</li>
 				</ol>
-				<p>Initially I was frustrated because I re-used <a href="https://github.com/CODESIGN2/docker-php">some code I maintain</a>, which is used to test PHP libraries & project test suites across PHP runtimes. I'd forgotten that the software I maintain, is designed to avoid baking software into docker images. A pattern CloudFoundry does not cater for. This was not the only problem; another was that it is built for a local, or internal CI systems, not public web.</p>
-				<p>Due to this I had to change course to ensure the built Docker image contained the code. This could introduce it's own challenges.</p>
+				<p>Initially I was frustrated because I re-used <a href="https://github.com/CODESIGN2/docker-php" rel="nofollow noopener noreferrer">some code I maintain</a>, which is used to test PHP libraries & project test suites across PHP runtimes. I would forgotten that the software I maintain, is designed to avoid baking software into docker images. A pattern CloudFoundry does not cater for. This was not the only problem; another was that it is built for a local, or internal CI systems, not public web.</p>
+				<p>Due to this I had to change course to ensure the built Docker image contained the code. This could introduce its own challenges.</p>
 				<ul>
 					<li>The feedback cycle being longer</li>
 					<li>The need to build an image every time you want to try modification or new code.</li>
 				</ul>
 				<p>I overcame the cost of the feedback cycle, by having docker-compose mount the present working directory to the same path as the baked Dockerfile code deploy directory. This means I can change a file and locally get immediate feedback without restarting the container, building a new one, etc.</p>
-				<p>I accepted that this would push deploy times if locally pushing updates. If I'm honest my main focus for using this technology is for preview branches and to get people quickly spun up as users of software, rather than maintainers. I've put sparing detail into package maintainership.</p>
+				<p>I accepted that this would push deploy times if locally pushing updates. My primary focus for using this technology is for preview branches and to get people quickly spun up as users of software, rather than maintainers. I opted to avoid the needs of a package maintainer.</p>
 				<p>I Had a few challenges around logging and code-style of the author, and lack of environment-based source of facts common in cloud-native applications, but overall I am very impressed with how easy it is to deploy Cloud software to Heroku in 2019.</p>
 				<h2>Retrospective</h2>
-				<p>While I'm sure I won't win awards for my work, it may even be short-lived and not be the best long-term solution, it does provide some options. "what if you did this?"</p>
-				<p>Missing technical fulfilment such as the multi-runtime support; I'm happy for others to iterate on.</p>
+				<p>While I am sure I will not win awards for my work, it may even be short-lived and not be the best long-term solution, it does provide some options. "what if you did this?"</p>
+				<p>Missing technical fulfilment such as the multi-runtime support; I am happy for others to iterate on.</p>
 				<p>I remain confident my work is straightforward enough that others can learn from it and use it in my absence.</p>
 				<p>The experience really helped show off how mature software deployment has become since I started writing software in the late 1990's, where a week was considered a short deployment for complex interconnected software.</p>
-				<p>It made me happy that I was familiar with challenges that presented themselves, technologies the application used, and it helped me to gain confidence in a platform I don't use much and grow my understanding of it's ecosystem.</p>
-				<p>I feel that I now understand more about this emerging system and the <a href="https://indieweb.org/">IndieWeb</a> than I did before starting.</p>
-				<p>I remain aware that there are things I might change, but am positive that even a complete stranger can combine wider skills and know-how in this proprietary platform to leverage non-vendor specific knowledge.</p>
-				<p>I'd like to further build on skills from this work to deploy branch-specific builds, perhaps using shared infrastructure, or using repository pattern to avoid service-boundaries altogether without disrupting live environments.</p>
-				<p>I have a greater appreciation for the outcomes of beautifully crafted platform as a service products.</p>
+				<p>It made me happy that I was familiar with challenges that presented themselves, technologies' the application used, and it helped me to gain confidence in a platform I don't use much and grow my understanding of its ecosystem.</p>
+				<p>I feel that I now understand more about this emerging system and the <a href="https://indieweb.org/" rel="nofollow noopener noreferrer">IndieWeb</a> than I did before starting.</p>
+				<p>I remain aware that there are things I might change. I am confident others can combine wider skills and know-how in this proprietary platform to leverage non-vendor specific knowledge.</p>
+				<p>I would like to further build on skills from this work to deploy branch-specific builds, perhaps using shared infrastructure, or using repository pattern to avoid service-boundaries altogether without disrupting live environments.</p>
+				<p>I have a greater appreciation for the outcomes of beautifully crafted platform as a service.</p>
 			</div>By <a href="https://www.lewiscowles.co.uk/" class="u-author" rel="author">Lewis Cowles</a>
 		</article>
 	</main>
