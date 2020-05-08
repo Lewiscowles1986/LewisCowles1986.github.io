@@ -408,10 +408,12 @@ img {
   height: auto; }
 
 a {
-  text-decoration: none;
   color: #4d005b; }
 
-a, a img {
+nav a {
+  text-decoration: none;}
+
+a img {
   border: none;
   outline: none; }
 
@@ -432,9 +434,6 @@ main a > span.fa.fa-dribbble {
 
 main a > span.fa.fa-jsfiddle {
   color: #4679BD; }
-
-a:hover {
-  text-decoration: underline; }
 
 p {
   padding-top: 0;
@@ -741,3 +740,27 @@ code[data-language="php"]::before {
 }
 figure { margin: 0; }
 figcaption { display: block; margin-bottom: 2em; font-style: italic; }
+.sr-only {
+  border: 0 !important;
+  clip: rect(1px, 1px, 1px, 1px) !important; /* 1 */
+  -webkit-clip-path: inset(50%) !important;
+  clip-path: inset(50%) !important;  /* 2 */
+  height: 1px !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  width: 1px !important;
+  white-space: nowrap !important;            /* 3 */
+}
+.sr-only-focusable:focus,
+.sr-only-focusable:active {
+  clip: auto !important;
+  -webkit-clip-path: none !important;
+  clip-path: none !important;
+  height: auto !important;
+  margin: auto !important;
+  overflow: visible !important;
+  width: auto !important;
+  white-space: normal !important;
+}
