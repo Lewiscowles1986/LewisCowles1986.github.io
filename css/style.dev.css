@@ -484,7 +484,7 @@ nav ul li a {
   color: white;
   width: 100%; }
 
-nav ul li:hover, nav ul li.current-menu-item {
+nav ul li:hover, nav ul li:focus-within, nav ul li.current-menu-item {
   background-color: #6e46a0; }
 
 nav ul li a, h1, h2, h3, h4, h5, h6 {
@@ -498,7 +498,7 @@ nav ul li a, h1, h2, h3, h4, h5, h6 {
     display: inline-block;
     transition: all .3333s ease-in-out; }
 
-  nav ul li:hover, nav ul li.current-menu-item {
+  nav ul li:hover,nav ul li:hover, nav ul li:focus-within, nav ul li.current-menu-item {
     transform: scale(1.2); }
 
   nav ul li a {
