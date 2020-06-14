@@ -1,0 +1,170 @@
+<!doctype html>
+<html itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<head>
+    <link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#333333"/>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="generator" content="hand-crafted">
+	<meta name="description" content="A post about being a good human and changing technology behaviour to be more inclusive.">
+
+	<link rel="icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
+
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+
+	<title>Web log - No More Git master, by Lewis Cowles</title>
+	<link rel="canonical alternate"  hreflang="en-gb" href="https://www.lewiscowles.co.uk/blog/no-more-git-master/">
+	<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@type": "Person",
+		"name": "Lewis Cowles",
+		"url": "http://www.lewiscowles.co.uk",
+		"sameAs": [
+			"https://www.facebook.com/lewis.r.cowles",
+			"https://www.instagram.com/lewiscowles/",
+			"https://www.linkedin.com/in/lewiscowles/",
+			"https://www.youtube.com/channel/UCl0VmButd52e4GvN8YQh7og",
+			"https://github.com/LewisCowles1986",
+			"https://gist.github.com/LewisCowles1986"
+		]
+	}
+	</script>
+	<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"url": "https://www.lewiscowles.co.uk",
+		"logo": "https://www.lewiscowles.co.uk/img/lewiscowles-logo-vector.png"
+	}
+	</script>
+	<link rel="pingback" href="https://webmention.io/www.lewiscowles.co.uk/xmlrpc">
+	<link rel="webmention" href="https://webmention.io/www.lewiscowles.co.uk/webmention">
+</head>
+<body class="page">
+	<header>
+
+		<div class="inner">
+			<div class="header-logo tC">
+				<img src="/img/lewiscowles-logo-vector.svg" alt="" class="logo" style="width: 12em; width: 12rem;">
+				<span class="header-logo-text">Lewis Cowles</span>
+			</div>
+			<nav>
+				<ul id="menu-top-menu" class="menu">
+					<li>
+						<a href="/about/">About</a>
+					</li><li>
+						<a href="/blog/">Blog</a>
+					</li><li>
+						<a href="/">Contact</a>
+					</li>
+					<li class="toggle-fragmention hidden">
+						<a href="#" title="use fragmention (requires JavaScript)">#</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+
+
+	</header>
+	<!-- straight after header -->
+	<main id="content">
+		<article class="h-entry">
+			<h1 class="p-name"><a class="u-url" href="/blog/no-more-git-master/">No More Git master</a></h1>
+			<time class="post-date dt-published" datetime="2020-06-14">
+				<span class="year">2020</span>-<span class="month">06</span>-<span class="day">14</span> 
+			</time>
+			<div class="e-content">
+				<p>A few years ago, I am uncertain how many, but less than 10, I started to notice people being quite upset with some of the names in technology.</p>
+				<p>I started programming with a lot of ideas about how to better use language to make computer programs more descriptive, so I had a lot of sympathy already, but there were differences in rationale. The main difference was that the other people who are asking for such change, are doing so to reduce harm.</p>
+				<p>In recent weeks with the high-profile deaths and injuries of people based on racial inequality, the pace of change has increased.</p>
+				<p>One of the changes is to get away from terminology, such as master, slave. It never had any merit, and words such as primary, replica, and "mainline", "production", "current" are better replacements without the negative historical context.</p>
+				<h2>Change can be hard</h2>
+				<p>Yesterday, I made my own script using Git to try to create a renamed primary branch. Yesterday in IndieWeb chat it was pointed out that just renaming might not be enough. CI / CD pipeline, helper scripts and even code itself may have knowledge of a master branch. Although problematic, this is not about solving those issues. Most are some form of constant replacement.</p>
+				<p>It did not take long, but hit problems rather quickly, even when solving a fraction of a problem.</p>
+				<p>Basically, the primary branch is protected by GitHub, preventing removal or promotion using just Git. Atop that branches may or may-not exist. I have not encountered that outside of GitHub, but it could be fair to assume GitLab, Bitbucket and similar systems will have similar behaviour.</p>
+				<h3>Humans make change hard</h3>
+				<p>I will skip over the human side of change being hard, but I see a few broad groups.</p>
+				<ul>
+					<li>People without the knowledge of the issue.</li>
+					<li>People without the knowledge of fixing the issue.</li>
+					<li>People who are ignorant or petulant.</li>
+					<li>People who will deliberately continue, despite understanding their choice of words can cause harm.</li>
+				</ul>
+				<p>I hope that by being a part of solving this problem, I can help people to be a little less awful.</p>
+				<h2>Other peoples code</h2>
+				<p>Upon sharing my code in IndieWeb chat, mentioning some of the issues I had encountered <a href="https://black.af" rel="noopener noreferrer nofollow">Jacky Alcine</a> linked me to an alternative Gist using the GitHub API, rather than the Git standard tooling I had chosen.</p>
+				<p>It took me a while to get used to approach, and the original script not working for me immediately did not help that. But there was an existing issue which hinted at a solution.</p>
+				<h2>So, I just started hacking</h2>
+				<p>I totally did not just start hacking. When faced with undesirable behaviour, you should not either. An issue mentioned that a list of repository branches would be returned from GitHub.</p>
+				<p>I have interacted enough with the GitHub API, to know it paginates results. I was aware that without parsing a potentially large number of pages, it would be unlikely that the primary branch could be solved by using the list.</p>
+				<p>The script was already issuing a PATCH HTTP request though, so I guessed there might be a GET HTTP handler for the same route. I could borrow conventions of the script to retrieve the name of the default branch instead of setting it.</p>
+				<p>I also knew that username and Organization values could be used in the API to get information about those things, as well as list repositories. I Reasoned that branches might also be referable by name. I got lucky and did not need to read API docs. I tried all these out in an Ubuntu VM outside of altering the repo shell script. This allowed me a little more control and meant I did not need to worry about putting down this work and picking it up later.</p>
+				<p>This is why I called this hacking.</p>
+				<h3>Some better practices</h3>
+				<ul>
+					<li>Read the documentation for the API you are going to interact with.</li>
+					<li>Work out a plan of action and write repeatable tests for experiments.</li>
+					<li>Setup a CI / CD pipeline before making changes so that you always push forward.</li>
+				</ul>
+				<h2>Cleaning up</h2>
+				<p>After hacking away for a while, I got my PR merged and moved onto other improvements like avoiding typing or referencing my GitHub Token.</p>
+				<p>At first, I had wanted to preserve argument order. The repo owner did not want to do that, so I made changes they requested as well as addressing a bug I had introduced when allowing usage without a typed or interpolated token.</p>
+				<p>I also modified some Python so that I could find all repositories with a master branch for an Organization or user. This helped me to generate a list of commands to run later.</p>
+				<h3>User repositories</h3>
+				<pre>
+<code>curl \
+	--silent \
+	--header "Authorization: token $GITHUB_TOKEN" \
+	--header "Content-Type: application/json" \
+	"https://api.github.com/users/Lewiscowles1986/repos" |
+		python -c 'import sys, json; repos = json.load(sys.stdin); master_repos = [ repo["full_name"] for repo in repos if repo["default_branch"] == "master"]; print("\n".join(master_repos))'
+</code>
+</pre>
+				<h3>Organization repositories</h3>
+				<pre>
+<code>curl \
+	--silent \
+	--header "Authorization: token $GITHUB_TOKEN" \
+	--header "Content-Type: application/json" \
+	"https://api.github.com/orgs/CODESIGN2/repos" |
+		python -c 'import sys, json; repos = json.load(sys.stdin); master_repos = [ repo["full_name"] for repo in repos if repo["default_branch"] == "master"]; print("\n".join(master_repos))'
+</code>
+</pre>
+				<h3>Note</h3>
+				<p>If you run the above with your own organisation or user. Please make sure you do not forget to replace my name and organisation with your own. You should also consider using the <em>page</em> query string parameter if you have more than 30 repositories. It looks like this.</p>
+				<pre>
+<code>https://api.github.com/orgs/CODESIGN2/repos<strong>?page=2</strong></code>
+</pre>
+				<h2>Closing</h2>
+				<p>I Hope if anyone reads this, they do choose to work on updating their personal, hopefully business repositories. It is a small change, but one that could be important in putting a painful past behind us to move forward together.</p>
+			</div>By <a href="https://www.lewiscowles.co.uk/" class="u-author">Lewis Cowles</a>
+		</article>
+	</main>
+	<footer>
+	<div class="widget-area">
+	<div class="noPad tC">
+		<div id="text-2" class="widget widget_text">
+		<div class="textwidget">
+			<p>
+			Copyright © 2014-2020 <span class="h-card"><img class="u-x-icon u-logo" src="/img/lewiscowles-logo-vector.svg" alt="" /><a class="p-name u-url u-uid" rel="me" href="https://www.lewiscowles.co.uk/">Lewis Cowles</a></span>, All Rights Reserved.<br>Font Icons By
+			<a href="http://fortawesome.github.io/Font-Awesome/" target="_blank" rel="noopener noreferrer">FontAwesome</a><br>
+			Website coded using CSS3, HTML5,
+			<a href="http://www.php.net" target="_blank" rel="noopener noreferrer">PHP</a>,
+			<a href="https://www.ruby-lang.org/en/" target="_blank" rel="noopener noreferrer">Ruby</a>
+			<a href="http://www.jekyllrb.com" target="_blank" rel="noopener noreferrer">Jekyll</a>.<br>
+			Images use
+			<a href="http://gimp.org" target="_blank" rel="noopener noreferrer">GIMP</a> &amp; Adobe Creative Suite.
+			</p>
+		</div>
+		</div>
+	</div>
+	</div>
+	</footer>
+	<link href="/css/style.css" rel="stylesheet" media="all">
+	
+	<script type="text/javascript" src="/js/feature-detect.js" async></script>
+</body>
+</html>
