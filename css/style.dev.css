@@ -764,3 +764,8 @@ figcaption { display: block; margin-bottom: 2em; font-style: italic; }
   width: auto !important;
   white-space: normal !important;
 }
+a.sr-only-focusable:active, a.sr-only-focusable:focus {
+  background: #fdfdfd;
+  color: #222;
+  padding: .5rem !important
+}
