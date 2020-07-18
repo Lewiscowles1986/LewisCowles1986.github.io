@@ -607,14 +607,6 @@ body {
   background-color: #efefef !important;
   background: linear-gradient(#d5c7e2, #efefef) no-repeat; }
 
-body > header{
-  background-color: rgb(200,109,215) !important;
-  background: -webkit-gradient(linear, top, right bottom, from(rgb(48,35,174)), to(rgb(200,109,215))) no-repeat;
-  background: -webkit-linear-gradient(top, rgb(48,35,174), rgb(200,109,215)) no-repeat;
-  background-image: -moz-linear-gradient(top, rgb(48,35,174), rgb(200,109,215)) no-repeat;
-  background: -o-linear-gradient(top, rgb(48,35,174), rgb(200,109,215)) no-repeat;
-  background: -ms-linear-gradient(top, rgb(48,35,174), rgb(200,109,215)) no-repeat;
-  background: linear-gradient(top, rgb(48,35,174), rgb(200,109,215)) no-repeat; }
 body{background-color: #c86dd7;}
 
 .running-list { padding: 0; margin: 0; }
