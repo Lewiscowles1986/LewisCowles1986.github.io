@@ -7,7 +7,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="generator" content="hand-crafted">
-	<meta name="description" content="A post about the modern deployment process of using feature flags.">
+	<meta name="description" content="A post about understanding Docker build arguments and environment variables.">
 
 	<link rel="icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
 	<link rel="shortcut icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
@@ -109,11 +109,11 @@
 					<dt>What</dt>
 					<dd>For Docker, environment variables can be defined when <em>image authoring</em>, and may have defaults, which may be canary values. Values can be supplied at <em>container creation</em>, which override the values defined at <em>image authoring</em> time. Defining environment variables, even if not used,  can provide context and configuration information, about the wider system-state to a program, in a way that is flexible to change, standardised, and can be specified per-execution.</dd>
 					<dt>Why</dt>
-					<dd>Where the environment declaration happens, conveys different meanings. Specifying within a Dockerfile when <em>image authoring</em>, can convey defaults, which may be canary values, or simply documentation of the environmental configuration and format supported by an image or container. Specifying when running via docker-compose, kubernetes or command-line is saying that you would like to configure the <em>container creation</em> in a specific way.</dd>
+					<dd>The headline is flexibility, comprehension, security and speed. Where the environment declaration happens, conveys different meanings. Specifying within a Dockerfile when <em>image authoring</em>, can convey defaults, which may be canary values, or simply documentation of the environmental configuration and format supported by an image or container. Specifying when running via docker-compose, Kubernetes or command-line is saying that you would like to configure the <em>container creation</em> in a specific way providing flexibility for images you have. You may have 4 databases you can reach and use the same code to reach both of them. This means that instead of 4 specific images making 4 containers, you can ship one, lowering bandwidth needed and time to deploy, while providing flexibility for rapid change. Because the images will not have security credentials they can be shared without concern that they represent additional risk and changing secrets does not require re-deployment.</dd>
 					<dt>When</dt>
 					<dd>In contrast to build arguments, environment variables can and should be used for both secrets and configuration at <em>container creation</em>, and configuration only during <em>image authoring</em> for specifying defaults and canary values.</dd>
 					<dt>Where</dt>
-					<dd>For docker <em>image authoring</em> you can declare Environment variables within a Dockerfile. Other configuration formats do exist, such as the docker-compose.yml, kubernetes yaml files, and many more, but these are for <em>container creation</em> prior to runtime, and will be roughly synonymous to executing the docker run command, when supplying environment variable values.</dd>
+					<dd>For docker <em>image authoring</em> you can declare Environment variables within a Dockerfile. Other configuration formats do exist, such as the docker-compose.yml, Kubernetes yaml files, and many more, but these are for <em>container creation</em> prior to runtime, and will be roughly synonymous to executing the docker run command, when supplying environment variable values.</dd>
 				</dl>
 				<p>I Hope this has helped you.</p>
 			</div>By <a href="https://www.lewiscowles.co.uk/" class="u-author" rel="author">Lewis Cowles</a>
