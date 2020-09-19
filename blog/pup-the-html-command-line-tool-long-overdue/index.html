@@ -1,0 +1,138 @@
+<!doctype html>
+<html itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<head>
+    <link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#333333"/>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="generator" content="hand-crafted">
+	<meta name="description" content="A post about filing software bugs and cool command-line software.">
+
+	<link rel="icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
+
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+
+	<title>Web log - Meet pup, by Lewis Cowles</title>
+	<link rel="canonical alternate"  hreflang="en-gb" href="https://www.lewiscowles.co.uk/blog/pup-the-html-command-line-tool-long-overdue/">
+	<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@type": "Person",
+		"name": "Lewis Cowles",
+		"url": "http://www.lewiscowles.co.uk",
+		"sameAs": [
+			"https://www.facebook.com/lewis.r.cowles",
+			"https://www.instagram.com/lewiscowles/",
+			"https://www.linkedin.com/in/lewiscowles/",
+			"https://www.youtube.com/channel/UCl0VmButd52e4GvN8YQh7og",
+			"https://github.com/LewisCowles1986",
+			"https://gist.github.com/LewisCowles1986"
+		]
+	}
+	</script>
+	<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"url": "https://www.lewiscowles.co.uk",
+		"logo": "https://www.lewiscowles.co.uk/img/lewiscowles-logo-vector.png"
+	}
+	</script>
+	<link rel="pingback" href="https://webmention.io/www.lewiscowles.co.uk/xmlrpc">
+	<link rel="webmention" href="https://webmention.io/www.lewiscowles.co.uk/webmention">
+</head>
+<body class="page">
+	<header>
+		<a class="sr-only sr-only-focusable" href="#content" data-skiplink="">Skip to content</a>
+		<div class="inner">
+			<div class="header-logo tC">
+				<img src="/img/lewiscowles-logo-vector.svg" alt="" class="logo" style="width: 12em; width: 12rem;">
+				<span class="header-logo-text">Lewis Cowles</span>
+			</div>
+			<nav>
+				<ul id="menu-top-menu" class="menu">
+					<li>
+						<a href="/about/">About</a>
+					</li><li>
+						<a href="/blog/">Blog</a>
+					</li><li>
+						<a href="/">Contact</a>
+					</li>
+					<li class="toggle-fragmention hidden">
+						<a href="#" title="use fragmention (requires JavaScript)">#</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+
+
+	</header>
+	<!-- straight after header -->
+	<main id="content">
+		<article class="h-entry">
+			<h1 class="p-name"><a class="u-url" href="/blog/pup-the-html-command-line-tool-long-overdue/">Meet pup</a></h1>
+			<time class="post-date dt-published" datetime="2020-09-19">
+				<span class="year">2020</span>-<span class="month">09</span>-<span class="day">19</span> 
+			</time>
+			<div class="e-content">
+				<p>Today, when browsing the IndieWeb chat logs, I found a link to a tool called pup. <a href="https://github.com/ericchiang/pup" rel="noopener noreferrer nofollow" >Pup parses HTML and returns to <abbr title="Standard out. Also known as, the console window or command-line.">STDOUT</abbr></a>. More than this, it can also output the result as JSON. This means you can do clever things, like extract attributes, without <abbr title="Finite state machines">FSM</abbr> such as <abbr title="Regular Expressions">Regex</abbr> or write your own parser.</p>
+				<h2>Quick usage</h2>
+				<p>It is really simple to use pup. In this example, I pair with <a href="https://stedolan.github.io/jq/" rel="noopener nofollow noreferrer">jq</a> and <a href="https://curl.haxx.se/" rel="noopener nofollow noreferrer">curl</a>.</p>
+				<blockquote>
+					curl -s https://www.lewiscowles.co.uk | pup --color '#content a json{}' | jq 'map({text, href})'
+				</blockquote>
+				<p>You do not have to use curl or jq with pup. You could for example use the command-line utility cat as you may notice if you visit the GitHub issue I raised below.</p>
+				<h2>Why?</h2>
+				<p>I love HTML. I love staring at it, storing it, using it, authoring it, and generally having it in the world. I do not like parsing HTML, and I expect I am not alone in this.</p> <ul>
+					<li>What about when I just want the information?
+					<li>What about when I am not present?
+				</ul>
+				<p>HTML is a total pain in unpleasant places for the first case. Sure I can use command-line text browsers like <a href="https://lynx.browser.org/" rel="noopener noreferrer nofollow">lynx</a> to hide the nonsense surrounding the content I want to get to. I actually do this sometimes to check content I am putting out into the world works, at least to some extent for text-mode as a guideline towards being accessible, and available.</p>
+				<p>The second case, where I am not present&hellip; I am not aware of a webdriver or automation for lynx browser, nor do I really want one, or the syntax that will invariably upset me. It is a bit of a gap in the market.</p>
+				<p>Lots of people want to write web-browsers, but the tech they run on, seems quite coupled, and does not seem to have spread much past the isolated tribes of browser vendors. I will not harp on about diverse browser markets, nor the need for software to be decomposable. They should be. That is all.</p>
+				<h2>There must be a catch?</h2>
+				<p><a href="https://github.com/ericchiang/pup/issues/140" rel="noopener nofollow noreferrer">I did find a surprising behaviour when trying pup out on my own site</a>. You may have noticed in the example I gave; I use an ID attribute selector. This is no mistake. If I target main, which is the generic primary content; pup does not do what I expect.</p>
+				<p>Peculiarly, my limited testing seems to suggest this is either isolated to the main tag, or just does not affect div tags. Ironically div span soup works better for the program at the time of writing. As far as my limited testing goes.</p>
+				<p>When I do use main. The program returns an empty array.</p>
+				<p>I suspect Golang HTML parser may be at fault in some way there. I read through the entire software repository. I saw nothing glaringly obvious.</p>
+				<h2>Writing a ticket to OpenSource software</h2>
+				<p>I wrote about this on LinkedIn.</p>
+				<p>I am particularly proud of how far my issue writing has come.</p>
+				<ul>
+					<li>Start with a thank you
+					<li>Describe problem, providing a replicable test case
+					<li>Be kind to non-technical folks (collapse TMI if possible)
+					<li>Use headings, to aid skimming & linking
+					<li>Do not demand, insist on, or label a thing 'BUG'. <em>Scope is the creator decision, not yours.</em>
+				</ul>
+				<p>This about wraps up my short ramble about pup. I Hope you learned something. Maybe more than one thing. I also hope you give pup a go.</p>
+			</div>By <a href="https://www.lewiscowles.co.uk/" class="u-author" rel="author">Lewis Cowles</a>
+		</article>
+	</main>
+	<footer>
+	<div class="widget-area">
+	<div class="noPad tC">
+		<div id="text-2" class="widget widget_text">
+			<div class="textwidget">
+				<p>
+				Copyright © 2014-2020 <span class="h-card"><img class="u-x-icon u-logo" src="/img/lewiscowles-logo-vector.svg" alt="" /><a class="p-name u-url u-uid" rel="me" href="https://www.lewiscowles.co.uk/">Lewis Cowles</a></span>, All Rights Reserved.<br>Font Icons By
+				<a href="http://fortawesome.github.io/Font-Awesome/" target="_blank" rel="nofollow noopener noreferrer">FontAwesome</a><br>
+				Website coded using CSS3, HTML5,
+				<a href="http://www.php.net" target="_blank" rel="nofollow noopener noreferrer">PHP</a>,
+				<a href="https://www.ruby-lang.org/en/" target="_blank" rel="nofollow noopener noreferrer">Ruby</a>
+				<a href="http://www.jekyllrb.com" target="_blank" rel="nofollow noopener noreferrer">Jekyll</a>.<br>
+				Images use
+				<a href="http://gimp.org" target="_blank" rel="nofollow noopener noreferrer">GIMP</a> &amp; Adobe Creative Suite.
+				</p>
+			</div>
+		</div>
+	</div>
+	</div>
+	</footer>
+	<link href="/css/style.css" rel="stylesheet" media="all">
+	
+	<script type="text/javascript" src="/js/feature-detect.js" async></script>
+</body>
+</html>
