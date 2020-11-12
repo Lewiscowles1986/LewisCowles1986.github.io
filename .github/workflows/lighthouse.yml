@@ -1,0 +1,19 @@
+name: Lighthouse Audit
+on:
+  pull_request:
+    branches:
+    - main
+  workflow_dispatch:
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Audit live URL
+      uses: jakejarvis/lighthouse-action@master
+      with:
+        url: 'http://lewiscowles1986.github.io/'
+    - name: Upload results as an artifact
+      uses: actions/upload-artifact@main
+      with:
+        name: report
+        path: './report'
