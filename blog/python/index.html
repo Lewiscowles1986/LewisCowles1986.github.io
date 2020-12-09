@@ -2,20 +2,20 @@
 <html itemscope="" itemtype="http://schema.org/WebPage" lang="en">
 <head>
     <link rel="manifest" href="/manifest.webmanifest">
-<meta name="theme-color" content="#333333"/>
+	<meta name="theme-color" content="#333333"/>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="generator" content="hand-crafted">
-	<meta name="description" content="A post following some python testing I've been doing.">
+	<meta name="description" content="This is a collection of blog-posts about python.">
 
 	<link rel="icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
 	<link rel="shortcut icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
 
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 
-	<title>Web log - Python - Testing with Pytest - Quick Tips, by Lewis Cowles</title>
-	<link rel="canonical alternate"  hreflang="en-gb" href="https://www.lewiscowles.co.uk/blog/python/testing-with-pytest-quick-tips/">
+	<title>Web log - Python, by Lewis Cowles</title>
+	<link rel="canonical alternate"  hreflang="en-gb" href="https://www.lewiscowles.co.uk/blog/python/">
 	<script type="application/ld+json">
 	{
 		"@context": "http://schema.org",
@@ -70,41 +70,43 @@
 
 	</header>
 	<!-- straight after header -->
-	<main id="content">
+	<main class="h-feed">
+		<a class="u-url" href="/blog/python/"><h1 class="p-name">Python</h1></a>
 		<article class="h-entry">
-			<h1 class="p-name"><a rel="tag" href="/blog/python/">Python</a> - <a class="u-url" href="/blog/python/testing-with-pytest-quick-tips/">Testing with Pytest - Quick Tips</a></h1>
+			<time class="post-date dt-published" datetime="2020-05-26">
+				<span class="year">2020</span>-<span class="month">05</span>-<span class="day">26</span> 
+			</time>
+			<a class="u-url p-name" href="/blog/python/interesting-sqlalchemy-code/">Interesting SqlAlchemy code</a>
+		</article>
+		<article class="h-entry">
 			<time class="post-date dt-published" datetime="2020-07-13">
 				<span class="year">2020</span>-<span class="month">07</span>-<span class="day">13</span> 
 			</time>
-			<div class="e-content">
-				<p>When dealing with larger suites (> 1,000 tests runs including variants) with pytest, it can become hard to focus and reason about specific failures.</p>
-				<p>Specific failures are what you need to deal with when re-factoring code, so you are not swept away by the waves of errors that non-trivial changes can lead to. Even 1-5 line code changes might propagate a legion of fiesty integration problems in the test suite.</p>
-				<ul>
-					<li>-k flag is your friend, which helps you to select tests and get limited feedback on each thing you care about</li>
-					<li>--pdb flag may help to debug failing cases and prevent iteration fatigue and exhaustion if you get 97 failures</li>	
-					<li>If assertion error messages are unhelpful, please try to improve them.
-						<br>Nothing is worse than a truncated test log, or combing several hundred KB of test log, looking for a good anchor point.</li>
-				</ul>
-				<p>If testing code is unclear, then it's not documentation. Try to improve it.</p>
-			</div>By <a href="https://www.lewiscowles.co.uk/" class="u-author">Lewis Cowles</a>
+			<a class="u-url p-name" href="/blog/python/testing-with-pytest-quick-tips/">Testing with Pytest - Quick Tips</a>
+		</article>
+		<article class="h-entry">
+			<time class="post-date dt-published" datetime="2020-12-09">
+				<span class="year">2020</span>-<span class="month">12</span>-<span class="day">09</span> 
+			</time>
+			<a class="u-url p-name" href="/blog/python/pytest-contextlib/">Pytest & contextlib</a>
 		</article>
 	</main>
 	<footer>
 	<div class="widget-area">
 	<div class="noPad tC">
 		<div id="text-2" class="widget widget_text">
-		<div class="textwidget">
-			<p>
-			Copyright © 2014-2020 <span class="h-card"><img class="u-x-icon u-logo" src="/img/lewiscowles-logo-vector.svg" alt="" /><a class="p-name u-url u-uid" rel="me" href="https://www.lewiscowles.co.uk/">Lewis Cowles</a></span>, All Rights Reserved.<br>Font Icons By
-			<a href="http://fortawesome.github.io/Font-Awesome/" target="_blank" rel="noopener noreferrer">FontAwesome</a><br>
-			Website coded using CSS3, HTML5,
-			<a href="http://www.php.net" target="_blank" rel="noopener noreferrer">PHP</a>,
-			<a href="https://www.ruby-lang.org/en/" target="_blank" rel="noopener noreferrer">Ruby</a>
-			<a href="http://www.jekyllrb.com" target="_blank" rel="noopener noreferrer">Jekyll</a>.<br>
-			Images use
-			<a href="http://gimp.org" target="_blank" rel="noopener noreferrer">GIMP</a> &amp; Adobe Creative Suite.
-			</p>
-		</div>
+			<div class="textwidget">
+				<p>
+				Copyright © 2014-2020 <span class="h-card"><img class="u-x-icon u-logo" src="/img/lewiscowles-logo-vector.svg" alt="" /><a class="p-name u-url u-uid" rel="me" href="https://www.lewiscowles.co.uk/">Lewis Cowles</a></span>, All Rights Reserved.<br>Font Icons By
+				<a href="http://fortawesome.github.io/Font-Awesome/" target="_blank" rel="nofollow noopener noreferrer">FontAwesome</a><br>
+				Website coded using CSS3, HTML5,
+				<a href="http://www.php.net" target="_blank" rel="nofollow noopener noreferrer">PHP</a>,
+				<a href="https://www.ruby-lang.org/en/" target="_blank" rel="nofollow noopener noreferrer">Ruby</a>
+				<a href="http://www.jekyllrb.com" target="_blank" rel="nofollow noopener noreferrer">Jekyll</a>.<br>
+				Images use
+				<a href="http://gimp.org" target="_blank" rel="nofollow noopener noreferrer">GIMP</a> &amp; Adobe Creative Suite.
+				</p>
+			</div>
 		</div>
 	</div>
 	</div>
