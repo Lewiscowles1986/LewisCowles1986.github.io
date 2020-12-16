@@ -1,0 +1,202 @@
+<!doctype html>
+<html itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<head>
+    <link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#333333"/>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="generator" content="hand-crafted">
+	<meta name="description" content="A post about Windows terminal app.">
+
+	<link rel="icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
+
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+
+	<title>Web log - Windows terminal application, by Lewis Cowles</title>
+	<link rel="canonical alternate"  hreflang="en-gb" href="https://www.lewiscowles.co.uk/blog/windows/terminal-app/">
+	<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@type": "Person",
+		"name": "Lewis Cowles",
+		"url": "http://www.lewiscowles.co.uk",
+		"sameAs": [
+			"https://www.facebook.com/lewis.r.cowles",
+			"https://www.instagram.com/lewiscowles/",
+			"https://www.linkedin.com/in/lewiscowles/",
+			"https://www.youtube.com/channel/UCl0VmButd52e4GvN8YQh7og",
+			"https://github.com/LewisCowles1986",
+			"https://gist.github.com/LewisCowles1986"
+		]
+	}
+	</script>
+	<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"url": "https://www.lewiscowles.co.uk",
+		"logo": "https://www.lewiscowles.co.uk/img/lewiscowles-logo-vector.png"
+	}
+	</script>
+	<link rel="pingback" href="https://webmention.io/www.lewiscowles.co.uk/xmlrpc">
+	<link rel="webmention" href="https://webmention.io/www.lewiscowles.co.uk/webmention">
+</head>
+<body class="page">
+	<header>
+		<a class="sr-only sr-only-focusable" href="#content" data-skiplink="">Skip to content</a>
+		<div class="inner">
+			<div class="header-logo tC">
+				<img src="/img/lewiscowles-logo-vector.svg" alt="" class="logo" style="width: 12em; width: 12rem;">
+				<span class="header-logo-text">Lewis Cowles</span>
+			</div>
+			<nav>
+				<ul id="menu-top-menu" class="menu">
+					<li>
+						<a href="/about/">About</a>
+					</li><li>
+						<a href="/blog/">Blog</a>
+					</li><li>
+						<a href="/">Contact</a>
+					</li>
+					<li class="toggle-fragmention hidden">
+						<a href="#" title="use fragmention (requires JavaScript)">#</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+
+
+	</header>
+	<!-- straight after header -->
+	<main id="content">
+		<article class="h-entry">
+			<h1 class="p-name"><a rel="tag" href="/blog/windows/">Windows</a> - <a class="u-url" href="/blog/windows/terminal-app/">Terminal app</a></h1>
+			<time class="post-date dt-published" datetime="2020-12-16">
+				<span class="year">2020</span>-<span class="month">12</span>-<span class="day">16</span> 
+			</time>
+			<div class="e-content">
+				<p>I run all three major desktop OS's as well as a handful of minor ones. One of those I have used since the early days of DOS is Windows by Microsoft.</p>
+				<p>I never got over writing applications that run in the terminal or using them. There is something ambiguous about running applications in a GUI. The precision needed to get a mouse in the exact right position, when not just typing leads to many power-users staying at the keyboard, and many GUI applications having an undo button.</p>
+				<h2>A Shaky past</h2>
+				<p>Windows has never had a good terminal application before. CMD, or command.exe are both functional, PowerShell is obscure and reminds me more of writing code than operating a powerful machine of pre-built parts. Most of the time I use <a href="https://gitforwindows.org/" rel="noopener noreferrer nofollow">git bash</a>, which is a branded <a href="http://mingw.org/" rel="noopener noreferrer nofollow">MinGW</a> experience. <a href="https://cygwin.org/" rel="noopener noreferrer nofollow">Cygwin</a> is another solution I have used. Both are fantastic for someone used to systems like Linux, Unix, or BSD, sometimes referred to as POSIX compliant.</p>
+				<p>Rather than have multiple terminal icons windows terminal allows me to launch a number of terminal experiences. The three covered here are Docker Toolbox, Git Bash and Cygwin.</p>
+				<h2>Editing</h2>
+				<p>I will not go into detail about installing windows terminal. It is written by Microsoft and available via the Windows Store. Once installed, you can edit the settings of the application using <key>ctrl</key>+<key>,</key>.</p>
+				<p>The primary section we will concern ourselves with is "list" which itself is under "profiles".</p>
+				<h3>Docker Toolbox</h3>
+				<p>I Use docker toolbox rather than docker desktop for several reasons. The first is that I think the engineering quality of docker desktop integration for OSX and windows are sub-par, due to not working well with other tooling I use. Launching it starts a Virtual Machine, which I manage using VirtualBox, so that I can use the same docker commands as I would use in Linux. This is because it is running in a Linux virtual machine.</p>
+				<p><a href="https://download.docker.com/win/stable/DockerToolbox.exe" rel="noopener noreferrer nofollow">Download docker toolbox stable</a></p>
+				<details>
+					<summary>JSON file details</summary>
+					<pre class="multiline">
+						<code data-language="json">
+{
+	// Make changes here to the cmd.exe profile.
+	"guid": "{d0c43742-ea75-5417-ea75-afceeeaa6101}",
+	"name": "Docker Toolbox",
+	"commandline": "\"%PROGRAMFILES%\\git\\bin\\bash.exe\" -i -l \"%PROGRAMFILES%\\Docker Toolbox\\start.sh\"",
+	"hidden": false,
+	"closeOnExit": true,
+	"icon": "%SystemDrive%\\Program Files\\Docker Toolbox\\docker-quickstart-terminal.ico",
+	"historySize": 4096,
+	"padding": "0, 0, 0, 0",
+	"suppressApplicationTitle": true,
+	"tabTitle": "Docker Toolbox",
+}
+						</code>
+					</pre>
+					<p>If you should wish to change the default terminal to Docker toolbox, then the following edit to the "defaultProfile" will help.</p>
+					<pre class="multiline">
+						<code data-language="json">
+"defaultProfile": "{d0c43742-ea75-5417-ea75-afceeeaa6101}",
+						</code>
+					</pre>
+				</details>
+				<h3>Cygwin</h3>
+				<p>I will leave specific guides to installing and downloading Cygwin out of this guide. Again focusing on just the JSON.</p>
+				<details>
+					<summary>JSON file details</summary>
+					<pre class="multiline">
+						<code data-language="json">
+{
+	// Make changes here to the cmd.exe profile.
+	"guid": "{c1631064-ea75-5417-ea75-afceeeaa6101}",
+	"name": "Cygwin Terminal",
+	"commandline": "\"%SystemDrive%\\cygwin64\\bin\\bash.exe\" -l",
+	"hidden": false,
+	"closeOnExit": true,
+	"icon": "%SystemDrive%\\cygwin64\\Cygwin.ico",
+	"historySize": 4096,
+	"padding": "0, 0, 0, 0",
+	"suppressApplicationTitle": true,
+	"tabTitle": "Cygwin Terminal",
+}
+						</code>
+					</pre>
+					<p>If you should wish to change the default terminal to Cygwin then the following edit to the "defaultProfile" will help.</p>
+					<pre class="multiline">
+						<code data-language="json">
+"defaultProfile": "{c1631064-ea75-5417-ea75-afceeeaa6101}",
+						</code>
+					</pre>
+				</details>
+				<h3>Git Bash (MinGW)</h3>
+				<p></p>
+				<details>
+					<summary>JSON file details</summary>
+					<pre class="multiline">
+						<code data-language="json">
+{
+	// Make changes here to the cmd.exe profile.
+	"guid": "{d0c43742-ea75-5417-ea75-afceeeaa6101}",
+	"name": "Docker Toolbox",
+	"commandline": "\"%PROGRAMFILES%\\git\\bin\\bash.exe\" -i -l \"%PROGRAMFILES%\\Docker Toolbox\\start.sh\"",
+	"hidden": false,
+	"closeOnExit": true,
+	"icon": "%SystemDrive%\\Program Files\\Docker Toolbox\\docker-quickstart-terminal.ico",
+	"historySize": 4096,
+	"padding": "0, 0, 0, 0",
+	"suppressApplicationTitle": true,
+	"tabTitle": "Docker Toolbox",
+}
+						</code>
+					</pre>
+					<p>If you should wish to change the default terminal to Git Bash (MinGW) then the following edit to the "defaultProfile" will help.</p>
+					<pre class="multiline">
+						<code data-language="json">
+"defaultProfile": "{deadbeef-ea75-5417-ea75-afceeeaa6101}",
+						</code>
+					</pre>
+				</details>
+				<h2>Closing</h2>
+				<p>There is not more to offer than this. PowerShell and traditional command line are built-in to the terminal. Adding these should not prevent them from continuing to run. If you do encounter a problem, write a blog post about it, and send a WebMention to this post, or raise an issue on my blog GitHub. I Cannot guarantee I can or will help, but I would be interested to know.</p>
+			</div>By <a href="https://www.lewiscowles.co.uk/" class="u-author" rel="author">Lewis Cowles</a>
+		</article>
+	</main>
+	<footer>
+	<div class="widget-area">
+	<div class="noPad tC">
+		<div id="text-2" class="widget widget_text">
+			<div class="textwidget">
+				<p>
+				Copyright © 2014-2020 <span class="h-card"><img class="u-x-icon u-logo" src="/img/lewiscowles-logo-vector.svg" alt="" /><a class="p-name u-url u-uid" rel="me" href="https://www.lewiscowles.co.uk/">Lewis Cowles</a></span>, All Rights Reserved.<br>Font Icons By
+				<a href="http://fortawesome.github.io/Font-Awesome/" target="_blank" rel="nofollow noopener noreferrer">FontAwesome</a><br>
+				Website coded using CSS3, HTML5,
+				<a href="http://www.php.net" target="_blank" rel="nofollow noopener noreferrer">PHP</a>,
+				<a href="https://www.ruby-lang.org/en/" target="_blank" rel="nofollow noopener noreferrer">Ruby</a>
+				<a href="http://www.jekyllrb.com" target="_blank" rel="nofollow noopener noreferrer">Jekyll</a>.<br>
+				Images use
+				<a href="http://gimp.org" target="_blank" rel="nofollow noopener noreferrer">GIMP</a> &amp; Adobe Creative Suite.
+				</p>
+			</div>
+		</div>
+	</div>
+	</div>
+	</footer>
+	<link href="/css/style.css" rel="stylesheet" media="all">
+	
+	<script type="text/javascript" src="/js/feature-detect.js" async></script>
+</body>
+</html>
