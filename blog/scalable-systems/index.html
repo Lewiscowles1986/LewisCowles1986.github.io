@@ -77,34 +77,41 @@
 				<span class="year">2019</span>-<span class="month">10</span>-<span class="day">02</span> 
 			</time>
 			<div class="e-content">
-				<p>Tech journalism can be full of crap at times. I've just read an article with a video about Blockchain & Ethereum entrapping creators into using words, then beating them with their words.</p>
-				<p>It's title "Ethereum Founders Admit Blockchain Never Designed for Scalability" piqued my interest. I've been telling people that blockchain evangelism is more of an abstract thing like OLAP cubes, which by design cannot get past a certain point for years. For years I've had some look at me like I'm out-of-order, being negative or just plain wrong, but the real-world is showing that blockchain isn't a magic bullet it's made out to be. That is just fine.</p>
-				<h2>It's okay not to be perfect</h2>
-				<p>My actual problem with blockchain isn't the tech at all. Of course emerging tech is not going to solve complex problems immediately. It's the faith and reckless abandon with which people place all their hopes and dreams in the new shiny that bothers me.</p>
-				<p>A fundamental problem with any transaction log, even without cryptographic assurances is that without pinning, at which point it becomes a system of trust, there is at least a linear cost involved best-case. That means the running costs get more expensive as time goes on. Anyone who has dealt with logs even in passing knows this to be true.</p>
-				<h2>It's okay to not be built for "Scale" hype</h2>
-				<p>Most of my dealing with systems at scale has been in the billions of actions in a very short time-period. Even more of that is in test-scenarios built to produce those results. It's expensive to run something which can handle a billion operations per second. Most businesses including my main job right now don't need that volume.</p>
-				<p>I designed and built an ERP connector which handled &gt; $3m revenue within a few days for a small growing business. This is not record breaking by any means. It's not even the largest system I've built, it's just the one where I have access to the numbers to see actual dollars received rather than some puffed up investor report.</p>
-				<p>When that workload passed through my system the ERP system connected to a human warehouse. They were unable to fulfill the orders because they didn't have enough people. They could not scale dynamically. There is no way I've come across during that time to overcome physics.</p>
-				<p>Some of the design considerations for that system were how to empty logs to a backup cold-storage at intervals so that the logs didn't fill the computer. It's trivial to build a system which flushes content to a file well into the gigabytes of size. It's less trivial to read that, and it's often not even desirable. Amazon Cloudfront logs when exported are 32MB. I'd suggest this is with good reason and may even hint at a CPU-cache-bound workload.</p>
-				<h2>There are places you can learn this</h2>
-				<p>Grace Hopper does a famous talk where she shows people a nanosecond. In some versions of the presentation she brings a millisecond with her. It's a lot more wire for a millisecond, and as Grace says "There are a lot of nanoseconds between here and the moon". These represent the distance covered, over copper; I believe by a signal in that space of time.</p>
-				<p>Of course these people that invented a protocol and software suite, didn't solve fundamental physics, or computing problems. They were working on other things. They may not need to scale into the billions of operations in a short space of time.</p>
-				<p>Mechanical systems often struggle to get past the thousands of operations per-second. All a fan does is spin, like a traditional hard-drive. Their speeds, I've not seen anything top 20,000 rpm. All it does is spin!</p>
-				<h2>Being reasonable</h2>
-				<p>According to investopedia blockchain writes are &lt; 10 operations per second. That's a lot slower than most web-apps, it might at glance seem terribly slow given the mechanical example I gave of fans spinning and hard-drives. It's a heck of a lot faster than most staff members for the same task.</p>
-				<p>When I left school systems operating in the hundreds of operations per second were being sold as innovative; the future. Quarter by quarter the bar rose. It takes time for things to be blisteringly fast. It generally takes a margin of error too.</p>
-				<p>The actual problem space of serving a billion anything is aggregate requests / time. Of course a mean average is a blunt instrument, but using analysis techniques it's possible to identify peaks, dips and regular load. The problem then is dividing that load between a number of machines.</p>
-				<p>Something doing a billion things a second is limited to pass-through with perhaps basic transformation; with some tooling and technologies it's not even possible. Home computers often have &lt; 100GB/s full-throttle throughput speed limited to a number of operations. Intel publishes this and still I deal with people acting like enough good-will changes hard-facts.</p>
-				<h2>Takeaways</h2>
+				<p>Tech journalism can be full of crap at times. I have just read an article with a video about Blockchain & Ethereum, first entrapping creators into using words, then beating them with their words.</p>
+				<p>It is title "Ethereum Founders Admit Blockchain Never Designed for Scalability" piqued my interest. I have been telling people that blockchain evangelism is more of an abstractly desirable thing for years.</p>
+				<p>There are other examples of abstractly desirable, but not easily scalable systems, such as <abbr title="Online analytical processing">OLAP</abbr> cubes. By design, it is difficult to scale these past a certain point. The fewer things you touch, the less surface area you need, the less drag you encounter. This allows you to drive towards low-waste, high-efficiency systems.</p>
+				<h2>It is okay not to be perfect.</h2>
+				<p>My actual problem with blockchain is not the tech at all. Of course, emerging tech is not going to solve complex problems immediately. It is the faith and reckless abandon with which people place all their hopes and dreams in the new shiny that bothers me.</p>
+				<p>A fundamental problem with any transaction log, even without cryptographic assurances is that without pinning, at which point it becomes a system of trust. There is at least a linear cost involved best-case with verifying every entity in a transaction log. That means the running costs get more expensive as time goes on. Anyone who has dealt with logs even in passing knows this to be true.</p>
+				<h2>It is okay to not be built for "Scale" hype.</h2>
+				<p>Most of my dealing with systems at scale has been in the billions of actions in a very short time-period. Even more of that is in test-scenarios built to produce those results. It is expensive to run something which can handle a billion operations per second. Most businesses including my main job right now do not need that volume.</p>
+				<h3>A Case of online order processing.</h3>
+				<p>I designed and built an ERP connector some years ago, which handled ~$3<abbr title="Million">M</abbr> revenue over a few days for a small but growing business at peak real-world load. This is not record breaking by any means. It is not even the largest system I have built; It is just one I have access to the numbers, to see actual dollars for.</p>
+				<p>When that workload passed through my system, it went into an ERP system, that connected to logistics at a human-run warehouse. They were unable to fulfil the orders because they did not have enough people. They could not scale dynamically because people and mechanical systems struggle with scale. There is no way I have come across during that time or since to overcome physics. Logistics fulfilment partners, like Amazon exist for this very reason.</p>
+				<p>What that system did do, was ensure it was not doing the same work twice. Once passed we would not have to deal with that order until the warehouse update the ERP and we passed it back to a customer facing system. That is another important part of operating at scale. You need to find ways to limit your scope.</p>
+				<h3>Scale requires considerations.</h3>
+				<p>Some of the design considerations for that system were how to empty logs to a backup cold storage at intervals so that the logs did not fill the computer. It is trivial to build a system which flushes content to a file, well into the gigabytes of size. It is less trivial to read that, transmit that, act on that in that form.</p>
+				<h3>Amazon CloudFront logs.</h3>
+				<p>Amazon I would say it is fair to use as an example of a company dedicated to commoditising the complexity of systems at scale. At the time of writing, when exported, their CloudFront logs are broken into 32<abbr title="Megabyte">MB</abbr> chunks. I would suggest this is with good reason and may even hint at a <abbr title="Central Processing Unit">CPU</abbr>-cache-bound workload.</p>
+				<p>If you do not know why such a workload is desirable, it is faster than RAM or hard disk by a long way. It might be 100, 1000 or more times faster, but when you look at billions of operations, that cost can be amplified.</p>
+				<h2>You can learn from others.</h2>
+				<p>Grace Hopper does a famous talk where she shows people a nanosecond. In some versions of the presentation, she brings a millisecond with her. It is a lot more wire for a millisecond, and as Grace says, "There are a lot of nanoseconds between here and the moon". These represent the distance covered, over copper; I believe by a signal in that space of time.</p>
+				<p>Of course, these people that invented a protocol and software suite, did not solve fundamental physics, or computing problems. They were working on other things. They may not need to scale into the billions of operations in a short space of time.</p>
+				<p>Mechanical systems often struggle to get past the thousands of operations per-second. All a fan does is spin, like a traditional Hard drive. Their speeds, I have not seen anything top 20,000 rpm. But All it does is spin... Mechanical systems struggle due to surface area causing friction, external forces, etc. It is okay to just be good at spinning if you are a fan.</p>
+				<h2>Being reasonable.</h2>
+				<p>According to Investopedia, blockchain writes are &lt; 10 operations per second. That is a lot slower than most web-apps, it might at glance seem terribly slow given the mechanical example I gave of fans spinning and hard-drives. It is a heck of a lot faster than most staff members for the same task.</p>
+				<p>When I left school systems operating in the hundreds of operations per second were being sold as innovative, the future. Quarter by quarter the bar rose. It takes time for things to be blisteringly fast. It generally takes a margin of error too.</p>
+				<p>The actual problem space of serving a billion anything is aggregate requests / time. Of course, a mean average is a blunt instrument, but using analysis techniques It is possible to identify peaks, dips, and regular load. The problem then is dividing that load between a number of machines.</p>
+				<p>Something doing a billion things a second is limited to pass-through with perhaps basic transformation. With some tooling and technologies, it is not even possible. Home computers often have &lt; 100GB/s full-throttle throughput speed limited to a number of operations. Intel publishes this and still I deal with people acting like enough good-will changes hard-facts.</p>
+				<h2>Takeaways.</h2>
 				<ul>
-					<li>News headlines and articles can be a trashfire</li>
-					<li>Few people have to design scalability from the ground up</li>
-					<li>Blockchain is not a magic hat</li>
-					<li>You never should have thought it was</li>
-					<li>Laws of physics, not thought constrain digital</li>
-					<li>Really fast things have to do less, carry less</li>
-					<li>Compared to people, mechanical, past systems things are fast</li>
+					<li>News headlines and articles can be a trash fire.</li>
+					<li>Few people have to design scalability from the ground up.</li>
+					<li>Blockchain is not a magic hat.</li>
+					<li>You never should have thought it was.</li>
+					<li>Laws of physics not thought constrain digital.</li>
+					<li>Really fast things have to do less, carry less.</li>
+					<li>Compared to people, mechanical, past systems things are fast.</li>
 				</ul>
 			</div>By <a href="https://www.lewiscowles.co.uk/" class="u-author" rel="author">Lewis Cowles</a>
 		</article>
