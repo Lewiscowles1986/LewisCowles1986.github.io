@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2FA HTML Auth</title>
+</head>
+<body>
+    <p>This is an example of a browser-based nearly declarative OTP sign-in via the web. The number sending the message cannot be in your contacts. This sort of makes sense. You'll also need a HTTPS domain you are in control of. No server-side logic is needed, but there is a JavaScript snippet that I am using to have Chrome and browser-API vendors support the declarative format provided without JS in Safari.</p>
+    <form method="GET">
+        <label for="otp">One-time passcode</label>
+        <input type="text" name="otp" id="otp" inputmode="numeric" autocomplete="one-time-code" required minlength="6" maxlength="6">
+        <button type="submit">Sign In</button>
+    </form>
+    <script>
+        navigator.credentials.get({ otp: {transport:['sms']}}).then(otp => document.querySelector('#otp').value = otp.code);
+    </script>
+    <p>This example given was tweaked using <a href="https://web.dev/web-otp/#no-dialog" rel="noreferrer noopener nofollow">The Chrome team docs</a>; which provided JavaScript missed by <a href="https://adactio.com/journal/17794" rel="nofollow noreferrer noopener">Jeremy Keith article</a>.</p>
+</body>
+</html>
