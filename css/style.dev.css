@@ -764,3 +764,7 @@ a.sr-only-focusable:active, a.sr-only-focusable:focus {
 dt, dd {
   line-height: 1.75em
 }
+.link__archive {
+  font-size: 1em;
+  padding: .5rem 0;
+}
