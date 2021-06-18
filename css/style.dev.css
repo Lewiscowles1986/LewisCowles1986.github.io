@@ -796,6 +796,10 @@ body {
   vertical-align: bottom;
   line-height: 1.4;
 }
+.article--list--item {
+  line-height: 1;
+  display: block;
+}
 @media (prefers-color-scheme: dark) {
   :root {
     --secondary-color: #6103ae;
