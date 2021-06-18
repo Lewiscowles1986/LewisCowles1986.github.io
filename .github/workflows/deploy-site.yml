@@ -1,0 +1,24 @@
+name: Deploy Site
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Deploy
+
+    steps:
+      - uses: actions/checkout@master
+      
+      - name: Publish
+        uses: Lewiscowles1986/ssh-scp-deploy@main
+        with:
+          src: ./*
+          host: ${{ secrets.SITE_SSH_HOST }}
+          remote: ${{ secrets.SITE_SSH_PATH_REMOTE }}
+          port: ${{ secrets.SITE_SSH_PORT }}
+          user: ${{ secrets.SITE_SSH_USER }}
+          key: ${{ secrets.SITE_SSH_PRIVATE }}
