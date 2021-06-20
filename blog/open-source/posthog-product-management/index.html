@@ -1,0 +1,198 @@
+<!doctype html>
+<html itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<head>
+    <link rel="manifest" href="/manifest.webmanifest">
+	<meta name="theme-color" content="#333333"/>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="generator" content="hand-crafted">
+	<meta name="description" content="A post about an open source tool for product management. It contains information about a quick local environment setup.">
+
+	<link rel="icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
+
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+
+	<title>Web log - Open Source - PostHog a product management tool, by Lewis Cowles</title>
+	<link rel="canonical alternate"  hreflang="en-gb" href="https://www.lewiscowles.co.uk/blog/open-source/posthog-product-management/">
+	<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@type": "Person",
+		"name": "Lewis Cowles",
+		"url": "http://www.lewiscowles.co.uk",
+		"sameAs": [
+			"https://www.facebook.com/lewis.r.cowles",
+			"https://www.instagram.com/lewiscowles/",
+			"https://www.linkedin.com/in/lewiscowles/",
+			"https://www.youtube.com/channel/UCl0VmButd52e4GvN8YQh7og",
+			"https://github.com/LewisCowles1986",
+			"https://gist.github.com/LewisCowles1986"
+		]
+	}
+	</script>
+	<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"url": "https://www.lewiscowles.co.uk",
+		"logo": "https://www.lewiscowles.co.uk/img/lewiscowles-logo-vector.png"
+	}
+	</script>
+	<link rel="pingback" href="https://webmention.io/www.lewiscowles.co.uk/xmlrpc">
+	<link rel="webmention" href="https://webmention.io/www.lewiscowles.co.uk/webmention">
+</head>
+<body class="page">
+	<header>
+		<a class="sr-only sr-only-focusable" href="#content" data-skiplink="">Skip to content</a>
+		<div class="inner">
+			<div class="header-logo tC">
+				<img src="/img/lewiscowles-logo-vector.svg" alt="" class="logo" style="width: 12em; width: 12rem;">
+				<span class="header-logo-text">Lewis Cowles</span>
+			</div>
+			<nav>
+				<ul id="menu-top-menu" class="menu">
+					<li>
+						<a href="/about/">About</a>
+					</li><li>
+						<a href="/blog/">Blog</a>
+					</li><li>
+						<a href="/">Contact</a>
+					</li>
+					<li class="toggle-fragmention hidden">
+						<a href="#" title="use fragmention (requires JavaScript)">#</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+
+
+	</header>
+	<!-- straight after header -->
+	<main id="content">
+		<article class="h-entry" itemscope itemtype="http://data-vocabulary.org/Review">
+			<h1 class="p-name"><a rel="tag" href="/blog/open-source/">Open Source</a> - <a class="u-url" href="/blog/open-source/posthog-product-management/" itemprop="itemReviewed" itemscope itemtype="http://schema.org/Product"><span itemprop="name">PostHog</span> a product management tool</a></h1>
+			<time class="post-date dt-published" datetime="2021-06-20" itemprop="datePublished">
+				<span class="year">2021</span>-<span class="month">06</span>-<span class="day">20</span> 
+			</time>
+			<div class="e-content">
+				<p>This week, I read an article on <a href="https://dev.to" rel="nofollow noopener noreferrer">dev.to</a> about some excellent OpenSource tools. Being a bit partial to free candy, I decided to check them out. Where I am working right now, a lot of the tooling and UI seems to be internal. We have a new product owner, who I asked if they had used PostHog before, as well as asking in a UX chat-group I have been a part of for some years.</p>
+				<h2>Getting Started</h2>
+				<p>I Had written a note, which was something simple like "look at posthog". I knew it had mentioned analytics and feature flags, which are two areas I am quite passionate about. <a href="https://www.duckduckgo.com" rel="noopener nofollow noreferrer">Duck Duck Go</a> was my friend here.</p>
+				<p>They are clearly going the Open-Source with commercial backing route, which made finding the instructions less straightforward than smaller projects, which generally have everything a few clicks away. I Clicked "get started", then on the left-hand side used the "Open Source" link where they were attempting to funnel me to the SaaS version. If you like SaaS, or are less technically minded, this might be a better option for you.</p>
+				<p>From the OpenSource page, you are dropped into the docs, where I feel quite at home. They have a one-click deploy to Heroku, which I love. And also documentation for a lot of different platforms. I wanted to try this locally, as I feel I need to know more before deploying anything to the internet. I have a lovely 128GB RAM server I can throw things onto and forget about, with a slither of the AWS bill. It's local, but I love it.</p>
+				<h2>Slightly less clear than I would like</h2>
+				<p>The instructions for docker suggest that I need to git clone the posthog repository. This was unfortunate, as I really did not want to look at the source code yet. If it were not enjoyable, reasonably turn-key, I might have glanced and never touched it again.</p>
+				<p>I had been playing with some other software, which also used Docker and docker-compose to deploy and aside from some confusion around the necessity of their CLI; it was a lot easier to configure and play with.</p>
+				<p>Eventually I tested the following setup, which I prefer. It's a single file, not a repo. Does not care about GitHub, or git, or archives. Just one text file, and an internet connection.</p>
+				<details>
+					<summary>docker-compose.yml</summary>
+					<pre><code>services:
+    db:
+        container_name: posthog_db
+        environment:
+            POSTGRES_DB: posthog
+            POSTGRES_PASSWORD: posthog
+            POSTGRES_USER: posthog
+        image: postgres:13-alpine
+        volumes:
+            - postgres-data:/var/lib/postgresql/data
+    redis:
+        container_name: posthog_redis
+        image: redis:6-alpine
+    web:
+        container_name: posthog_web
+        depends_on:
+            - db
+            - redis
+        environment:
+            DATABASE_URL: postgres://posthog:posthog@db:5432/posthog
+            REDIS_URL: redis://redis:6379/
+            SECRET_KEY: fwkh34tr7rfihskjhf47fyworshfs
+            DEBUG: 'true'
+            SITE_URL: http://192.168.99.102:8000
+            JS_URL: http://192.168.99.102:8234
+            DISABLE_SECURE_SSL_REDIRECT: 'true'
+            ALLOWED_HOSTS: '*'
+        image: posthog/posthog:latest
+        links:
+            - db:db
+            - redis:redis
+        ports:
+            - 8000:8000
+            - 80:8000
+volumes:
+    postgres-data:
+version: '3'
+
+</code></pre>
+<h3>Some notes on this</h3>
+<ul>
+	<li>This is for running on my local windows machine.</li>
+	<li>http://192.168.99.102 is the docker-machine address. Yours will likely be http://127.0.0.1/ or http://localhost</li>
+	<li>This is pulling the latest edge build. That might lead to stability issues if you try.</li>
+	<li>I just mashed some keys to get the secret key</li>
+	<li>Because I am running locally, I provided the following options
+		<ul>
+			<li>DEBUG - set to true, so I could see what I screw up.</li>
+			<li>SITE_URL - I wanted to be sure.</li>
+			<li>JS_URL - I wanted to be sure.</li>
+			<li>DISABLE_SECURE_SSL_REDIRECT - Not setting this seemed to be pain.</li>
+			<li>ALLOWED_HOSTS - by the time I got here, I just wanted to be sure.</li>
+		</ul>
+	</li>
+</ul>
+				</details>
+
+				<p>All I had to type after this was <code>docker-compose up -d</code> and a few minutes later, I had a working install.</p>
+				<h2>Things I like</h2>
+				<ul>
+					<li>Visually appealing to me.</li>
+					<li>Has keyboard shortcuts, and surfaces them in non-annoying way.</li>
+					<li>Session recording was an option.</li>
+					<li>Support for multiple projects.</li>
+					<li>Support for plugins, with clear documentation on authoring.</li>
+					<li>Setting up Integration came with code examples.</li>
+					<li>Slack Community.</li>
+					<li>Powerful feature flagging.</li>
+				</ul>
+				<h2>Things I would change</h2>
+				<ul>
+					<li>I Had to turn on session recording.</li>
+					<li>The session recording close button sometimes breaks, needing a refresh.</li>
+					<li>Because of the GitHub advice, I first used docker-compose.dev.yml... On windows.</li>
+					<li>I Think their docker-compose should be distributed standalone.</li>
+					<li>I Think their tagging strategy of latest and latest-release should be latest and latest-edge / nightly.</li>
+					<li>Feature flagging is on/off, which is fine, but also involves more dev work.</li>
+					<li>The API seemed to be missing an endpoint, to get all features or experiments for a user.</li>
+					<li>The API seemed to be missing an endpoint, to post a batch of events / activities.</li>
+					<li>No obvious way to Opt users out of experiments.</li>
+				</ul>
+				<h2>Conclusion</h2>
+				<p itemprop="description">If you have never used PostHog, try it out. I would rate it <span itemprop="rating">4.5</span> out of 5 stars, and mostly because of non-OpenSource tooling I have built and worked with in the past. Do not build your own. Go buy something, and strongly-consider PostHog, as it respects your freedoms.</p>
+			</div>By <a href="https://www.lewiscowles.co.uk/" class="u-author" rel="author" itemprop="reviewer">Lewis Cowles</a>
+		</article>
+	</main>
+	<footer>
+	<div class="widget-area">
+	<div class="noPad tC">
+		<div id="text-2" class="widget widget_text">
+			<div class="textwidget">
+				<p>
+				Copyright © 2014-2021 <span class="h-card"><img class="u-x-icon u-logo" src="/img/lewiscowles-logo-vector.svg" alt="" /><a class="p-name u-url u-uid" rel="me" href="https://www.lewiscowles.co.uk/">Lewis Cowles</a></span>, All Rights Reserved.<br>Font Icons By
+				<a href="http://fortawesome.github.io/Font-Awesome/" target="_blank" rel="nofollow noopener noreferrer">FontAwesome</a><br>
+				Website coded using CSS3, HTML5.<br>
+				Images use
+				<a href="http://gimp.org" target="_blank" rel="nofollow noopener noreferrer">GIMP</a> &amp; Adobe Creative Suite.
+				</p>
+			</div>
+		</div>
+	</div>
+	</div>
+	</footer>
+	<link href="/css/style.css" rel="stylesheet" media="all">
+	
+	<script type="text/javascript" src="/js/feature-detect.js" async></script>
+</body>
+</html>
