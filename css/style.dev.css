@@ -800,6 +800,7 @@ body {
   line-height: 1;
   display: block;
 }
+code, .snippet { -webkit-user-select: all; user-select: all }
 @media (prefers-color-scheme: dark) {
   :root {
     --secondary-color: #6103ae;
