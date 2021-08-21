@@ -1,12 +1,17 @@
 <!doctype html>
 <html>
 <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Screen-reader experiment with search box</title>
 <body>
-<a href="#form">focus on form</form>
+<a href="#form">focus on form</a>
 <form id="form">
-<input type="search" id="query" placeholder="Please type search term; e.g. apples" required>
-<button>search</button>
+<label for="search">Search this site</label>
+<input type="search" id="search"
+placeholder="Please type search term; e.g. apples"
+name="q" required>
+<button>Perform search</button>
 </form>
 
 </body>
