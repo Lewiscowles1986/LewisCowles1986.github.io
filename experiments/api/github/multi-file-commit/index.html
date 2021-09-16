@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8">
+    <title>Posting nonsense to GitHub</title>
+</head>
+<body>
+    <h1>Creating multiple files on GitHub</h1>
+    <p>This example / experiment is part of an exploration of using GitHub REST API to create multi-file commits in the browser.</p>
+    <p>It is using the <a href="https://github.com/philschatz/octokat.js/" target="_blank" rel="nofollow noopener noreferrer">Octokat.js</a> library at version 0.10.0.</p>
+    <p>Eventually I would not mind creating an adapter for this API, and then a version which can connect to a service for secure transfer of files.</p>
+    <p>The purpose of this could be to enable an IDE or similar. I Have also been playing with open banking data, and I think taking your own data and comitting to a private place, be that a repo or somewhere else; could be a powerful way for democratising a person data, and an interesting way to preserve a digital fingerprint.</p>
+    <script type="text/javascript" src="./octokat-0.10.0.js"></script>
+    <script type="text/javascript">
+    // This needs re-factoring, but it's an experiment
+    const repoPath = `Lewiscowles1986/octokat-testing`;
+    const accessToken = `ghp_GET_YOUR_OWN_YOU_NOSY_THING`;
+    const github = new Octokat({ 'token': accessToken });
+
+    const [user, repoName] = repoPath.split('/');
+
+    if(user === null || repoName === null) {
+        console.error('Please specifiy a repo');
+        throw new Error("Arghhhh");
+    }
+
+    function createMarkdownFileContents(when, fileNumber) {
+        return btoa(`---
+date: ${when}
+title: 'File ${fileNumber} on ${when}'
+---
+# Oh my... here is file ${fileNumber}
+
+Here is some new content. I wonder if it will update the file? Hmmmmm
+`);
+    };
+
+    (async function(github, user, repoName) {
+        let repo = await github.repos(user, repoName).fetch();
+        let main = await repo.git.refs('heads/main').fetch();
+
+        // Build Tree
+        const now = `2021-09-04-0030`;
+        let treeItems = await Promise.all([1,2,3,4,5].map(async n => {
+            let markdownFile = await repo.git.blobs.create({
+                content: createMarkdownFileContents(n, now),
+                encoding: 'base64'
+            });
+            return {
+                path: `files/${now}/file-${n}.markdown`,
+                sha: markdownFile.sha,
+                mode: "100644",
+                type: "blob"
+            };
+        }));
+
+        // Serialize Tree of commit changes
+        let tree = await repo.git.trees.create({
+            tree: treeItems,
+            base_tree: main.object.sha
+        });
+
+        let commit = await repo.git.commits.create({
+            message: `Created via Web - ${now}`,
+            tree: tree.sha,
+            parents: [main.object.sha]
+        });
+
+        main.update({sha: commit.sha});
+    })(github, user, repoName).then(something => console.log('Oh we did it!'));
+    </script>
+</body>
+</html>
