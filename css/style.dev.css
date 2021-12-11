@@ -812,3 +812,8 @@ code, .snippet { -webkit-user-select: all; user-select: all }
     --text-color: var(--main-border-color)
   }
 }
+.timed-media-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
