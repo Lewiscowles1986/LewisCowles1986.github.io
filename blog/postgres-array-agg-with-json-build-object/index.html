@@ -1,0 +1,129 @@
+<!doctype html>
+<html itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<head>
+    <meta charset="utf-8">
+    <link rel="manifest" href="/manifest.webmanifest">
+	<meta name="theme-color" content="#333333"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="generator" content="hand-crafted">
+	<meta name="description" content="A Post about combining aggregates with specific data in Postgres JSON">
+
+	<link rel="icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
+
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+
+	<title>Web log - Postgre JSON build object with aggregate functions, by Lewis Cowles</title>
+	<link rel="canonical alternate"  hreflang="en-gb" href="https://www.lewiscowles.co.uk/blog/postgres-array-agg-with-json-build-object/">
+	<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@type": "Person",
+		"name": "Lewis Cowles",
+		"url": "http://www.lewiscowles.co.uk",
+		"sameAs": [
+			"https://www.facebook.com/lewis.r.cowles",
+			"https://www.instagram.com/lewiscowles/",
+			"https://www.linkedin.com/in/lewiscowles/",
+			"https://www.youtube.com/channel/UCl0VmButd52e4GvN8YQh7og",
+			"https://github.com/LewisCowles1986",
+			"https://gist.github.com/LewisCowles1986"
+		]
+	}
+	</script>
+	<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"url": "https://www.lewiscowles.co.uk",
+		"logo": "https://www.lewiscowles.co.uk/img/lewiscowles-logo-vector.png"
+	}
+	</script>
+	<link rel="pingback" href="https://webmention.io/www.lewiscowles.co.uk/xmlrpc">
+	<link rel="webmention" href="https://webmention.io/www.lewiscowles.co.uk/webmention">
+</head>
+<body class="page">
+	<header>
+		<a class="sr-only sr-only-focusable" href="#content" data-skiplink="">Skip to content</a>
+		<div class="inner">
+			<div class="header-logo tC">
+				<img src="/img/lewiscowles-logo-vector.svg" alt="" class="logo" style="width: 12em; width: 12rem;">
+				<span class="header-logo-text">Lewis Cowles</span>
+			</div>
+			<nav>
+				<ul id="menu-top-menu" class="menu">
+					<li>
+						<a href="/about/">About</a>
+					</li><li>
+						<a href="/blog/">Blog</a>
+					</li><li>
+						<a href="/">Contact</a>
+					</li>
+					<li class="toggle-fragmention hidden">
+						<a href="#" title="use fragmention (requires JavaScript)">#</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+
+
+	</header>
+	<!-- straight after header -->
+	<main id="content">
+		<article class="h-entry">
+			<h1 class="p-name"><a class="u-url" href="/blog/postgres-array-agg-with-json-build-object/">Postgres - json build object aggregates</a></h1>
+			<time class="post-date dt-published" datetime="2022-04-04">
+				<span class="year">2022</span>-<span class="month">04</span>-<span class="day">04</span> 
+			</time>
+			<div class="e-content">
+				<p>Sorry for not posting recently. I Fell out with this blog for some time now, often tinkering with mentions or just trying to get some time after work not writing.</p>
+				<p>Todays offering is a sort of "recently I learned". Perhaps I have used this in the past, but recently I at least rediscovered the wonder of combining <abbr title="structured query language">SQL</abbr> with <abbr title="JavaScript Object Notation">JSON</abbr> functions.</p>
+				<h2>The problem</h2>
+				<p>I wanted to get some aggregate data at work. But I also wanted to know about specific records affected. Further to this, I would like to get more than one field.</p>
+			    <p>I am a data pedant, which also works to talk about me if you remove the word data. If someone shows me aggregates without access to source data, I find it hard to trust.</p>
+				<h2>The solution</h2>
+				<pre class="multiline"><code>
+SELECT COUNT(id) AS "line_items",
+    SUM(amount) AS "sub_total"
+	json_agg(json_build_object('sku', sku, 'quantity', qty, 'price', amount)) AS "line_item_data"
+FROM order_line_items
+WHERE order_id = ?
+GROUP BY (order_id, amount)
+				</code></pre>
+				<p>At work I was not dealing with line items, but checking out customer order histories.</p>
+				<h2>Things to note</h2>
+				<ul>
+					<li>This might not be optimal for extracting graphs and charts, or displaying tabular data.</li>
+					<li>json_build_object takes key, value pairs, so should always have an even number of entries.</li>
+					<li>Without a group by clause, there would be no point in me combining with json_agg.</li>
+					<li>You can use array_agg instead of json_agg, but each item will become a string.</li>
+					<li>This can be particularly useful for destructuring the data in JavaScript.</li>
+					<li>Without this technique I might need two or more queries.</li>
+				</ul>
+				<p>Anyway, I Hope you found this useful.</p>
+			</div>By <a href="https://www.lewiscowles.co.uk/" class="u-author" rel="author">Lewis Cowles</a>
+		</article>
+	</main>
+	<footer>
+	<div class="widget-area">
+	<div class="noPad tC">
+		<div id="text-2" class="widget widget_text">
+			<div class="textwidget">
+				<p>
+				Copyright © 2014-2022 <span class="h-card"><img class="u-x-icon u-logo" src="/img/lewiscowles-logo-vector.svg" alt="" /><a class="p-name u-url u-uid" rel="me" href="https://www.lewiscowles.co.uk/">Lewis Cowles</a></span>, All Rights Reserved.<br>Font Icons By
+				<a href="http://fortawesome.github.io/Font-Awesome/" target="_blank" rel="nofollow noopener noreferrer">FontAwesome</a><br>
+				Website coded using CSS3, HTML5.<br>
+				Images use
+				<a href="http://gimp.org" target="_blank" rel="nofollow noopener noreferrer">GIMP</a> &amp; Adobe Creative Suite.
+				</p>
+			</div>
+		</div>
+	</div>
+	</div>
+	</footer>
+	<link href="/css/style.css" rel="stylesheet" media="all">
+	
+	<script type="text/javascript" src="/js/feature-detect.js" async></script>
+</body>
+</html>
