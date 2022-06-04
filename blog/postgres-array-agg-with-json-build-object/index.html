@@ -86,7 +86,7 @@
 				<pre class="multiline"><code>
 SELECT COUNT(id) AS "line_items",
     SUM(amount) AS "sub_total"
-	json_agg(json_build_object('sku', sku, 'quantity', qty, 'price', amount)) AS "line_item_data"
+    json_agg(json_build_object('sku', sku, 'quantity', qty, 'price', amount)) AS "line_item_data"
 FROM order_line_items
 WHERE order_id = ?
 GROUP BY (order_id, amount)

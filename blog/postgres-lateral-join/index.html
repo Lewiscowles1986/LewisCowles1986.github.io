@@ -82,15 +82,15 @@
 					It's just what people have been paying me for.</p>
 				<h2>Select Highest recent sales</h2>
 				<pre class="multiline"><code>
-					SELECT customers.name, customers.contact_info, top_sales.*
-					FROM customers
-					LEFT JOIN LATERAL (
-						SELECT customer_id, amount, category, created_at
-						FROM sales
-						WHERE customer_id = customers.id
-						ORDER BY amount DESC
-						LIMIT 5
-					) AS top_sales ON true
+SELECT customers.name, customers.contact_info, top_sales.*
+FROM customers
+LEFT JOIN LATERAL (
+    SELECT customer_id, amount, category, created_at
+    FROM sales
+    WHERE customer_id = customers.id
+    ORDER BY amount DESC
+    LIMIT 5
+) AS top_sales ON true
 				</code></pre>
 				<h2>What does it do?</h2>
 				<p>In-short, this is a way to get a report of all customers, with their greatest purchases. I've included a created_at column which can be used inside the inner-query, or just for display purposes. This sort of insight can answer important questions you may have about a customer; and can be used with other types of data to allow getting a limited subset of joined data.</p>
