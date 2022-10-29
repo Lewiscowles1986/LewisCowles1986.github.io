@@ -1,0 +1,170 @@
+<!doctype html>
+<html itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<head>
+    <meta charset="utf-8">
+    <link rel="manifest" href="/manifest.webmanifest">
+	<meta name="theme-color" content="#333333"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="generator" content="hand-crafted">
+	<meta name="description" content="A Post about the Lateral Join feature in Postgres flavoured SQL">
+
+	<link rel="icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
+
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+
+	<title>Web log - Postgre Lateral Join, by Lewis Cowles</title>
+	<link rel="canonical alternate"  hreflang="en-gb" href="https://www.lewiscowles.co.uk/blog/asahi-linux-pretty-rad/">
+	<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@type": "Person",
+		"name": "Lewis Cowles",
+		"url": "http://www.lewiscowles.co.uk",
+		"sameAs": [
+			"https://www.facebook.com/lewis.r.cowles",
+			"https://www.instagram.com/lewiscowles/",
+			"https://www.linkedin.com/in/lewiscowles/",
+			"https://www.youtube.com/channel/UCl0VmButd52e4GvN8YQh7og",
+			"https://github.com/LewisCowles1986",
+			"https://gist.github.com/LewisCowles1986"
+		]
+	}
+	</script>
+	<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"url": "https://www.lewiscowles.co.uk",
+		"logo": "https://www.lewiscowles.co.uk/img/lewiscowles-logo-vector.png"
+	}
+	</script>
+	<link rel="pingback" href="https://webmention.io/www.lewiscowles.co.uk/xmlrpc">
+	<link rel="webmention" href="https://webmention.io/www.lewiscowles.co.uk/webmention">
+</head>
+<body class="page">
+	<header>
+		<a class="sr-only sr-only-focusable" href="#content" data-skiplink="">Skip to content</a>
+		<div class="inner">
+			<div class="header-logo tC">
+				<img src="/img/lewiscowles-logo-vector.svg" alt="" class="logo" style="width: 12em; width: 12rem;">
+				<span class="header-logo-text">Lewis Cowles</span>
+			</div>
+			<nav>
+				<ul id="menu-top-menu" class="menu">
+					<li>
+						<a href="/about/">About</a>
+					</li><li>
+						<a href="/blog/">Blog</a>
+					</li><li>
+						<a href="/">Contact</a>
+					</li>
+					<li class="toggle-fragmention hidden">
+						<a href="#" title="use fragmention (requires JavaScript)">#</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+
+
+	</header>
+	<!-- straight after header -->
+	<main id="content">
+		<article class="h-entry">
+			<h1 class="p-name"><a class="u-url" href="/blog/asahi-linux-pretty-rad/">Linux - Asahi Linux is Pretty Rad!</a></h1>
+			<time class="post-date dt-published" datetime="2022-10-29">
+				<span class="year">2022</span>-<span class="month">10</span>-<span class="day">29</span> 
+			</time>
+			<div class="e-content">
+				<p>Recently I purchased another M1 Mac mini. This time just the base model, as I also own an M1 Studio Ultra with 20 cores and 128GB RAM. While still fairly expensive (for a base-model) at 625 GBP, with free next-day shipping it is not like I had many other options for M1 AARCH64 vendors.</p>
+				<p>I Got this machine solely to run Asahi Linux on. In recent months I have been playing with Arch Linux more (yes it is mandatory for me to let you know). Arch is generally viewed as a very extreme, neckbeard (nerd) form of Linux; but Asahi makes at least the install, fairly painless, and the box looks pretty.</p>
+				<h2>Pain points</h2>
+				<p>As with anything new, and unfamiliar, I fumbled at the first block, by refusing to install a KDE desktop, it gave me exactly what I asked for, and I had just a terminal. Good going me...</p>
+				<ul>
+					<li>The defaults and options are not very obvious.</li>
+					<li>I did not seem to have access to wifi.</li>
+					<li>I Had to simultaneously learn arch, while coping without a GUI.</li>
+					<li>I Had to have additional equipment.</li>
+				</ul>
+				<p>I am writing this right now from that M1 in Firefox in a <abbr title="Graphical User Interface">GUI</abbr>, so it went pretty well, I guess.</p>
+				<h2>Installing Gnome - [as root]</h2>
+				<pre class="multiline"><code>
+passwd
+pacman -Syu
+pacman -S xorg xorg-server
+pacman -S gnome
+systemctl enable gdm.service
+pacman -S gedit gnome-terminal
+pacman -S xterm
+locale-gen
+dbus-update-activation-environment --all
+pacman -S firefox firefox-i18n-en-gb
+pacman -S network-manager
+pacman -S gnome-network-manager
+pacman -S vlc
+systemctl enable NetworkManager.service
+systemctl start NetworkManager.service
+pacman -S xdg-desktop-portal-gnome
+pacman -S --overwrite pipewire-pulse pipewire pipewire-media-session pavucontrol
+systemctl --user enable pipewire-media-session.service
+systemctl --user enable pipewire.service
+systemctl --user enable pipewire-pulse.service
+pacman -S ntfs-3g
+pacman -S sudo
+exec dbus-launch --exit-with-session gnome-session
+				</code></pre>
+				<p>So what does all the above get you? Well a gnome 4 series desktop (very similar screen-capture and screen-grab experience to OSX); Firefox web-browser (Chrome does not work AFAIK); the ability to launch terminal (yes Arch and therefore Asahi let you install a terminal that wont run); ntfs drive mounting; audio support using pipewire; vlc so I can see how much software rendering affects media playback; wifi via networkmanager and the sudo utility.</p>
+				<h2>What does it do?</h2>
+				<p>It is a really beautiful Linux machine (physical box) with a stunning and modern GUI.</p>
+				<ul>
+					<li>Web browsing</li>
+					<li>Code editing</li>
+					<li>Video playback @4K</li>
+					<li>Media playback</li>
+					<li>USB Headset support (required more config wrangling)</li>
+					<li>YouTube</li>
+					<li>CLI tasks (obviously, it's Linux)</li>
+					<li>Docker + Kubernetes (with usual ARM oddities)</li>
+				</ul>
+				<p>Via the flatpak hub that seems to have come with me installing next, next next with defaults, I have vs code IDE; various other GUI tools. I Have managed to crash the machine a few times; but considering Apple are absolute (think of the most unkind words you can muster, then multiply the hate); I really like it.</p>
+				<h2>What it cannot do (yet)</h2>
+				<ul>
+					<li>Accelerated media playback</li>
+					<li>Netflix, Amazon Prime, Disney (Widevine DRM)</li>
+					<li>Run OSX programs</li>
+					<li>Run Windows programs</li>
+					<li>Run iOS or Android programs</li>
+					<li>Some packages are x86 only, or not well documented</li>
+				</ul>
+				<h2>Why I did this?</h2>
+				<p>I am much more hopeful with enough Linux nerds buying [cr]Apple hardware we can eventually force them (legally if needed), to open source the firmware and drivers.</p>
+				<p>Apple makes visually beautiful hardware; with interesting hardware capabilities.</p>
+				<p>In my opinion, Apple software is poorly written, with substandard experiences. I Believe I can do better with the same hardware, but need open firmware and drivers to support that, and believe as a manufacturer they should be legally required to support that.</p>
+				<hr>
+				<p>I Hope you found this useful.</p>
+			</div>By <a href="https://www.lewiscowles.co.uk/" class="u-author" rel="author">Lewis Cowles</a>
+		</article>
+	</main>
+	<footer>
+	<div class="widget-area">
+	<div class="noPad tC">
+		<div id="text-2" class="widget widget_text">
+			<div class="textwidget">
+				<p>
+				Copyright © 2014-2022 <span class="h-card"><img class="u-x-icon u-logo" src="/img/lewiscowles-logo-vector.svg" alt="" /><a class="p-name u-url u-uid" rel="me" href="https://www.lewiscowles.co.uk/">Lewis Cowles</a></span>, All Rights Reserved.<br>Font Icons By
+				<a href="http://fortawesome.github.io/Font-Awesome/" target="_blank" rel="nofollow noopener noreferrer">FontAwesome</a><br>
+				Website coded using CSS3, HTML5.<br>
+				Images use
+				<a href="http://gimp.org" target="_blank" rel="nofollow noopener noreferrer">GIMP</a> &amp; Adobe Creative Suite.
+				</p>
+			</div>
+		</div>
+	</div>
+	</div>
+	</footer>
+	<link href="/css/style.css" rel="stylesheet" media="all">
+	
+	<script type="text/javascript" src="/js/feature-detect.js" async></script>
+</body>
+</html>
