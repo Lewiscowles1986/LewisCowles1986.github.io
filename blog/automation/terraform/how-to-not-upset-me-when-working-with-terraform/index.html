@@ -94,7 +94,7 @@
 				<ul>
 					<li>Turning things off can be done as simply as passing in a terraform variable for replicas, set to 0.</li>
 					<li>Newer terraform (past 1.x) supports richer inputs, including booleans.</li>
-					<li>You can also speify remote state to pull from</li>
+					<li>You can also specify remote state to pull from</li>
 					<li>You can use environment variables and command-line arguments to pass terraform variables</li>
 					<li>Using control-flow, and getting to know HCL can help</li>
 				</ul>
@@ -103,6 +103,34 @@
 				<p>If you don't have one place to resolve all branches of code; then you are managing multiple projects.</p>
 				<p>Managing multiple projects around a single codebase, or worse still, multiple branches of codebases (so multiple combinations of multiples) is a recipe for pain.</p>
 				<p>Amplified by the above two points. It is difficult to keep complex forked architectures in your mind.</p>
+				<h3>Practical tip</h3>
+				<p>By using terraform variables you can pass data from non-terraform resources, to terraform.</p>
+				<p>By using command-line arguments you can even customise locks and state output files.</p>
+				<p>Take the following example from a real project.</p>
+				<pre class="multiline"><code>
+setup-rds-aurora:
+  stage: stage-02
+  dependencies:
+    - fetch-terraform
+    - setup-eks
+  before_script:
+    - ./get_job_env_vars stage-02 ${TF_VAR_ENV_NAME}
+  script:
+    - ./terraform -chdir=stages/02-stage-two/aws-rds-aurora init -backend-config="bucket=${TF_VAR_STATE_BUCKET_NAME}" -backend-config="key=${TF_VAR_ENV_NAME}/rds.tfstate" -backend-config="dynamodb_table=iac-state-lock"
+    - ./terraform -chdir=stages/02-stage-two/aws-rds-aurora apply -auto-approve
+  tags:
+    - docker
+  only:
+    - main
+</code></pre>
+				<p>It is inferred that lots of <em>TF_VAR_{}</em> values will be set by a helper script called <em>get_job_env_vars</em>.</p>
+				<p>With minimal intervention via use of storage backend variables, you can change:</p>
+				<ul>
+					<li>The S3 bucket that .tfstate files are stored within.</li>
+					<li>The path to S3 object .tfstate file.</li>
+					<li>The shared lock-table used to prevent the same job running twice, mutating the same state.</li>
+				</ul>
+				<p>Other arguments used are the <em>AWS_REGION</em>, <em>AWS_ACCESS_KEY_ID</em>, <em>AWS_SECRET_ACCESS_KEY</em>. This specific job also takes other arguments for the name of the RDS, variables for the state bucket name <em>TF_VAR_STATE_BUCKET_NAME</em> and it's region. Anything you might want to configure would be a TF_VAR environment variable away. Then, just like how you use environment to configure your apps, you can configure your deployments in the same way.</p>
 				<h2>Lack of use of modules</h2>
 				<p>Terraform has very few concepts. Modules are as far as I've come accross, the best way to abstract shared pieces of infra.</p>
 				<p>If You are not using modules, then you are likely either managing a simple setup that won't scale, and may not need terraform; or you have one big tangled mess.</p>
@@ -125,7 +153,7 @@
 					<li>feat: add base structure</li>
 					<li>feat: add k8s + vpc module</li>
 					<li>feat: add bootstrap setup with documentation</li>
-					<li>fix: k8s + vpx to use bootstrap to store state</li>
+					<li>fix: k8s + vpc to use bootstrap to store state</li>
 					<li>etc...</li>
 				</ol>
 				<p>By working in this way; it can be easier for a new-onboard or in the case of the terraform I took over, the team that manages our infra (don't ask) to understand what we are proposing. When I joined the team, the boilerplate left behind was all the code, no pipeline, commits were unclear and that left us in a place where everyone was a little uncertain about how things work.</p>
