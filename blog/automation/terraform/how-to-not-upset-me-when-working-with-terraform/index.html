@@ -1,0 +1,156 @@
+<!doctype html>
+<html itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<head>
+    <meta charset="utf-8">
+    <link rel="manifest" href="/manifest.webmanifest">
+	<meta name="theme-color" content="#333333"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="generator" content="hand-crafted">
+	<meta name="description" content="A post about understanding Automation in a holistic professional environment.">
+
+	<link rel="icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
+
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+
+	<title>Web log - Automation - Terraform - How not to upset me, using Terraform, by Lewis Cowles</title>
+	<link rel="canonical alternate"  hreflang="en-gb" href="https://www.lewiscowles.co.uk/blog/automation/terraform/how-to-not-upset-me-when-working-with-terraform">
+	<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@type": "Person",
+		"name": "Lewis Cowles",
+		"url": "http://www.lewiscowles.co.uk",
+		"sameAs": [
+			"https://www.facebook.com/lewis.r.cowles",
+			"https://www.instagram.com/lewiscowles/",
+			"https://www.linkedin.com/in/lewiscowles/",
+			"https://www.youtube.com/channel/UCl0VmButd52e4GvN8YQh7og",
+			"https://github.com/LewisCowles1986",
+			"https://gist.github.com/LewisCowles1986"
+		]
+	}
+	</script>
+	<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"url": "https://www.lewiscowles.co.uk",
+		"logo": "https://www.lewiscowles.co.uk/img/lewiscowles-logo-vector.png"
+	}
+	</script>
+	<link rel="pingback" href="https://webmention.io/www.lewiscowles.co.uk/xmlrpc">
+	<link rel="webmention" href="https://webmention.io/www.lewiscowles.co.uk/webmention">
+</head>
+<body class="page">
+	<header>
+		<a class="sr-only sr-only-focusable" href="#content" data-skiplink="">Skip to content</a>
+		<div class="inner">
+			<div class="header-logo tC">
+				<img src="/img/lewiscowles-logo-vector.svg" alt="" class="logo" style="width: 12em; width: 12rem;">
+				<span class="header-logo-text">Lewis Cowles</span>
+			</div>
+			<nav>
+				<ul id="menu-top-menu" class="menu">
+					<li>
+						<a href="/about/">About</a>
+					</li><li>
+						<a href="/blog/">Blog</a>
+					</li><li>
+						<a href="/">Contact</a>
+					</li>
+					<li class="toggle-fragmention hidden">
+						<a href="#" title="use fragmention (requires JavaScript)">#</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+
+
+	</header>
+	<!-- straight after header -->
+	<main id="content">
+		<article class="h-entry">
+			<h1 class="p-name"><a rel="tag" href="/blog/automation/">Automation</a> - <a rel="tag" href="/blog/terraform/">Terraform</a> - <a class="u-url" href="/blog/automation/terraform/how-to-not-upset-me-when-working-with-terraform">How not to upset me, using Terraform</a></h1>
+			<time class="post-date dt-published" datetime="2023-03-11">
+				<span class="year">2023</span>-<span class="month">03</span>-<span class="day">11</span>
+			</time>
+			<div class="e-content">
+				<p>Working in tech, often times, knowing how to manually do things is not quite enough. I have some sympathy for not automating things prematurely, but when I am working on a team automating things. I can be particular about what is and is not acceptable. Hopefully if you are starting your journey, this will help you; or form some form of lightweight evaluation.</p>
+				<h2>Changes should be tested in a pipeline</h2>
+				<p>Until recently, I had considered this a given. But if you write terraform, and a colleague cannot find an artifact of a pipeline running that code; or be able to, with very low effort, and little experience, run that pipeline. That really annoys me.</p>
+				<h3>Why is this important</h3>
+				<p>If colleagues cannot run and understand, with minimal effort, your work, then there was no point automating it.</p>
+				<p>If code is not in a pipeline, it might not be run multiple-times per-year, so it also might be broken when someone comes to use it.</p>
+				<p>It is incredibly easy for even the author to forget details, or not be able to run code, much past the point of authoring if that is not recorded.</p>
+				<h3>When this does not matter</h3>
+				<p>If you don't have enough money to justify, then you are playing, and can play in whatever way makes you happy.</p>
+				<p>If you run an open-source project, see the above point. It is not dismissing the value of your project, but not automating things is limiting how many can access the value.</p>
+				<p>If the terraform is not stable, and might have issues if run; then don't use terraform. Some people publish gutter-trash integrations, and while it makes me sad; Just avoid automating the steps. Create a markdown file instead; and some form of credential tester.</p>
+				<h2>Branch or Repo forks of code</h2>
+				<p>We've all seen this. Constants hard-coded into terraform files; or asymmetric deployments. There is <em>never</em> an excuse to have one system, with more than one set of terraform.</p>
+				<h3>Tips</h3>
+				<ul>
+					<li>Turning things off can be done as simply as passing in a terraform variable for replicas, set to 0.</li>
+					<li>Newer terraform (past 1.x) supports richer inputs, including booleans.</li>
+					<li>You can also speify remote state to pull from</li>
+					<li>You can use environment variables and command-line arguments to pass terraform variables</li>
+					<li>Using control-flow, and getting to know HCL can help</li>
+				</ul>
+				<p>All of these are suggestions, which can help to ensure things weave together without issue.</p>
+				<h3>Why is this important</h3>
+				<p>If you don't have one place to resolve all branches of code; then you are managing multiple projects.</p>
+				<p>Managing multiple projects around a single codebase, or worse still, multiple branches of codebases (so multiple combinations of multiples) is a recipe for pain.</p>
+				<p>Amplified by the above two points. It is difficult to keep complex forked architectures in your mind.</p>
+				<h2>Lack of use of modules</h2>
+				<p>Terraform has very few concepts. Modules are as far as I've come accross, the best way to abstract shared pieces of infra.</p>
+				<p>If You are not using modules, then you are likely either managing a simple setup that won't scale, and may not need terraform; or you have one big tangled mess.</p>
+				<h3>How to move towards modules</h3>
+				<p>My advice to those not using modules, or working in one large module, is to try to pull parts out. So if you have a cloudfront + S3 + DNS, put that into a module.</p>
+				<p>It can be quite hard to get modules to their nth iteration without some moving of parts, but this is all very useful experience and an exercise in understanding the needs of your business.</p>
+				<h3>Useful links</h3>
+				<ul>
+					<li><a href="https://developer.hashicorp.com/terraform/language/modules" target="_blank" rel="nofollow noopener noreferrer">Modules Overview - Configuration Language | Terraform Developer Docs</a></li>
+					<li><a href="https://developer.hashicorp.com/terraform/language/modules/develop" target="_blank" rel="nofollow noopener noreferrer">Creating Modules | Terraform Developer Docs</a></li>
+					<li><a href="https://registry.terraform.io/browse/modules" target="_blank" rel="nofollow noopener noreferrer">Browse Modules | Terraform Registry</a></li>
+				</ul>
+				<h2>Use of only third-party modules</h2>
+				<p>This one I'll keep pretty short. I Find it highly unlikely that using off the shelf modules won't cause you pain. Either in using modules with inappropriate resources, or in needing to spend time learning intimate relationships of underlying providers.</p>
+				<p>Terraform has excellent documentation on some of the more well-trodden providers, such as <a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs" target="_blank" rel="nofollow noopener noreferrer">AWS</a>. Using such documentation can help you understand where additional complexity comes from; and will hopefully help you to refine public third-party modules into something you feel fits your lean requirements.</p>
+				<h2>Unclear or large commits</h2>
+				<p>When coding on my current team we use <a href="https://www.conventionalcommits.org/en/v1.0.0/" target="_blank" rel="nofollow noopener noreferrer">conventional commits</a> via an <a href="https://www.npmjs.com/package/@commitlint/config-conventional" target="_blank" rel="nofollow noopener noreferrer">npm module</a>. We rarely get a chance to touch the terraform; and I guess that is fine. When we do, I try to keep us committing small, intentional, well-named code.</p>
+				<ol>
+					<li>Initial commit</li>
+					<li>feat: add base structure</li>
+					<li>feat: add k8s + vpc module</li>
+					<li>feat: add bootstrap setup with documentation</li>
+					<li>fix: k8s + vpx to use bootstrap to store state</li>
+					<li>etc...</li>
+				</ol>
+				<p>By working in this way; it can be easier for a new-onboard or in the case of the terraform I took over, the team that manages our infra (don't ask) to understand what we are proposing. When I joined the team, the boilerplate left behind was all the code, no pipeline, commits were unclear and that left us in a place where everyone was a little uncertain about how things work.</p>
+			</div>By <a href="https://www.lewiscowles.co.uk/" class="u-author" rel="author">Lewis Cowles</a>
+		</article>
+	</main>
+	<footer>
+	<div class="widget-area">
+	<div class="noPad tC">
+		<div id="text-2" class="widget widget_text">
+			<div class="textwidget">
+				<p>
+				Copyright © 2014-2022 <span class="h-card"><img class="u-x-icon u-logo" src="/img/lewiscowles-logo-vector.svg" alt="" /><a class="p-name u-url u-uid" rel="me" href="https://www.lewiscowles.co.uk/">Lewis Cowles</a></span>, All Rights Reserved.<br>Font Icons By
+				<a href="http://fortawesome.github.io/Font-Awesome/" target="_blank" rel="nofollow noopener noreferrer">FontAwesome</a><br>
+				Website coded using CSS3, HTML5.<br>
+				Images use
+				<a href="http://gimp.org" target="_blank" rel="nofollow noopener noreferrer">GIMP</a> &amp; Adobe Creative Suite.
+				</p>
+			</div>
+		</div>
+	</div>
+	</div>
+	</footer>
+	<link href="/css/style.css" rel="stylesheet" media="all">
+	
+	<script type="text/javascript" src="/js/feature-detect.js" async></script>
+</body>
+</html>
