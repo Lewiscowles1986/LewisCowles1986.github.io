@@ -1,0 +1,68 @@
+<html>
+
+<head>
+    <title>PMTiles MapLibre Example - Basildon</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="./maplibre-gl.css" crossorigin="anonymous">
+    <script src="./maplibre-gl.js" crossorigin="anonymous"></script>
+    <script src="./index.js"></script>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        #map {
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="map"></div>
+    <script type="text/javascript">
+        // add the PMTiles plugin to the maplibregl global.
+        let protocol = new pmtiles.Protocol();
+        maplibregl.addProtocol("pmtiles", protocol.tile);
+
+        let PMTILES_URL = "./bas.pmtiles";
+
+        const p = new pmtiles.PMTiles(PMTILES_URL);
+
+        // this is so we share one instance across the JS code and the map renderer
+        protocol.add(p);
+
+        // we first fetch the header so we can get the center lon, lat of the map.
+        p.getHeader().then(async h => {
+            let theme = (matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+            const map = new maplibregl.Map({
+                container: 'map',
+                zoom: h.maxZoom - 2,
+                center: [h.centerLon, h.centerLat],
+                style: {
+                    version: 8,
+                    sources: {
+                        "example_source": {
+                            type: "vector",
+                            url: "pmtiles://" + PMTILES_URL,
+                            attribution: '<a href="https://lewis.cowles.uk"><img src="https://lewis.cowles.uk/img/lewiscowles-logo-vector.svg" alt="" class="logo" style="width: 1rem;"></a> <a href="https://protomaps.com">Protomaps</a> © <a href="https://openstreetmap.org">OpenStreetMap</a>'
+                        }
+                    },
+                    glyphs: 'https://cdn.protomaps.com/fonts/pbf/{fontstack}/{range}.pbf',
+                    layers: [
+                        ...(await (await fetch(`./mf-protomap-${theme}.json`)).json()),
+                        ...(await (await fetch(`./cf-protomap-${theme}.json`)).json()),
+                    ]
+                }
+            });
+            map.on("load", () => {
+                const myBounds = map.getSource("example_source").bounds;
+                map.setMaxBounds(myBounds);
+                map.setZoom(1);
+                map.setCenter(myBounds.center);
+            });
+        })
+    </script>
+</body>
+
+</html>
