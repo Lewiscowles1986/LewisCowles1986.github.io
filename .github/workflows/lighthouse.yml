@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Audit live URL
-      uses: jakejarvis/lighthouse-action@master
+      uses: jakejarvis/lighthouse-action@a3bcc9973b3ce65beff316b3cac53b92e58dcc12
       with:
         url: 'https://lewiscowles1986.github.io/'
     - name: Upload results as an artifact
