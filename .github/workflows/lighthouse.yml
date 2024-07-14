@@ -8,13 +8,15 @@ jobs:
   audit:
     runs-on: ubuntu-latest
     steps:
+    - name: setup report folder
+      run: mkdir -p /tmp/reports/lighthouse-report
     - name: Audit live URL
       uses: foo-software/lighthouse-check-action@v12.0.1
       with:
         urls: 'https://lewiscowles1986.github.io/'
-        outputDirectory: /tmp/lighthouse-report
+        outputDirectory: /tmp/reports/lighthouse-report
     - name: Upload results as an artifact
       uses: actions/upload-artifact@main
       with:
         name: lighthouse-report
-        path: /tmp/lighthouse-report
+        path: /tmp/reports/lighthouse-report
