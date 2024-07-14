@@ -10,9 +10,9 @@ jobs:
       uses: foo-software/lighthouse-check-action@v12.0.1
       with:
         urls: 'https://lewis.cowles.uk/'
-        outputDirectory: ${{ github.workspace }}/reports/lighthouse-report
+        outputDirectory: /tmp/reports/lighthouse-report
     - name: Upload results as an artifact
       uses: actions/upload-artifact@main
       with:
         name: lighthouse-report
-        path: ${{ github.workspace }}/reports/lighthouse-report
+        path: /tmp/reports/lighthouse-report
