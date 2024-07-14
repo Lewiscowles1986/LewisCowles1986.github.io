@@ -7,11 +7,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Audit live URL
-      uses: jakejarvis/lighthouse-action@a3bcc9973b3ce65beff316b3cac53b92e58dcc12
+      uses: foo-software/lighthouse-check-action@v12.0.1
       with:
-        url: 'https://www.lewiscowles.co.uk/'
+        urls: 'https://lewis.cowles.uk/'
+        outputDirectory: ${{ github.workspace }}/tmp/lighthouse-report
     - name: Upload results as an artifact
       uses: actions/upload-artifact@main
       with:
-        name: report
-        path: './report'
+        name: lighthouse-report
+        path: './tmp/lighthouse-report'
