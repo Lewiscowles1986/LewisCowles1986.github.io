@@ -1,0 +1,191 @@
+<!doctype html>
+<html itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<head>
+    <meta charset="utf-8">
+    <link rel="manifest" href="/manifest.webmanifest">
+	<meta name="theme-color" content="#333333"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="generator" content="hand-crafted">
+	<meta name="description" content="A Post about managing tests in software you want to be maintainable.">
+
+	<link rel="icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
+
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+
+	<title>Web log - Why I have not been posting as much, by Lewis Cowles</title>
+	<link rel="canonical alternate"  hreflang="en-gb" href="https://www.lewiscowles.co.uk/blog/stop-altering-tests/">
+	<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@type": "Person",
+		"name": "Lewis Cowles",
+		"url": "http://www.lewiscowles.co.uk",
+		"sameAs": [
+			"https://www.facebook.com/lewis.r.cowles",
+			"https://www.instagram.com/lewiscowles/",
+			"https://www.linkedin.com/in/lewiscowles/",
+			"https://www.youtube.com/channel/UCl0VmButd52e4GvN8YQh7og",
+			"https://github.com/LewisCowles1986",
+			"https://gist.github.com/LewisCowles1986"
+		]
+	}
+	</script>
+	<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"url": "https://www.lewiscowles.co.uk",
+		"logo": "https://www.lewiscowles.co.uk/img/lewiscowles-logo-vector.png"
+	}
+	</script>
+	<link rel="pingback" href="https://webmention.io/www.lewiscowles.co.uk/xmlrpc">
+	<link rel="webmention" href="https://webmention.io/www.lewiscowles.co.uk/webmention">
+</head>
+<body class="page">
+	<header>
+		<a class="sr-only sr-only-focusable" href="#content" data-skiplink="">Skip to content</a>
+		<div class="inner">
+			<div class="header-logo tC">
+				<img src="/img/lewiscowles-logo-vector.svg" alt="" class="logo" style="width: 12em; width: 12rem;">
+				<span class="header-logo-text">Lewis Cowles</span>
+			</div>
+			<nav>
+				<ul id="menu-top-menu" class="menu">
+					<li>
+						<a href="/about/">About</a>
+					</li><li>
+						<a href="/blog/">Blog</a>
+					</li><li>
+						<a href="/">Contact</a>
+					</li>
+					<li class="toggle-fragmention hidden">
+						<a href="#" title="use fragmention (requires JavaScript)">#</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+
+
+	</header>
+	<!-- straight after header -->
+	<main id="content">
+		<article class="h-entry">
+			<h1 class="p-name"><a class="u-url" href="/blog/stop-altering-tests/">Stop altering tests</a></h1>
+			<time class="post-date dt-published" datetime="2024-07-21">
+				<span class="year">2024</span>-<span class="month">07</span>-<span class="day">21</span> 
+			</time>
+			<div class="e-content">
+				<p>Last week I travelled to Scotland, with my wife, for her Birthday. We flew twice; my wife learned how to manage the rental car; we ascended mountains, rode on a steam train; missed our cat.</p>
+				<p>I Also checked in on how things were going at work, more than once. This blog-post is my attempt to cogently think through, and express, how a specific approach to tests, could help me not feel like I need to do that.</p>
+				<h2>The purpose of tests</h2>
+				<p>I'm going to be general about this, and it relates to tests in software:</p>
+				<ul>
+					<li><span>What to test?:</span>
+						<ul>
+							<li>Document behaviours you want</li>
+							<li>Document things people should know about the software.</li>
+						</ul>
+					</li>
+					<li><span>How to test?:</span>
+						<ul>
+							<li><span>Arrange:</span>
+								<ul>
+									<li>System configuration.</li>
+									<li>Vendor / dependency configuration.</li>
+									<li>Data configuration.</li>
+									<li>Process launch arguments.</li>
+									<li>Environment variables.</li>
+									<li>Access permissions.</li>
+									<li>Ports, and third-party software.</li>
+									<li>Be sure what setup is needed for actions to succeed / fail.</li>
+								</ul>
+							</li>
+							<li><span>Act:</span>
+								<ul>
+									<li>Simulate user input events (OS / GUI app testing).</li>
+									<li>Launch a process (e2e cli).</li>
+									<li>Coordinate a webdriver or equivalent remote control mechanism (e2e network / web).</li>
+									<li>Make a call to perform an action.</li>
+								</ul>
+							</li>
+							<li>Assert - What do you care about verifying?</li>
+						</ul>
+					</li>
+					<li><span>Why we test?:</span>
+						<ul>
+							<li>Verify software works as we expect.</li>
+							<li>Increase the number of features, and combinations of interactions we can discuss.</li>
+							<li>Documenting oddities, or providing a foundation to discuss change.</li>
+						</ul>
+					</li>
+				</ul>
+				<h2>What I keep observing</h2>
+				<p>Folks keep altering existing tests, which might now have confusing names or comments.</p>
+				<p>Folks keep altering existing functions or classes.</p>
+				<blockquote>I Claim no dominion over what is a legitimate, or useful change. But I have thoughts about what might make a change less useful.</blockquote>
+				<p>So now the documentation is not updated, and I consequently, have no idea why changes were made, or that impact on overall system has been considered.</p>
+				<blockquote>We all know creatures need oxygen. But taking a fish out of water to help it breathe, might be missing some context, that will affect the outcome!</blockquote>
+				<p>Were the documents updated, I'd assume someone read them before making changes; and thought about the downstream impacts of their changes. I Would not need to know why changes were made, as I could ad-hoc look when or if I need to change things.</p>
+				<h2>Past incidents</h2>
+				<p>In January of this year, an engineer contacted me to know why an environment variable was not populating, and to tell me a feature flag, which is in hundreds of tests; was not working; and that a popular testing library we use, was not setting an environment variable to the value we needed.</p>
+				<p>It seemed like we were starting a conversation in the middle, so I asked them to walk me to where they were.It turned out that the <em>sequence</em> of changes, led to the patching of an environment variable, being prior to another patch; which restored the value; AND that reading such an environment variable at module level; could mean it's value was initialized prior to it's value being patched.</p>
+				<p>Worse still, they had started their testing, by changing an existing test.</p>
+				<p>This came up again, with another engineer, within 3 months, in a different area of the codebase; and seems to affect another area of our code, where in some code-bases, we have branching logic for if we should validate inputs and outputs.</p>
+				<h2>Tests as a tool to drive language change</h2>
+				<p>At work, I help to write technical tickets, which specify acceptance criteria as outcomes of a task being completed.</p>
+				<p>My hope is that by maintaining a consistent set of criteria, we might unlock new ways to discuss the software.</p>
+				<p>As an example, consider the following set of actions:</p>
+				<ul>
+					<li>I navigate to /register</li>
+					<li>I supply the email field, with {email}</li>
+					<li>I supply a {valid password}</li>
+				</ul>
+				<p><abbr title="behaviour driven development">BDD</abbr>, acceptance criteria; can refine that further, to express that we might need to consider Given setup pre-conditions, and to express expected outcomes.</p>
+				<ul>
+					<li>Given I am not logged into the system</li>
+					<li>When I navigate to /register</li>
+					<li>And I supply the email field, with {email}</li>
+					<li>And I supply a {valid password}</li>
+					<li>Then I expect a 2XX response</li>
+					<li>And ...</li>
+				</ul>
+				<p>I Hope you can see how the second example, lends itself towards composition, and re-use, which might make tests easier to write further down the line; and bridge a gap with lets say an analyst assessing software for mergers or acquisitions; a product manager, looking to demo a nascent feature with a control group, or indeed friends you wish to show cool things you've worked on.</p>
+				<p>The other point about this, might be that I have a user logged into a system, and they are an administrator user; which computer geeks regularly confuse with the most powerful role within an organisation. I would suggest that this language can be extremely helpful, and be a point to align ubiquitous language, as a goal to further improve how software can be discussed.</p>
+				<h2>If you dont like BDD</h2>
+				<p>If you are working on internal systems components, where specfication is more important than user input; such as unit testing. I would suggest focusing on the actions or what makes inputs and outputs different.</p>
+				<p>If your test is that a user is not found, it does not tell me if this is desired.</p>
+				<p>By expressing the input meaning, especially for parametrized or table tests, we are able to describe and add context, to our fellow coders, and future self.</p>
+				<h2>Exceptions to rules</h2>
+				<p>Not wanting to start a cult or religion, in a world of folks, seemingly want to do both at times. I would like to lay out when I think we should change tests. To re-assure you that while the point may be academic, the impact is not to block work, but rather provide a framework for thinking about software.</p>
+				<h2>Conclusion</h2>
+				<p></p>
+			</div>By <a href="https://www.lewiscowles.co.uk/" class="u-author" rel="author">Lewis Cowles</a>
+		</article>
+	</main>
+	<footer>
+	<div class="widget-area">
+	<div class="noPad tC">
+		<div id="text-2" class="widget widget_text">
+			<div class="textwidget">
+				<p>
+				Copyright © 2014-2024 <span class="h-card"><img class="u-x-icon u-logo" src="/img/lewiscowles-logo-vector.svg" alt="" /><a class="p-name u-url u-uid" rel="me" href="https://www.lewiscowles.co.uk/">Lewis Cowles</a></span>, All Rights Reserved.<br>Font Icons By
+				<a href="http://fortawesome.github.io/Font-Awesome/" target="_blank" rel="nofollow noopener noreferrer">FontAwesome</a><br>
+				Website coded using CSS3, HTML5.<br>
+				Images use
+				<a href="http://gimp.org" target="_blank" rel="nofollow noopener noreferrer">GIMP</a> &amp; Adobe Creative Suite.
+				</p>
+			</div>
+		</div>
+	</div>
+	</div>
+	<!-- website carbon badge -->
+<div id="wcb" class="carbonbadge wcb-d"></div>
+<script src="https://unpkg.com/website-carbon-badges@1.1.3/b.min.js" defer></script>
+</footer>
+	<link href="/css/style.css" rel="stylesheet" media="all">
+	
+	<script type="text/javascript" src="/js/feature-detect.js" async></script>
+</body>
+</html>
