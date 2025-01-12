@@ -73,12 +73,30 @@
 	<main id="content">
 		<article class="h-entry">
 			<h1 class="p-name"><a class="u-url" href="/blog/documenting-auth-solutions/">Documenting Auth solutions</a></h1>
-			<time class="post-date dt-published" datetime="2024-07-28">
-				<span class="year">2024</span>-<span class="month">07</span>-<span class="day">28</span> 
+			<time class="post-date dt-published" datetime="2025-01-12">
+				<span class="year">2025</span>-<span class="month">01</span>-<span class="day">12</span> 
 			</time>
 			<div class="e-content">
-				<p>In the past 20 years. I Have worked on a lot of authentication and authorization systems.</p>
-                <ul>
+				<p>In the past 20 years. I Have worked on a lot of authentication and authorization systems. When I started out, Auth solutions were not that well formalized in the shape that they take now.</p>
+				<p>My first auth system was a batch file my dad wrote to keep me, my sister, him and my mum on one computer, without interfering with each other files.</p>
+				<p>It answered a question, can you pick from a menu who you are? The barrier was physical access to the computer. Maintenance was knowledge of the file-system structure, and the ability to edit a text file.</p>
+				<p>It's no wonder I ended up coding primarily scripting languages.</p>
+                <h2>Some questions it helps to ask about auth.</h2>
+				<ul>
+					<li>Who are you securing the system for?</li>
+					<li>How can you adapt to changing needs?</li>
+					<li>How can you recover if things are forgotten?</li>
+					<li>How can you gain observability of who has current access?</li>
+					<li>How can you gain observability of what permissions folks have?</li>
+				</ul>
+				<h2>Change</h2>
+				<p>In the early 2000's, the world of computers changed. By this time I'd noticed that my school used groups to keep kids from adventuring too far on equipment that had to be used by many. But also many people were inventing new, entirely home-grown auth approaches, designed for people who had no physical access to computers at-all.</p>
+				<p>A Business studies teacher and a Math teacher setup LDAP via PHP to allow parents access to school events, while still using the computers active directory (LDAP with extensions). More schools and colleges now had web-access for files that would be centrally stored. Captive portals would be used, with DNS to prevent access to internet resources.</p>
+				<p>Everything was a bit all over the place, and knowledge was mostly the gap that kept you out. Determined invaders and transgressors would get through.</p>
+				<p>There were even websites, which you would entrust your passwords for other sites to, who would use that to send messages on your behalf... Linkedin Still exists, but thankfully they learned.</p>
+				<h2>The era of Web 2.0</h2>
+				<p>Around the mid to late 2000s, folks started to take security more seriously. Standards such as SOAP and OpenID were becoming popular. SOAP didn't really answer auth consistently, and OpenID was a bit idealistic.</p>
+				<ul>
                     <li>Which authorization system are you using?</li>
                     <li>What standards are you looking to follow?</li>
                     <li>Is Someone on the team, going to be responsible for following that standard</li>
