@@ -26,12 +26,11 @@ function createOutput(output) {
   return container;
 }
 
-async function getPhpVersion() {
+function getPhpVersion() {
   const selectElement = document.getElementById('phpVersionSelector');
   const phpVersion = selectElement ? selectElement.value : '7.0.33';
 
-  const phpBinaryModule = await import(`./builds/build-${phpVersion}/php-web.mjs`);
-  return phpBinaryModule;
+  return import(`./builds/build-${phpVersion}/php-web.mjs`);
 }
 
 class PHP {
