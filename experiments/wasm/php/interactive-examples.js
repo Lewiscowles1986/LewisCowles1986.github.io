@@ -40,7 +40,11 @@ class PHP {
   static version = '';
   static async loadPhp() {
     const phpBinary = await getPhpVersion();
-    if (PHP.runPhp) {
+    const selectElement = document.getElementById('phpVersionSelector');
+    const phpVersion = selectElement ? selectElement.value : '7.0.33';
+
+    // If already loaded for the same version, return cached runPhp
+    if (PHP.runPhp && PHP.loadedVersion === phpVersion) {
       return PHP.runPhp;
     }
     const { ccall } = await phpBinary({
