@@ -30,7 +30,8 @@ function getPhpVersion() {
   const selectElement = document.getElementById('phpVersionSelector');
   const phpVersion = selectElement ? selectElement.value : '7.0.33';
 
-  return import(`./builds/build-${phpVersion}/php-web.mjs`);
+  const {default: phpBinaryRuntime} = import(`./builds/build-${phpVersion}/php-web.mjs`);
+  return phpBinaryRuntime;
 }
 
 class PHP {
