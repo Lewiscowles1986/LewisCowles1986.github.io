@@ -1,0 +1,144 @@
+<!doctype html>
+<html itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<head>
+    <meta charset="utf-8">
+    <link rel="manifest" href="/manifest.webmanifest">
+	<meta name="theme-color" content="#333333"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="generator" content="hand-crafted">
+	<meta name="description" content="A post about RFC 8693 (OAuth 2.0 Token Exchange) and the nested 'act' (actor) claim for delegated JWT identity claims.">
+
+	<link rel="icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
+
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+
+	<title>Web log - JWT Delegated Actor Claims &amp; RFC 8693, by Lewis Cowles</title>
+	<link rel="canonical alternate" hreflang="en-gb" href="https://www.lewiscowles.co.uk/blog/jwt-act-claim-rfc-8693/">
+	<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@type": "Person",
+		"name": "Lewis Cowles",
+		"url": "http://www.lewiscowles.co.uk",
+		"sameAs": [
+			"https://www.facebook.com/lewis.r.cowles",
+			"https://www.instagram.com/lewiscowles/",
+			"https://www.linkedin.com/in/lewiscowles/",
+			"https://www.youtube.com/channel/UCl0VmButd52e4GvN8YQh7og",
+			"https://github.com/LewisCowles1986",
+			"https://gist.github.com/LewisCowles1986"
+		]
+	}
+	</script>
+	<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"url": "https://www.lewiscowles.co.uk",
+		"logo": "https://www.lewiscowles.co.uk/img/lewiscowles-logo-vector.png"
+	}
+	</script>
+	<link rel="pingback" href="https://webmention.io/www.lewiscowles.co.uk/xmlrpc">
+	<link rel="webmention" href="https://webmention.io/www.lewiscowles.co.uk/webmention">
+</head>
+<body class="page">
+	<header>
+		<a class="sr-only sr-only-focusable" href="#content" data-skiplink="">Skip to content</a>
+		<div class="inner">
+			<div class="header-logo tC">
+				<img src="/img/lewiscowles-logo-vector.svg" alt="" class="logo" style="width: 12em; width: 12rem;">
+				<span class="header-logo-text">Lewis Cowles</span>
+			</div>
+			<nav>
+				<ul id="menu-top-menu" class="menu">
+					<li>
+						<a href="/about/">About</a>
+					</li><li>
+						<a href="/blog/">Blog</a>
+					</li><li>
+						<a href="/">Contact</a>
+					</li>
+					<li class="toggle-fragmention hidden">
+						<a href="#" title="use fragmention (requires JavaScript)">#</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+
+
+	</header>
+	<!-- straight after header -->
+	<main id="content">
+		<article class="h-entry">
+			<h1 class="p-name"><a class="u-url" href="/blog/jwt-act-claim-rfc-8693/">JWT - Delegated Actor Claims &amp; RFC 8693</a></h1>
+			<time class="post-date dt-published" datetime="2026-08-01">
+				<span class="year">2026</span>-<span class="month">08</span>-<span class="day">01</span> 
+			</time>
+			<div class="e-content">
+				<p>Thanks to Matthew Wasbrough, who recently brought up token delegation in a work chat and shone a light on parts of the specification I had not used prior. That conversation prompted me to take a deeper dive into how identity standards handle token claims when one entity acts on behalf of another in a system.</p>
+
+				<h2>RFC 8693: OAuth 2.0 Token Exchange</h2>
+				<p>As it turns out, this pattern is formalised in <a href="https://datatracker.ietf.org/doc/html/rfc8693" target="_blank" rel="noopener noreferrer">RFC 8693 (OAuth 2.0 Token Exchange)</a>. Section 4 of RFC 8693 introduces the <code>act</code> (actor) claim within JSON Web Tokens (JWTs).</p>
+				<p>The <code>act</code> claim explicitly distinguishes between <strong>impersonation</strong> and <strong>delegation</strong>:</p>
+				<ul>
+					<li><strong>Impersonation:</strong> A party presents a token where <code>sub</code> is set to the target user, but no record of the acting service exists in the token. Downstream services cannot tell that an intermediate service initiated the request.</li>
+					<li><strong>Delegation:</strong> The primary subject (<code>sub</code>) remains the target user, while the <code>act</code> claim explicitly identifies the party authorized to act on behalf of that user.</li>
+				</ul>
+
+				<h2>Nested JSON Objects vs. Lists</h2>
+				<p>When designing delegation chains, a common initial intuition is to reach for a flat array or list of strings or IDs (e.g. <code>"act": ["service-a", "service-b"]</code>). However, RFC 8693 intentionally specifies the <code>act</code> claim as a <strong>JSON object</strong>, not a JSON list.</p>
+				<p>To represent a multi-hop delegation chain (for instance, User &rarr; Service A &rarr; Service B), RFC 8693 uses <strong>recursive nesting</strong> of the <code>act</code> claim object:</p>
+
+				<pre class="multiline"><code>{
+  "sub": "user_12345",
+  "iss": "https://auth.example.com",
+  "aud": "https://api.internal.service",
+  "act": {
+    "sub": "service-b-client-id",
+    "act": {
+      "sub": "service-a-client-id"
+    }
+  }
+}</code></pre>
+
+				<h2>Why Recursive Nesting Trumps Flat Lists</h2>
+				<p>Using a nested JSON object structure rather than a simple array provides several distinct advantages:</p>
+				<ul>
+					<li><strong>Rich Metadata per Actor:</strong> Each level of the <code>act</code> object can carry its own distinct claims (such as <code>sub</code>, <code>iss</code>, <code>client_id</code>, or <code>idp</code>), rather than restricting actors to simple strings.</li>
+					<li><strong>Unambiguous Chain of Delegation:</strong> The top-level <code>act</code> object identifies the immediate actor presenting the token, while deeply nested <code>act</code> objects represent prior upstream actors in the chain.</li>
+					<li><strong>Standard Compliance:</strong> Downstream microservices and identity libraries compliant with RFC 8693 can automatically inspect and validate the delegation semantics without needing custom parsing logic for array elements.</li>
+				</ul>
+
+				<h2>Reflection &amp; Building Trust</h2>
+				<p>Reflecting on past projects, I had previously relied on what RFC 8693 defines as <em>impersonation</em>—setting the subject (<code>sub</code>) to the target user being acted on behalf of, simply because I was unaware of the <code>act</code> claim standard. Without explicit delegation claims, downstream services lose crucial audit context regarding which intermediate component initiated the request.</p>
+				<p>It's a great reminder of how important it is for technical experts to listen to one another and explore open standards together. Exchanging these insights elevates our shared knowledge, leading to stronger software design, clearer audit trails, and greater security and trust overall.</p>
+			</div>By <a href="https://www.lewiscowles.co.uk/" class="u-author" rel="author">Lewis Cowles</a>
+		</article>
+	</main>
+	<footer>
+	<div class="widget-area">
+	<div class="noPad tC">
+		<div id="text-2" class="widget widget_text">
+			<div class="textwidget">
+				<p>
+				Copyright © 2014-2026 <span class="h-card"><img class="u-x-icon u-logo" src="/img/lewiscowles-logo-vector.svg" alt="" /><a class="p-name u-url u-uid" rel="me" href="https://www.lewiscowles.co.uk/">Lewis Cowles</a></span>, All Rights Reserved.<br>Font Icons By
+				<a href="http://fortawesome.github.io/Font-Awesome/" target="_blank" rel="nofollow noopener noreferrer">FontAwesome</a><br>
+				Website coded using CSS3, HTML5.<br>
+				Images use
+				<a href="http://gimp.org" target="_blank" rel="nofollow noopener noreferrer">GIMP</a> &amp; Adobe Creative Suite.
+				</p>
+			</div>
+		</div>
+	</div>
+	</div>
+	<!-- website carbon badge -->
+<div id="wcb" class="carbonbadge wcb-d"></div>
+<script src="https://unpkg.com/website-carbon-badges@1.1.3/b.min.js" defer></script>
+</footer>
+	<link href="/css/style.css" rel="stylesheet" media="all">
+	
+	<script type="text/javascript" src="/js/feature-detect.js" async></script>
+</body>
+</html>
