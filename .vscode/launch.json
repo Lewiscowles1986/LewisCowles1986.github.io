@@ -1,0 +1,75 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Python: http.server",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "http.server",
+      "args": ["8000"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "serverReadyAction": {
+        "pattern": "Serving HTTP on .* port ([0-9]+)",
+        "uriFormat": "http://localhost:%s",
+        "action": "openExternally"
+      }
+    },
+    {
+      "name": "Playwright: Fitness Tests",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "npx playwright test tests/fitness.spec.js",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "Playwright: Debug Tests",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "npx playwright test --debug",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "Playwright: Interactive UI",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "npx playwright test --ui",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "Proofread Post",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "npm run proofread -- ${input:postFile}",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "Triage Post",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "npm run triage -- ${input:postFile}",
+      "cwd": "${workspaceFolder}"
+    }
+  ],
+  "inputs": [
+    {
+      "id": "postFile",
+      "type": "command",
+      "command": "extension.commandvariable.file.pickFile",
+      "args": {
+        "include": "blog/**/index.html",
+        "description": "Pick a post"
+      }
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Serve & Run Fitness Tests",
+      "configurations": [
+        "Python: http.server",
+        "Playwright: Fitness Tests"
+      ],
+      "stopAll": true
+    }
+  ]
+}
