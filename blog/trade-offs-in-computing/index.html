@@ -72,8 +72,12 @@
 	</header>
 	<!-- straight after header -->
 	<main id="content">
-		<article>
-			<h1><a href="/blog/trade-offs-in-computing/">Trade-off's in computing</a></h1>
+		<article class="h-entry">
+			<h1 class="p-name"><a class="u-url" href="/blog/trade-offs-in-computing/">Trade-off's in computing</a></h1>
+			<time class="post-date dt-published" datetime="2019-10-01">
+				<span class="year">2019</span>-<span class="month">10</span>-<span class="day">01</span> 
+			</time>
+			<div class="e-content">
 			<p>One thing many people do not think about enough in life is trade-off's. I'm a little bit obsessed by them in some contexts, but accept that even paying attention to trade-off's is in itself an acceptance of cost. I Hope that cost is ameliorated with the ability to deal with situations which need that attention, to avoid being blindsided by over-optimism.</p>
 			<h2>Compute vs Memory</h2>
 			<p>Some of the most basic problems in computing are so cheap to solve, that storing the answer is said to take longer, or cost more than simply computing the value. One thing that is particularly interesting about this problem is that different people categorise cheap-enough to mean lots of things, including</p>
@@ -113,7 +117,8 @@
 				<li>Excludes some of</li>
 			</ul>
 			<p>This pattern makes the most sense when you have 2 or more thresholded or absolute boolean values, such as has attachment on email, is known (but not how you know), can be taxonomically identified by, read/unread. It's not impossible to pack more complex values into these, but the goal is to perform a basic check which takes a single (or fewer) inexpensive operation(s) over many records instead of many operations (regardless of expense) over the same number.</p>
-			<p>If you were to attempt this over 10,000 records with 4 checks, the result if you could compress to a bitfield of 4 bits would be 25% of the time + overhead to construct the comparison bit-field.</p>By <a href="https://www.lewiscowles.co.uk/" class="u-author" rel="author">Lewis Cowles</a>
+			<p>If you were to attempt this over 10,000 records with 4 checks, the result if you could compress to a bitfield of 4 bits would be 25% of the time + overhead to construct the comparison bit-field.</p>
+			</div>By <a href="https://www.lewiscowles.co.uk/" class="u-author" rel="author">Lewis Cowles</a>
 		</article>
 	</main>
 	<footer>
