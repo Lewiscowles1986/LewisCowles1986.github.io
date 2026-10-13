@@ -1,0 +1,17 @@
+{
+  "dark": true,
+  "theme": "dark",
+  "themeVariables": {
+    "background": "transparent",
+    "actorBkg": "#1f2020",
+    "actorBorder": "#c19cdf",
+    "actorTextColor": "#efefef",
+    "signalColor": "#cccccc",
+    "signalTextColor": "#e5e5e5",
+    "sequenceNumberColor": "#efefef",
+    "labelBoxBkgColor": "#1f2020",
+    "labelTextColor": "#efefef"
+  },
+  "htmlLabels": false,
+  "sequence": { "mirrorActors": false }
+}
