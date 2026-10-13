@@ -1,0 +1,13 @@
+%% The "less ideal" diagram: five participants, one smeared flow
+sequenceDiagram
+    autonumber
+    participant CO as Checkout
+    participant CA as Cart
+    participant IN as Inventory
+    participant PA as Payments
+    participant NO as Notifications
+    CO->>CA: read basket
+    CA->>IN: reserve stock
+    IN->>PA: authorise payment
+    PA->>NO: emit receipt event
+    NO->>CO: confirm dispatch

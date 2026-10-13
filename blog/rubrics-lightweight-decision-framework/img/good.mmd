@@ -1,0 +1,10 @@
+%% The "good" diagram: three participants; the wider world is another diagram
+sequenceDiagram
+    autonumber
+    participant CO as Checkout
+    participant OS as Order Service
+    participant WH as Warehouse
+    CO->>OS: place order
+    OS->>WH: reserve stock
+    WH-->>OS: stock reserved
+    OS-->>CO: order accepted

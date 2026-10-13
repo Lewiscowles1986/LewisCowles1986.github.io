@@ -1,0 +1,166 @@
+<!doctype html>
+<html itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<head>
+    <meta charset="utf-8">
+    <link rel="manifest" href="/manifest.webmanifest">
+	<meta name="theme-color" content="#333333"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="generator" content="hand-crafted">
+	<meta name="description" content="A post about rubrics: what they are, and how a written scoring guide can act as a lightweight framework for engineering decisions.">
+
+	<link rel="icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="https://www.lewiscowles.co.uk/favicon.ico" type="image/x-icon">
+
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+
+	<title>Web log - Rubrics, a Lightweight Decision Framework, by Lewis Cowles</title>
+	<link rel="canonical alternate" hreflang="en-gb" href="https://www.lewiscowles.co.uk/blog/rubrics-lightweight-decision-framework/">
+	<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@type": "Person",
+		"name": "Lewis Cowles",
+		"url": "http://www.lewiscowles.co.uk",
+		"sameAs": [
+			"https://www.facebook.com/lewis.r.cowles",
+			"https://www.instagram.com/lewiscowles/",
+			"https://www.linkedin.com/in/lewiscowles/",
+			"https://www.youtube.com/channel/UCl0VmButd52e4GvN8YQh7og",
+			"https://github.com/LewisCowles1986",
+			"https://gist.github.com/LewisCowles1986"
+		]
+	}
+	</script>
+	<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"url": "https://www.lewiscowles.co.uk",
+		"logo": "https://www.lewiscowles.co.uk/img/lewiscowles-logo-vector.png"
+	}
+	</script>
+	<link rel="pingback" href="https://webmention.io/www.lewiscowles.co.uk/xmlrpc">
+	<link rel="webmention" href="https://webmention.io/www.lewiscowles.co.uk/webmention">
+</head>
+<body class="page">
+	<header>
+		<a class="sr-only sr-only-focusable" href="#content" data-skiplink="">Skip to content</a>
+		<div class="inner">
+			<div class="header-logo tC">
+				<img src="/img/lewiscowles-logo-vector.svg" alt="" class="logo" style="width: 12em; width: 12rem;">
+				<span class="header-logo-text">Lewis Cowles</span>
+			</div>
+			<nav>
+				<ul id="menu-top-menu" class="menu">
+					<li>
+						<a href="/about/">About</a>
+					</li><li>
+						<a href="/blog/">Blog</a>
+					</li><li>
+						<a href="/">Contact</a>
+					</li>
+					<li class="toggle-fragmention hidden">
+						<a href="#" title="use fragmention (requires JavaScript)">#</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+
+
+	</header>
+	<!-- straight after header -->
+	<main id="content">
+		<article class="h-entry">
+			<h1 class="p-name"><a class="u-url" href="/blog/rubrics-lightweight-decision-framework/">Rubrics - A Lightweight Decision Framework</a></h1>
+			<time class="post-date dt-published" datetime="2026-10-13">
+				<span class="year">2026</span>-<span class="month">10</span>-<span class="day">13</span> 
+			</time>
+			<div class="e-content">
+				<p>You cannot move for the word <strong>rubric</strong> right now. Every conversation about AI evaluation, LLM-as-a-judge or agent quality eventually lands on one. The word has been dragged out of the classroom, where teachers used it to grade essays, and into our Slack channels. That is no bad thing, because buried under the hype is one of the cheapest, most portable tools engineering has: a written-down idea of what <em>good</em> looks like, agreed before anyone has to judge anything.</p>
+
+				<p>This post is about that idea. Not the machine-learning detail, not the prompt tricks; the theory around all of that is somebody else&rsquo;s article. What interests me is that a rubric is a <strong>lightweight framework for decisions</strong>. You do not need a mathematics degree. You do not need to train a model. You need words, arranged honestly, in a table or a list, before the moment of judgement arrives.</p>
+
+				<h2>What a rubric actually is</h2>
+				<p>A rubric is a <strong>scoring guide written in advance</strong>. It takes something fuzzy &mdash; <em>is this code good?</em>, <em>is this design simple?</em> &mdash; and breaks it into named criteria, each with described levels. Not numbers first. Words first. The numbers, if you want to attach any at all, come <em>after</em> the description, as shorthand for the words; never instead of them.</p>
+				<p>It looks like this:</p>
+				<table>
+					<thead>
+						<tr><th>Criterion</th><th>Weak</th><th>Good</th><th>Penalised</th></tr>
+					</thead>
+					<tbody>
+						<tr><td>Test quality</td><td>Tests assert implementation details</td><td>Tests assert behaviour, run on every change</td><td>No tests, or tests that cannot fail</td></tr>
+						<tr><td>Failure story</td><td>No answer to &ldquo;what happens if this breaks?&rdquo;</td><td>Failure modes named, visible, recoverable</td><td>Silent failure; the system lies</td></tr>
+						<tr><td>Understandability</td><td>You need the author present</td><td>A competent stranger can reason about it</td><td>Even the author needs a week</td></tr>
+					</tbody>
+				</table>
+				<p>That is a rubric. Three criteria, three levels, written in ordinary language. A person &mdash; or an AI, if that is your judge &mdash; reads the words, finds the level that matches reality, and the judgement is done. Compare that to the alternative masquerading as it: a pile of raw metrics, weights and thresholds. That is a <strong>scoring pipeline</strong>, a different thing. It is useful, but it hides its values inside formulas nobody argued about. A rubric puts the values on the table <em>first</em>, where they can be argued with, amended and owned by the team doing the work.</p>
+
+				<h2>Rubrics let you speak precisely without the mathematics</h2>
+				<p>There is a peculiar pressure in engineering right now that to be <em>rigorous</em>, your judgements must emerge from a formula: an exponential curve here, a weighted sum there, a threshold you discovered by staring at a dashboard. Rigour is not the exclusive property of mathematics. A rubric gives you a formal way to say what you mean &mdash; <strong>explicit criteria, described levels, a standard agreed before judgement</strong> &mdash; and it survives contact with teams, code review and argument in a way a hand-tuned formula rarely does.</p>
+				<p>The mathematics can come later, if it is ever needed. The rubric is the contract; any scoring you layer on top is an implementation detail, swappable and debatable without touching what you actually believe about quality. That is the superpower. The rubric holds the <em>meaning</em>. Everything else is machinery.</p>
+
+				<h2>Worked example: the sequence diagram with too many columns</h2>
+				<p>Sequence diagrams are where architecture reviews go to die. You have seen the one: a flow smeared across so many participants that the diagram stops being documentation and becomes proof that nobody owns anything. &ldquo;Too many participants&rdquo; is a real feeling, but it is not a decision. Write it down as a rubric and it becomes one:</p>
+				<table>
+					<thead>
+						<tr><th>Criterion</th><th>Weak</th><th>Good</th><th>Penalised</th></tr>
+					</thead>
+					<tbody>
+						<tr><td>Participants in one flow</td><td>1&ndash;2, which probably means several flows hiding as one</td><td>3&ndash;5, each owning one clear concern</td><td>6+ &mdash; sprawl; the flow should be split</td></tr>
+						<tr><td>Hops (depth)</td><td>&mdash;</td><td>Any number, if each hop earns its place</td><td>Depth costs grow gently, roughly one-per-step</td></tr>
+						<tr><td>Actor ownership</td><td>One participant &ldquo;talks to everything&rdquo;</td><td>Each participant owns one concern</td><td>Blurred roles; nobody can say who does what</td></tr>
+					</tbody>
+				</table>
+				<p>Now apply it. First, the offender. Five participants &mdash; Checkout, Cart, Inventory, Payments, Notifications &mdash; in a single flow. Against the rubric this scores: participants in the penalised zone if one more joins, ownership already smeared down the chain, and it reads nothing like a story.</p>
+				<figure>
+					<picture>
+						<source srcset="img/too-wide-dark.svg" media="(prefers-color-scheme: dark)">
+						<img src="img/too-wide-light.svg" alt="Sequence diagram with five participants: Checkout, Cart, Inventory, Payments and Notifications passing a request down the chain" width="1050">
+					</picture>
+					<figcaption class="caption">Less ideal: five participants, one smeared flow.</figcaption>
+				</figure>
+				<p>The fix is not a cleverer diagram. It is a <strong>split</strong>. The wide flow above is really at least two diagrams wearing one costume. Keep the story local &mdash; who placed an order, and who fulfilled it &mdash; and push the rest into its own picture:</p>
+				<figure>
+					<picture>
+						<source srcset="img/good-dark.svg" media="(prefers-color-scheme: dark)">
+						<img src="img/good-light.svg" alt="Sequence diagram with three participants: Checkout, Order Service and Warehouse, passing a request between them" width="650">
+					</picture>
+					<figcaption class="caption">Good: three participants, one story; the wider world becomes a separate diagram.</figcaption>
+				</figure>
+				<p>Three participants, one story, every hop earning its place. The same rubric that condemned the first diagram approves this one &mdash; and because the rubric is written down, the disagreement you have with yourself (or with me, in the comments of your pull request) is about <em>criteria</em>, which are discussable, not about vibes, which are not.</p>
+
+				<h2>Depth against width &mdash; my opinion</h2>
+				<p>This is the part where I tell you what I think, and you are welcome to push back. In the diagrams above, depth was never the problem. Each hop is <em>essential</em> work: something that must happen, in order, and can only happen after its predecessor. The cost of depth tends to grow gently, roughly one-per-step. That is <strong>my opinion from practice</strong>, not physics.</p>
+				<p>Width is different. Every additional participant multiplies the number of things that can go wrong, the number of conversations a reader must hold, and the number of places a failure can hide. The wider the flow spreads across actors, the less reliable the whole picture tends to be &mdash; and the more of it is <em>accidental</em>: our chosen boundaries, not the problem we were given. That is why the rubric punishes participant sprawl and tolerates depth. Spreading work across many systems, and keeping a story sequential, are not equally bad things. <strong>(In my experience.)</strong></p>
+
+				<h2>Your turn</h2>
+				<p>I said earlier that rubrics look cheap. They <em>feel</em> cheap &mdash; a table of words, no tooling, no training budget &mdash; but I would not agree that they are. A rubric is an essential part of navigating the growing number of decisions in engineering and in life: every year hands you more options, more tooling, more people to align, and the alternative to a written standard is vibes, politics or whoever spoke loudest. The question closing this out is the one I would like answered more than any of the above: <strong>what rubrics might you consider?</strong> What would a &ldquo;good&rdquo; pull request look like in words, before anyone looks at one? A design document? An incident report? A candidate architecture? Write one level of one criterion this week &mdash; not the whole matrix, just one honest sentence about what good looks like &mdash; and see how fast the arguments around you turn into discussions.</p>
+			</div>By <a href="https://www.lewiscowles.co.uk/" class="u-author" rel="author">Lewis Cowles</a>
+		</article>
+	</main>
+	<footer>
+	<div class="widget-area">
+	<div class="noPad tC">
+		<div id="text-2" class="widget widget_text">
+			<div class="textwidget">
+				<p>
+				Copyright © 2014-2026 <span class="h-card"><img class="u-x-icon u-logo" src="/img/lewiscowles-logo-vector.svg" alt="" /><a class="p-name u-url u-uid" rel="me" href="https://www.lewiscowles.co.uk/">Lewis Cowles</a></span>, All Rights Reserved.<br>Font Icons By
+				<a href="http://fortawesome.github.io/Font-Awesome/" target="_blank" rel="nofollow noopener noreferrer">FontAwesome</a><br>
+				Website coded using CSS3, HTML5.<br>
+				Images use
+				<a href="http://gimp.org" target="_blank" rel="nofollow noopener noreferrer">GIMP</a> &amp; Adobe Creative Suite.
+				</p>
+			</div>
+		</div>
+	</div>
+	</div>
+	<!-- website carbon badge -->
+<div id="wcb" class="carbonbadge wcb-d"></div>
+<script src="https://unpkg.com/website-carbon-badges@1.1.3/b.min.js" defer></script>
+</footer>
+	<link href="/css/style.css" rel="stylesheet" media="all">
+	
+	<script type="text/javascript" src="/js/feature-detect.js" async></script>
+</body>
+</html>
