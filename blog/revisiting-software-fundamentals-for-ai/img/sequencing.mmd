@@ -1,0 +1,11 @@
+%% Mermaid draws subgraphs bottom-up for a left-to-right flow, so the
+%% "bounded" group is declared first to place it second (bottom) on the page.
+flowchart LR
+    subgraph bounded["Constrain first, generate later"]
+        b1["Scenarios<br/>what it must do"] --> b2["Failing test<br/>proves the gap"]
+        b2 --> b3["Code<br/>satisfies the test"]
+    end
+    subgraph unbounded["Generate first, constrain later"]
+        a1["Code"] --> a2["Tests describe<br/>what the code does"]
+        a2 --> a3["Docs describe<br/>what the tests cover"]
+    end
