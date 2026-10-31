@@ -92,23 +92,23 @@
 
 				<p>So treat it as an ideal on a continuum, not a command. The <a href="https://en.wikipedia.org/wiki/Rule_of_three_(computer_programming)" rel="nofollow noopener noreferrer">rule of three</a> is a serviceable upper bound on duplication. Tolerate the first copy. Notice the second. Consider unifying at the third, when you finally have enough evidence to see what is genuinely shared. Sometimes the honest answer is a little duplication and a comment explaining why the pieces must stay apart.</p>
 
-				<h2>Readability is not a matter of taste, and not something the output can settle</h2>
+				<h2>Readability is not a matter of taste</h2>
 				<p>The argument I hear most is that readership is over. The end user only sees behaviour, so who cares whether the code is legible?</p>
 
-				<p>It is true that you can launch a demo this way. Demos are short-lived and have one author, and nobody has to keep them alive. What you cannot do is maintain the thing. Or onboard a developer onto it. Or hand it to a team making a change under pressure at eleven at night. Readability is not decoration laid over working software. It is the property that determines whether the next change is possible.</p>
+				<p>It is true that you can launch a demo this way. Demos are short-lived and have one [or few] author(s), and nobody has to keep them alive. What you cannot do is maintain the thing. Or onboard a developer onto it. Or hand it to a team making a change under pressure at eleven at night. Readability is not decoration laid over working software. It is the property that determines whether the next change is possible.</p>
 
 				<p>You can negotiate how much understanding you need before you try something. That is what tiering frameworks, risk levels and maturity models are for, and they are useful. But they do not remove effort; they only move it. A tier-one review that skips understanding does not delete the work of understanding. It defers it, to the person who inherits the code, who will do it with less context and worse information.</p>
 
 				<p>And we know what deferred understanding costs. Decades of research on software defects keeps returning the same shape. A severe problem found after delivery costs far more to fix than one caught in requirements and design. Not because the typing is harder. Because by then the understanding has to be bought again, by somebody with less context, under more pressure. That is not a vibe. It is friction, and friction has a price.</p>
 
-				<h2>Naming is the cheapest thing to fix and the most expensive thing to skip</h2>
+				<h2>Naming&hellip;</h2>
 				<p>Names are documentation that cannot go stale without someone noticing. They are also the hardest thing to retrofit. By the time a name is wrong, it is wrong in fifty call sites and in the heads of everyone who reads it.</p>
 
-				<p>AI is very good at plausible names. <em>Handler</em>, <em>manager</em>, <em>service</em>, <em>data</em>, <em>utils</em> &mdash; these appear because they are statistically safe, not because they are true. Each one makes the next reader reconstruct the meaning from the body of the function. That is exactly the work the name was supposed to save. The cost is small per instance, which is why it survives review, and it compounds in the same way duplication does.</p>
+				<p>AI is very good at plausible names. <em>Handler</em>, <em>manager</em>, <em>service</em>, <em>data</em>, <em>utils</em>; these appear because they are statistically safe, not because they are true. Each one makes the next reader reconstruct the meaning from the body of the function. That is exactly the work the name was supposed to save. The cost is small per instance, which is why it survives review, and it compounds in the same way duplication does.</p>
 
 				<p>A name that says what a thing <em>is</em> is the cheapest correctness you will ever buy. If the honest name is hard to find, that is usually a design smell announcing itself. It is much cheaper to hear it now than after the module has three consumers.</p>
 
-				<h2>Sequencing: the horse, the cart, and the question nobody asked</h2>
+				<h2>Sequencing: the horse, the cart, and the question</h2>
 				<p>This is the one I have found most surprising in practice. AI can generate a large amount of correct-looking work in the wrong order. It will couple things that should be independent. It will reach for a shared service before the second caller exists. It will solve the problem in front of it without asking who the problem is for. That last omission is the expensive one. &ldquo;Who are we designing this for?&rdquo; is not a warm-up question. It determines the whole shape of the answer, and it is exactly the question an agent will not ask unless you make it.</p>
 
 				<p>The coupling preference is the one that has cost me most. Ask for infrastructure and you will very often get coupling where decoupling was available. Resources that cannot be removed without taking the network with them. Names baked into three places. A module that quietly assumes it is the only tenant. It is not wrong, exactly. It is workable, in the way that a knot is workable. Somebody then has to support that Terraform, and the team pays for it in productivity stolen from them by a design nobody chose. The cost shows up as slowness rather than failure, which is exactly why it survives review.</p>
@@ -148,8 +148,8 @@
 
 				<h2>Further reading</h2>
 				<ul>
-					<li><a href="https://en.wikipedia.org/wiki/Rule_of_three_(computer_programming)" rel="nofollow noopener noreferrer">Rule of three (computer programming)</a> &mdash; a heuristic bound on how much duplication to tolerate before unifying.</li>
-					<li><a href="/blog/rubrics-lightweight-decision-framework/">Rubrics &mdash; A Lightweight Decision Framework</a> &mdash; the companion piece, if you want a way to write these judgements down before you argue about them.</li>
+					<li><a href="https://en.wikipedia.org/wiki/Rule_of_three_(computer_programming)" rel="nofollow noopener noreferrer">Rule of three (computer programming)</a>; a heuristic bound on how much duplication to tolerate before unifying.</li>
+					<li><a href="/blog/rubrics-lightweight-decision-framework/">Rubrics - A Lightweight Decision Framework</a>; the companion piece, if you want a way to write these judgements down before you argue about them.</li>
 				</ul>
 			</div>By <a href="https://www.lewiscowles.co.uk/" class="u-author" rel="author">Lewis Cowles</a>
 		</article>
