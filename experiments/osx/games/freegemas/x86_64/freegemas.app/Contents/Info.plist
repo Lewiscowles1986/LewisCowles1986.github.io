@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<plist version="1.0">
+    <dict>
+        <key>CFBundleExecutable</key>
+        <string>FreeGemas</string>
+        <key>CFBundleGetInfoString</key>
+        <string>FreeGemas Git (97f6fc75daa60e42b19460df017db20773538228)</string>
+        <key>CFBundleVersion</key>
+        <string>dev</string>
+        <key>CFBundleShortVersionString</key>
+        <string>dev</string>
+        <key>CFBundleIconFile</key>
+        <string>AppIcon</string>
+        <key>CFBundleIconName</key>
+        <string>AppIcon</string>
+        <key>LSApplicationCategoryType</key>
+        <string>public.app-category.games</string>
+        <key>CFBundleDocumentTypes</key>
+        <array>
+            <dict>
+                <key>CFBundleTypeExtensions</key>
+                <array>
+                    <string>game</string>
+                </array>
+                <key>CFBundleTypeName</key>
+                <string>game</string>
+            </dict>
+        </array>
+    </dict>
+</plist>

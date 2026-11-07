@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<plist version="1.0">
+  <dict>
+    <key>CFBundleExecutable</key>
+    <string>FreeGemas</string>
+    <key>CFBundleGetInfoString</key>
+    <string>FreeGemas Git (dd4cd21e553a9a41ec0273dd7cb50a9dbb938493)</string>
+    <key>CFBundleVersion</key>
+    <string>dev</string>
+    <key>CFBundleShortVersionString</key>
+    <string>dev</string>
+    <key>CFBundleIconFile</key>
+	<string>AppIcon</string>
+    <key>CFBundleIconName</key>
+	<string>AppIcon</string>
+</dict>
+</plist>
